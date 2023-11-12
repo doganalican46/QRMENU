@@ -6,22 +6,13 @@ using System.Web.Mvc;
 using QRMENU.Models.Entity;
 namespace QRMENU.Controllers
 {
-    public class AdminController : Controller
+    public class AyarlarController : Controller
     {
         QRMenuEntities1 db = new QRMenuEntities1();
-        // GET: Admin
+        // GET: Ayarlar
         public ActionResult Index()
         {
-
             return View();
         }
-
-
-
-
-
-
-
-
     }
 }

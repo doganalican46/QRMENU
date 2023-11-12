@@ -6,22 +6,14 @@ using System.Web.Mvc;
 using QRMENU.Models.Entity;
 namespace QRMENU.Controllers
 {
-    public class AdminController : Controller
+    public class UrunlerController : Controller
     {
         QRMenuEntities1 db = new QRMenuEntities1();
-        // GET: Admin
+        // GET: Urunler
         public ActionResult Index()
         {
-
-            return View();
+            var urun = db.TBLURUNLER.ToList();
+            return View(urun);
         }
-
-
-
-
-
-
-
-
     }
 }

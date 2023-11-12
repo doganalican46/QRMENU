@@ -17,8 +17,8 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">KATEGORİ LİSTESİ<a href="#!" class="btn btn-primary float-right">Yeni Kategori Ekle</a></h6>
-            
+            <h6 class="m-0 font-weight-bold text-primary">KATEGORİ LİSTESİ<a href="/Kategori/KategoriEkle/" class="btn btn-primary float-right">Yeni Kategori Ekle</a></h6>
+
         </div>
         <div class="card-body">
             <asp:Repeater id="Repeater1" runat="server">
@@ -39,7 +39,10 @@
                                     <tr>
                                         <td>@kategori.KATEGORIAD</td>
                                         <td>@kategori.URUNSAYISI</td>
-                                        <td> <a href="#!" class="btn btn-danger">SİL</a></td>
+                                        <td>
+                                            <a href="/Kategori/KategoriSil/@kategori.KATEGORIID" class="btn btn-danger">SİL</a>
+                                            <a href="/Kategori/KategoriGuncelle/@kategori.KATEGORIID" class="btn btn-primary">SİL</a>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
