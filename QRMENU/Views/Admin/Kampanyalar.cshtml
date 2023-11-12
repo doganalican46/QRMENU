@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Kampanyalar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">KAMPANYA</h1>
+
+    </div>
+
+
+    <form>
+        <h4 class=" mb-2 mt-5">Kampanya Oluşturma</h4>
+
+        <!-- Kafe adı ve Slogan -->
+        <div class="form-group row">
+            <label for="kampanya" class="col-sm-2 col-form-label">Kampanya Açıklaması:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="kampanya"
+                       placeholder="Kampanya detaylarını yazınız... (Bu kısım ana sayfada gözükecektir!)">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="kampanyalıurun" class="col-sm-2 col-form-label">Kampanyalı Ürün:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="kampanyalıurun"
+                       placeholder="Kampanyalı ürünü seçiniz...">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="kampanyasüre" class="col-sm-2 col-form-label">Kampanya Süresi:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="kampanyasüre"
+                       placeholder="Kampanyanın son geçerlilik tarihini girin...">
+            </div>
+        </div>
+
+
+
+
+        <hr>
+        <div class=" mt-4">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+
+
+
+</div>
+<!-- /.container-fluid -->

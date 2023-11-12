@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QRMenuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBLADMIN">
+          <Key>
+            <PropertyRef Name="ADMINID" />
+          </Key>
+          <Property Name="ADMINID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADMINUSERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="ADMINPASSWORD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLDUKKAN">
+          <Key>
+            <PropertyRef Name="DUKKANID" />
+          </Key>
+          <Property Name="DUKKANID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DUKKANAD" Type="varchar" MaxLength="100" />
+          <Property Name="DUKKANSLOGAN" Type="varchar" MaxLength="250" />
+          <Property Name="DUKKANHAKKINDA" Type="varchar" MaxLength="500" />
+          <Property Name="DUKKANSAHIBI" Type="int" />
+          <Property Name="DUKKANADRES" Type="varchar" MaxLength="250" />
+          <Property Name="DUKKANSAAT" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLKAMPANYALAR">
+          <Key>
+            <PropertyRef Name="KAMPANYAID" />
+          </Key>
+          <Property Name="KAMPANYAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KAMPANYAACIKLAMA" Type="varchar" MaxLength="250" />
+          <Property Name="KAMPANYALIURUN" Type="int" />
+          <Property Name="KAMPANYASURESI" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLKATEGORILER">
+          <Key>
+            <PropertyRef Name="KATEGORIID" />
+          </Key>
+          <Property Name="KATEGORIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KATEGORIAD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLKULLANICILAR">
+          <Key>
+            <PropertyRef Name="KULLANICIID" />
+          </Key>
+          <Property Name="KULLANICIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KULLANICIAD" Type="varchar" MaxLength="50" />
+          <Property Name="KULLANICISOYAD" Type="varchar" MaxLength="50" />
+          <Property Name="KULLANICIMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="KULLANICIDOGUMGUNU" Type="varchar" MaxLength="100" />
+          <Property Name="KULLANICIRESIM" Type="varchar" MaxLength="500" />
+          <Property Name="KULLANICISIFRE" Type="varchar" MaxLength="25" />
+          <Property Name="KULLANICIDUKKAN" Type="int" />
+          <Property Name="KULLANICIDURUM" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TBLMASA">
+          <Key>
+            <PropertyRef Name="MASAID" />
+          </Key>
+          <Property Name="MASAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MASANUMARASI" Type="bigint" />
+        </EntityType>
+        <EntityType Name="TBLSAATLER">
+          <Key>
+            <PropertyRef Name="CALISMASAATID" />
+          </Key>
+          <Property Name="CALISMASAATID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PAZARTESI" Type="varchar" MaxLength="50" />
+          <Property Name="SALI" Type="varchar" MaxLength="50" />
+          <Property Name="CARSAMBA" Type="varchar" MaxLength="50" />
+          <Property Name="PERSEMBE" Type="varchar" MaxLength="50" />
+          <Property Name="CUMA" Type="varchar" MaxLength="50" />
+          <Property Name="CUMARTESI" Type="varchar" MaxLength="50" />
+          <Property Name="PAZAR" Type="varchar" MaxLength="50" />
+          <Property Name="DUKKANSAAT" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLSIPARISLER">
+          <Key>
+            <PropertyRef Name="SIPARISID" />
+          </Key>
+          <Property Name="SIPARISID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MASANUMARASI" Type="int" />
+          <Property Name="SIPARISLER" Type="int" />
+          <Property Name="GECENSURE" Type="time" Precision="7" />
+          <Property Name="TOPLAMFIYAT" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SIPARISDURUM" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TBLSOCIALMEDIA">
+          <Key>
+            <PropertyRef Name="SOCIALMEDIAID" />
+          </Key>
+          <Property Name="SOCIALMEDIAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SOCIALMEDIALINK" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TBLURUNLER">
+          <Key>
+            <PropertyRef Name="URUNID" />
+          </Key>
+          <Property Name="URUNID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URUNAD" Type="varchar" MaxLength="50" />
+          <Property Name="URUNACIKLAMA" Type="varchar" MaxLength="100" />
+          <Property Name="URUNFIYAT" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="URUNRESIM" Type="varchar" MaxLength="250" />
+          <Property Name="URUNKATEGORI" Type="int" />
+          <Property Name="URUNDURUM" Type="tinyint" />
+        </EntityType>
+        <Association Name="FK_TBLDUKKAN_TBLKULLANICILAR">
+          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="0..1" />
+          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKULLANICILAR">
+              <PropertyRef Name="KULLANICIID" />
+            </Principal>
+            <Dependent Role="TBLDUKKAN">
+              <PropertyRef Name="DUKKANSAHIBI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLKAMPANYALAR_TBLURUNLER">
+          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="0..1" />
+          <End Role="TBLKAMPANYALAR" Type="Self.TBLKAMPANYALAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLURUNLER">
+              <PropertyRef Name="URUNID" />
+            </Principal>
+            <Dependent Role="TBLKAMPANYALAR">
+              <PropertyRef Name="KAMPANYALIURUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLKULLANICILAR_TBLDUKKAN">
+          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="0..1" />
+          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLDUKKAN">
+              <PropertyRef Name="DUKKANID" />
+            </Principal>
+            <Dependent Role="TBLKULLANICILAR">
+              <PropertyRef Name="KULLANICIDUKKAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSAATLER_TBLDUKKAN">
+          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="0..1" />
+          <End Role="TBLSAATLER" Type="Self.TBLSAATLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLDUKKAN">
+              <PropertyRef Name="DUKKANID" />
+            </Principal>
+            <Dependent Role="TBLSAATLER">
+              <PropertyRef Name="DUKKANSAAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARISLER_TBLMASA">
+          <End Role="TBLMASA" Type="Self.TBLMASA" Multiplicity="0..1" />
+          <End Role="TBLSIPARISLER" Type="Self.TBLSIPARISLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLMASA">
+              <PropertyRef Name="MASAID" />
+            </Principal>
+            <Dependent Role="TBLSIPARISLER">
+              <PropertyRef Name="MASANUMARASI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLURUNLER_TBLKATEGORILER">
+          <End Role="TBLKATEGORILER" Type="Self.TBLKATEGORILER" Multiplicity="0..1" />
+          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKATEGORILER">
+              <PropertyRef Name="KATEGORIID" />
+            </Principal>
+            <Dependent Role="TBLURUNLER">
+              <PropertyRef Name="URUNKATEGORI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QRMenuModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLDUKKAN" EntityType="Self.TBLDUKKAN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKAMPANYALAR" EntityType="Self.TBLKAMPANYALAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKATEGORILER" EntityType="Self.TBLKATEGORILER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKULLANICILAR" EntityType="Self.TBLKULLANICILAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLMASA" EntityType="Self.TBLMASA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLSAATLER" EntityType="Self.TBLSAATLER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLSIPARISLER" EntityType="Self.TBLSIPARISLER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLSOCIALMEDIA" EntityType="Self.TBLSOCIALMEDIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLURUNLER" EntityType="Self.TBLURUNLER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLDUKKAN_TBLKULLANICILAR" Association="Self.FK_TBLDUKKAN_TBLKULLANICILAR">
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLKAMPANYALAR_TBLURUNLER" Association="Self.FK_TBLKAMPANYALAR_TBLURUNLER">
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+            <End Role="TBLKAMPANYALAR" EntitySet="TBLKAMPANYALAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLKULLANICILAR_TBLDUKKAN" Association="Self.FK_TBLKULLANICILAR_TBLDUKKAN">
+            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSAATLER_TBLDUKKAN" Association="Self.FK_TBLSAATLER_TBLDUKKAN">
+            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
+            <End Role="TBLSAATLER" EntitySet="TBLSAATLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARISLER_TBLMASA" Association="Self.FK_TBLSIPARISLER_TBLMASA">
+            <End Role="TBLMASA" EntitySet="TBLMASA" />
+            <End Role="TBLSIPARISLER" EntitySet="TBLSIPARISLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLURUNLER_TBLKATEGORILER" Association="Self.FK_TBLURUNLER_TBLKATEGORILER">
+            <End Role="TBLKATEGORILER" EntitySet="TBLKATEGORILER" />
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QRMenuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBLADMIN">
+          <Key>
+            <PropertyRef Name="ADMINID" />
+          </Key>
+          <Property Name="ADMINID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADMINUSERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADMINPASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBLDUKKAN">
+          <Key>
+            <PropertyRef Name="DUKKANID" />
+          </Key>
+          <Property Name="DUKKANID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DUKKANAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DUKKANSLOGAN" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DUKKANHAKKINDA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DUKKANSAHIBI" Type="Int32" />
+          <Property Name="DUKKANADRES" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DUKKANSAAT" Type="Int32" />
+          <NavigationProperty Name="TBLKULLANICILAR" Relationship="Self.FK_TBLDUKKAN_TBLKULLANICILAR" FromRole="TBLDUKKAN" ToRole="TBLKULLANICILAR" />
+          <NavigationProperty Name="TBLKULLANICILAR1" Relationship="Self.FK_TBLKULLANICILAR_TBLDUKKAN" FromRole="TBLDUKKAN" ToRole="TBLKULLANICILAR" />
+          <NavigationProperty Name="TBLSAATLER" Relationship="Self.FK_TBLSAATLER_TBLDUKKAN" FromRole="TBLDUKKAN" ToRole="TBLSAATLER" />
+        </EntityType>
+        <EntityType Name="TBLKAMPANYALAR">
+          <Key>
+            <PropertyRef Name="KAMPANYAID" />
+          </Key>
+          <Property Name="KAMPANYAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KAMPANYAACIKLAMA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="KAMPANYALIURUN" Type="Int32" />
+          <Property Name="KAMPANYASURESI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLURUNLER" Relationship="Self.FK_TBLKAMPANYALAR_TBLURUNLER" FromRole="TBLKAMPANYALAR" ToRole="TBLURUNLER" />
+        </EntityType>
+        <EntityType Name="TBLKATEGORILER">
+          <Key>
+            <PropertyRef Name="KATEGORIID" />
+          </Key>
+          <Property Name="KATEGORIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KATEGORIAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLURUNLER" Relationship="Self.FK_TBLURUNLER_TBLKATEGORILER" FromRole="TBLKATEGORILER" ToRole="TBLURUNLER" />
+        </EntityType>
+        <EntityType Name="TBLKULLANICILAR">
+          <Key>
+            <PropertyRef Name="KULLANICIID" />
+          </Key>
+          <Property Name="KULLANICIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KULLANICIAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KULLANICISOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KULLANICIMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KULLANICIDOGUMGUNU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KULLANICIRESIM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="KULLANICISIFRE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="KULLANICIDUKKAN" Type="Int32" />
+          <Property Name="KULLANICIDURUM" Type="Byte" />
+          <NavigationProperty Name="TBLDUKKAN" Relationship="Self.FK_TBLDUKKAN_TBLKULLANICILAR" FromRole="TBLKULLANICILAR" ToRole="TBLDUKKAN" />
+          <NavigationProperty Name="TBLDUKKAN1" Relationship="Self.FK_TBLKULLANICILAR_TBLDUKKAN" FromRole="TBLKULLANICILAR" ToRole="TBLDUKKAN" />
+        </EntityType>
+        <EntityType Name="TBLMASA">
+          <Key>
+            <PropertyRef Name="MASAID" />
+          </Key>
+          <Property Name="MASAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MASANUMARASI" Type="Int64" />
+          <NavigationProperty Name="TBLSIPARISLER" Relationship="Self.FK_TBLSIPARISLER_TBLMASA" FromRole="TBLMASA" ToRole="TBLSIPARISLER" />
+        </EntityType>
+        <EntityType Name="TBLSAATLER">
+          <Key>
+            <PropertyRef Name="CALISMASAATID" />
+          </Key>
+          <Property Name="CALISMASAATID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PAZARTESI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SALI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CARSAMBA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PERSEMBE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CUMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CUMARTESI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PAZAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DUKKANSAAT" Type="Int32" />
+          <NavigationProperty Name="TBLDUKKAN" Relationship="Self.FK_TBLSAATLER_TBLDUKKAN" FromRole="TBLSAATLER" ToRole="TBLDUKKAN" />
+        </EntityType>
+        <EntityType Name="TBLSIPARISLER">
+          <Key>
+            <PropertyRef Name="SIPARISID" />
+          </Key>
+          <Property Name="SIPARISID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MASANUMARASI" Type="Int32" />
+          <Property Name="SIPARISLER" Type="Int32" />
+          <Property Name="GECENSURE" Type="Time" Precision="7" />
+          <Property Name="TOPLAMFIYAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SIPARISDURUM" Type="Byte" />
+          <NavigationProperty Name="TBLMASA" Relationship="Self.FK_TBLSIPARISLER_TBLMASA" FromRole="TBLSIPARISLER" ToRole="TBLMASA" />
+        </EntityType>
+        <EntityType Name="TBLSOCIALMEDIA">
+          <Key>
+            <PropertyRef Name="SOCIALMEDIAID" />
+          </Key>
+          <Property Name="SOCIALMEDIAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SOCIALMEDIALINK" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TBLURUNLER">
+          <Key>
+            <PropertyRef Name="URUNID" />
+          </Key>
+          <Property Name="URUNID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URUNAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="URUNACIKLAMA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="URUNFIYAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="URUNRESIM" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="URUNKATEGORI" Type="Int32" />
+          <Property Name="URUNDURUM" Type="Byte" />
+          <NavigationProperty Name="TBLKAMPANYALAR" Relationship="Self.FK_TBLKAMPANYALAR_TBLURUNLER" FromRole="TBLURUNLER" ToRole="TBLKAMPANYALAR" />
+          <NavigationProperty Name="TBLKATEGORILER" Relationship="Self.FK_TBLURUNLER_TBLKATEGORILER" FromRole="TBLURUNLER" ToRole="TBLKATEGORILER" />
+        </EntityType>
+        <Association Name="FK_TBLDUKKAN_TBLKULLANICILAR">
+          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="0..1" />
+          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKULLANICILAR">
+              <PropertyRef Name="KULLANICIID" />
+            </Principal>
+            <Dependent Role="TBLDUKKAN">
+              <PropertyRef Name="DUKKANSAHIBI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLKULLANICILAR_TBLDUKKAN">
+          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="0..1" />
+          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLDUKKAN">
+              <PropertyRef Name="DUKKANID" />
+            </Principal>
+            <Dependent Role="TBLKULLANICILAR">
+              <PropertyRef Name="KULLANICIDUKKAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSAATLER_TBLDUKKAN">
+          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="0..1" />
+          <End Role="TBLSAATLER" Type="Self.TBLSAATLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLDUKKAN">
+              <PropertyRef Name="DUKKANID" />
+            </Principal>
+            <Dependent Role="TBLSAATLER">
+              <PropertyRef Name="DUKKANSAAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLKAMPANYALAR_TBLURUNLER">
+          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="0..1" />
+          <End Role="TBLKAMPANYALAR" Type="Self.TBLKAMPANYALAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLURUNLER">
+              <PropertyRef Name="URUNID" />
+            </Principal>
+            <Dependent Role="TBLKAMPANYALAR">
+              <PropertyRef Name="KAMPANYALIURUN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLURUNLER_TBLKATEGORILER">
+          <End Role="TBLKATEGORILER" Type="Self.TBLKATEGORILER" Multiplicity="0..1" />
+          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKATEGORILER">
+              <PropertyRef Name="KATEGORIID" />
+            </Principal>
+            <Dependent Role="TBLURUNLER">
+              <PropertyRef Name="URUNKATEGORI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLSIPARISLER_TBLMASA">
+          <End Role="TBLMASA" Type="Self.TBLMASA" Multiplicity="0..1" />
+          <End Role="TBLSIPARISLER" Type="Self.TBLSIPARISLER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLMASA">
+              <PropertyRef Name="MASAID" />
+            </Principal>
+            <Dependent Role="TBLSIPARISLER">
+              <PropertyRef Name="MASANUMARASI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QRMenuEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" />
+          <EntitySet Name="TBLDUKKAN" EntityType="Self.TBLDUKKAN" />
+          <EntitySet Name="TBLKAMPANYALAR" EntityType="Self.TBLKAMPANYALAR" />
+          <EntitySet Name="TBLKATEGORILER" EntityType="Self.TBLKATEGORILER" />
+          <EntitySet Name="TBLKULLANICILAR" EntityType="Self.TBLKULLANICILAR" />
+          <EntitySet Name="TBLMASA" EntityType="Self.TBLMASA" />
+          <EntitySet Name="TBLSAATLER" EntityType="Self.TBLSAATLER" />
+          <EntitySet Name="TBLSIPARISLER" EntityType="Self.TBLSIPARISLER" />
+          <EntitySet Name="TBLSOCIALMEDIA" EntityType="Self.TBLSOCIALMEDIA" />
+          <EntitySet Name="TBLURUNLER" EntityType="Self.TBLURUNLER" />
+          <AssociationSet Name="FK_TBLDUKKAN_TBLKULLANICILAR" Association="Self.FK_TBLDUKKAN_TBLKULLANICILAR">
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLKULLANICILAR_TBLDUKKAN" Association="Self.FK_TBLKULLANICILAR_TBLDUKKAN">
+            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
+            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSAATLER_TBLDUKKAN" Association="Self.FK_TBLSAATLER_TBLDUKKAN">
+            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
+            <End Role="TBLSAATLER" EntitySet="TBLSAATLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLKAMPANYALAR_TBLURUNLER" Association="Self.FK_TBLKAMPANYALAR_TBLURUNLER">
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+            <End Role="TBLKAMPANYALAR" EntitySet="TBLKAMPANYALAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLURUNLER_TBLKATEGORILER" Association="Self.FK_TBLURUNLER_TBLKATEGORILER">
+            <End Role="TBLKATEGORILER" EntitySet="TBLKATEGORILER" />
+            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLSIPARISLER_TBLMASA" Association="Self.FK_TBLSIPARISLER_TBLMASA">
+            <End Role="TBLMASA" EntitySet="TBLMASA" />
+            <End Role="TBLSIPARISLER" EntitySet="TBLSIPARISLER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QRMenuModelStoreContainer" CdmEntityContainer="QRMenuEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QRMenuModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLADMIN">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLADMIN">
+              <MappingFragment StoreEntitySet="TBLADMIN">
+                <ScalarProperty Name="ADMINID" ColumnName="ADMINID" />
+                <ScalarProperty Name="ADMINUSERNAME" ColumnName="ADMINUSERNAME" />
+                <ScalarProperty Name="ADMINPASSWORD" ColumnName="ADMINPASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLDUKKAN">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLDUKKAN">
+              <MappingFragment StoreEntitySet="TBLDUKKAN">
+                <ScalarProperty Name="DUKKANID" ColumnName="DUKKANID" />
+                <ScalarProperty Name="DUKKANAD" ColumnName="DUKKANAD" />
+                <ScalarProperty Name="DUKKANSLOGAN" ColumnName="DUKKANSLOGAN" />
+                <ScalarProperty Name="DUKKANHAKKINDA" ColumnName="DUKKANHAKKINDA" />
+                <ScalarProperty Name="DUKKANSAHIBI" ColumnName="DUKKANSAHIBI" />
+                <ScalarProperty Name="DUKKANADRES" ColumnName="DUKKANADRES" />
+                <ScalarProperty Name="DUKKANSAAT" ColumnName="DUKKANSAAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKAMPANYALAR">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLKAMPANYALAR">
+              <MappingFragment StoreEntitySet="TBLKAMPANYALAR">
+                <ScalarProperty Name="KAMPANYAID" ColumnName="KAMPANYAID" />
+                <ScalarProperty Name="KAMPANYAACIKLAMA" ColumnName="KAMPANYAACIKLAMA" />
+                <ScalarProperty Name="KAMPANYALIURUN" ColumnName="KAMPANYALIURUN" />
+                <ScalarProperty Name="KAMPANYASURESI" ColumnName="KAMPANYASURESI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKATEGORILER">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLKATEGORILER">
+              <MappingFragment StoreEntitySet="TBLKATEGORILER">
+                <ScalarProperty Name="KATEGORIID" ColumnName="KATEGORIID" />
+                <ScalarProperty Name="KATEGORIAD" ColumnName="KATEGORIAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKULLANICILAR">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLKULLANICILAR">
+              <MappingFragment StoreEntitySet="TBLKULLANICILAR">
+                <ScalarProperty Name="KULLANICIID" ColumnName="KULLANICIID" />
+                <ScalarProperty Name="KULLANICIAD" ColumnName="KULLANICIAD" />
+                <ScalarProperty Name="KULLANICISOYAD" ColumnName="KULLANICISOYAD" />
+                <ScalarProperty Name="KULLANICIMAIL" ColumnName="KULLANICIMAIL" />
+                <ScalarProperty Name="KULLANICIDOGUMGUNU" ColumnName="KULLANICIDOGUMGUNU" />
+                <ScalarProperty Name="KULLANICIRESIM" ColumnName="KULLANICIRESIM" />
+                <ScalarProperty Name="KULLANICISIFRE" ColumnName="KULLANICISIFRE" />
+                <ScalarProperty Name="KULLANICIDUKKAN" ColumnName="KULLANICIDUKKAN" />
+                <ScalarProperty Name="KULLANICIDURUM" ColumnName="KULLANICIDURUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLMASA">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLMASA">
+              <MappingFragment StoreEntitySet="TBLMASA">
+                <ScalarProperty Name="MASAID" ColumnName="MASAID" />
+                <ScalarProperty Name="MASANUMARASI" ColumnName="MASANUMARASI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLSAATLER">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLSAATLER">
+              <MappingFragment StoreEntitySet="TBLSAATLER">
+                <ScalarProperty Name="CALISMASAATID" ColumnName="CALISMASAATID" />
+                <ScalarProperty Name="PAZARTESI" ColumnName="PAZARTESI" />
+                <ScalarProperty Name="SALI" ColumnName="SALI" />
+                <ScalarProperty Name="CARSAMBA" ColumnName="CARSAMBA" />
+                <ScalarProperty Name="PERSEMBE" ColumnName="PERSEMBE" />
+                <ScalarProperty Name="CUMA" ColumnName="CUMA" />
+                <ScalarProperty Name="CUMARTESI" ColumnName="CUMARTESI" />
+                <ScalarProperty Name="PAZAR" ColumnName="PAZAR" />
+                <ScalarProperty Name="DUKKANSAAT" ColumnName="DUKKANSAAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLSIPARISLER">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLSIPARISLER">
+              <MappingFragment StoreEntitySet="TBLSIPARISLER">
+                <ScalarProperty Name="SIPARISID" ColumnName="SIPARISID" />
+                <ScalarProperty Name="MASANUMARASI" ColumnName="MASANUMARASI" />
+                <ScalarProperty Name="SIPARISLER" ColumnName="SIPARISLER" />
+                <ScalarProperty Name="GECENSURE" ColumnName="GECENSURE" />
+                <ScalarProperty Name="TOPLAMFIYAT" ColumnName="TOPLAMFIYAT" />
+                <ScalarProperty Name="SIPARISDURUM" ColumnName="SIPARISDURUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLSOCIALMEDIA">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLSOCIALMEDIA">
+              <MappingFragment StoreEntitySet="TBLSOCIALMEDIA">
+                <ScalarProperty Name="SOCIALMEDIAID" ColumnName="SOCIALMEDIAID" />
+                <ScalarProperty Name="SOCIALMEDIALINK" ColumnName="SOCIALMEDIALINK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLURUNLER">
+            <EntityTypeMapping TypeName="QRMenuModel.TBLURUNLER">
+              <MappingFragment StoreEntitySet="TBLURUNLER">
+                <ScalarProperty Name="URUNID" ColumnName="URUNID" />
+                <ScalarProperty Name="URUNAD" ColumnName="URUNAD" />
+                <ScalarProperty Name="URUNACIKLAMA" ColumnName="URUNACIKLAMA" />
+                <ScalarProperty Name="URUNFIYAT" ColumnName="URUNFIYAT" />
+                <ScalarProperty Name="URUNRESIM" ColumnName="URUNRESIM" />
+                <ScalarProperty Name="URUNKATEGORI" ColumnName="URUNKATEGORI" />
+                <ScalarProperty Name="URUNDURUM" ColumnName="URUNDURUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

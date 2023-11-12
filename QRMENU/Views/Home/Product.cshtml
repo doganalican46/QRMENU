@@ -1,0 +1,627 @@
+﻿
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    .whatsapp-btn,
+    .scroll-to-top-btn {
+        position: fixed;
+        bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 20%;
+        color: #fff;
+        text-align: center;
+        font-size: 20px;
+        z-index: 1000;
+    }
+
+    .whatsapp-btn {
+        background-color: #25D366;
+        right: 80px;
+        padding: 15px;
+    }
+
+    .scroll-to-top-btn {
+        background-color: brown;
+        right: 20px;
+        padding: 15px;
+    }
+
+    .btn-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+        .btn-container a {
+            margin-bottom: 5px;
+        }
+</style>
+
+<section class="page-section">
+    <div class="container">
+
+        <div class="div mb-5 mt-5 btn-container bg-opacity-100 rounded-5">
+            <a href="#anayemekler" class="btn btn-warning">ANA YEMEKLER</a>
+            <a href="#içecekler" class="btn btn-warning">İÇECEKLER</a>
+            <a href="#tatlılar" class="btn btn-warning">TATLILAR</a>
+
+
+        </div>
+
+
+        <div class="product-item" id="anayemekler">
+            <div class="product-item-title d-flex mb-2">
+                <div class="bg-faded p-5 d-flex ms-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Muhteşem Lezzetler</span>
+                        <span class="section-heading-lower">ANA YEMEKLER</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="bg-faded p-5 rounded ">
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/döner.jpg"
+                                         style="width: auto; height: auto;" class="img-fluid rounded-start mt-0 "
+                                         alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">DÖNER</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/hamburger.jpeg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">HAMBURGER</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>50.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/lahmacun.webp"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">LAHMACUN</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>40.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/pizza.jpeg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">PİZZA</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>90.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ÜRÜN ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ÜRÜN ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ÜRÜN ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ÜRÜN ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ÜRÜN ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/anayemekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ÜRÜN ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+        <div class="product-item" id="içecekler">
+            <div class="product-item-title d-flex mt-5 mb-2">
+                <div class="bg-faded p-5 d-flex ms-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Muhteşem Lezzetler</span>
+                        <span class="section-heading-lower">İÇECEKLER</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="bg-faded p-5 rounded">
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/içecekler/kahve.png"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">KAHVE</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>15.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/içecekler/milkshake.jpeg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">MILKSHAKE</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/içecekler/oralet.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ORALET</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/içecekler/sahlep.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">SAHLEP</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>30.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/içecekler/çay.jpeg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">ÇAY</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>5.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/içecekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">İÇECEK ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/içecekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">İÇECEK ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/içecekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">İÇECEK ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/içecekler/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">İÇECEK ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+        <div class="product-item" id="tatlılar">
+            <div class="product-item-title d-flex mt-5 mb-2">
+                <div class="bg-faded p-5 d-flex ms-auto rounded">
+                    <h2 class="section-heading mb-0">
+                        <span class="section-heading-upper">Muhteşem Lezzetler</span>
+                        <span class="section-heading-lower">TATLILAR</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="bg-faded p-5 rounded">
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/tatlılar/bakalva.jpeg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">BAKLAVA</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/tatlılar/künefe.jpeg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">KÜNEFE</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/tatlılar/kıbrıstatlısı.png"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">KIBRIS TATLISI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>50.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/tatlılar/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">TATLI ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/tatlılar/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">TATLI ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/tatlılar/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">TATLI ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/tatlılar/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">TATLI ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3 " style="max-width: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="assets/img/ürünler/tatlılar/default.jpg"
+                                         class="img-fluid rounded-start mt-0 " alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">TATLI ADI</h5>
+                                        <p class="card-text">Ürün açıklaması</p>
+                                        <p class="card-text"><b>25.00 ₺</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+</section>
+
