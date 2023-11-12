@@ -1,4 +1,5 @@
-﻿
+﻿@using QRMENU.Models.Entity
+@model List<TBLKAMPANYALAR>
 @{
     ViewBag.Title = "Kampanyalar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -13,43 +14,82 @@
 
     </div>
 
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">KAMPANYA LİSTESİ<a href="#!" class="btn btn-primary float-right">Yeni Kampanya Oluştur</a></h6>
 
-    <form>
-        <h4 class=" mb-2 mt-5">Kampanya Oluşturma</h4>
+        </div>
+        <div class="card-body">
+            <asp:Repeater id="Repeater1" runat="server">
+                <ItemTemplate>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>KAMPANYA AÇIKLAMASI</th>
+                                    <th>KAMPANYALI ÜRÜN</th>
+                                    <th>KAMPANYA DURUM</th>
+                                    <th>İŞLEM</th>
+                                </tr>
+                            </thead>
 
-        <!-- Kafe adı ve Slogan -->
-        <div class="form-group row">
-            <label for="kampanya" class="col-sm-2 col-form-label">Kampanya Açıklaması:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="kampanya"
-                       placeholder="Kampanya detaylarını yazınız... (Bu kısım ana sayfada gözükecektir!)">
+                            <tbody>
+                                @foreach (var kampanya in Model)
+                                {
+                                <tr>
+                                    <td>@kampanya.KAMPANYAACIKLAMA</td>
+                                    <td>@kampanya.KAMPANYALIURUN</td>
+                                    <td>@kampanya.KAMPANYASURESI</td>
+
+                                    <td> <a href="#!" class="btn btn-danger">SİL</a><a href="#!" class="btn btn-primary">KAMPANYA BİTİR</a></td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+    </div>
+
+
+
+
+    @*<form>
+            <h4 class=" mb-2 mt-5">Kampanya Oluşturma</h4>
+
+            <div class="form-group row">
+                <label for="kampanya" class="col-sm-2 col-form-label">Kampanya Açıklaması:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="kampanya"
+                           placeholder="Kampanya detaylarını yazınız... (Bu kısım ana sayfada gözükecektir!)">
+                </div>
             </div>
-        </div>
 
-        <div class="form-group row">
-            <label for="kampanyalıurun" class="col-sm-2 col-form-label">Kampanyalı Ürün:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="kampanyalıurun"
-                       placeholder="Kampanyalı ürünü seçiniz...">
+            <div class="form-group row">
+                <label for="kampanyalıurun" class="col-sm-2 col-form-label">Kampanyalı Ürün:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="kampanyalıurun"
+                           placeholder="Kampanyalı ürünü seçiniz...">
+                </div>
             </div>
-        </div>
 
-        <div class="form-group row">
-            <label for="kampanyasüre" class="col-sm-2 col-form-label">Kampanya Süresi:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="kampanyasüre"
-                       placeholder="Kampanyanın son geçerlilik tarihini girin...">
+            <div class="form-group row">
+                <label for="kampanyasüre" class="col-sm-2 col-form-label">Kampanya Süresi:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="kampanyasüre"
+                           placeholder="Kampanyanın son geçerlilik tarihini girin...">
+                </div>
             </div>
-        </div>
 
 
 
 
-        <hr>
-        <div class=" mt-4">
-            <button type="submit" class="btn btn-primary">Kaydet</button>
-        </div>
-    </form>
+            <hr>
+            <div class=" mt-4">
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>*@
 
 
 

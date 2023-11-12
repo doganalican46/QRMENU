@@ -1,4 +1,5 @@
-﻿
+﻿@using QRMENU.Models.Entity
+@model List<TBLURUNLER>
 @{
     ViewBag.Title = "Urunler";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -11,14 +12,15 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">ANA YEMEKLER</h1>
-
     </div>
 
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">ANA YEMEK LİSTESİ</h6>
+            <h6 class="m-0 font-weight-bold text-primary">
+                ANA YEMEK LİSTESİ        <a href="#!" class="btn btn-primary float-right">Yeni Ürün Ekle</a>
+            </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,166 +36,18 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Resim</td>
-                            <td>PİZZA</td>
-                            <td>55.00 ₺</td>
-                            <td>SATIŞTA</td>
-                            <td>
-                                <a href="#!" class="btn btn-danger">SİL</a> <a href="#!"
-                                                                               class="btn btn-primary">GÜNCELLE</a>
-                            </td>
-                        </tr>
+                        @foreach (var urun in Model)
+                        {
+                            <tr>
+                                <td>@urun.URUNRESIM</td>
+                                <td>@urun.URUNAD</td>
+                                <td>@urun.URUNFIYAT ₺</td>
+                                <td>@urun.URUNDURUM</td>
+                                <td>
+                                    <a href="#!" class="btn btn-danger">SİL</a> <a href="#!" class="btn btn-primary">GÜNCELLE</a>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

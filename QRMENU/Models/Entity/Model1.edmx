@@ -50,6 +50,7 @@
           </Key>
           <Property Name="KATEGORIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KATEGORIAD" Type="varchar" MaxLength="50" />
+          <Property Name="URUNSAYISI" Type="int" />
         </EntityType>
         <EntityType Name="TBLKULLANICILAR">
           <Key>
@@ -279,6 +280,7 @@
           </Key>
           <Property Name="KATEGORIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KATEGORIAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="URUNSAYISI" Type="Int32" />
           <NavigationProperty Name="TBLURUNLER" Relationship="Self.FK_TBLURUNLER_TBLKATEGORILER" FromRole="TBLKATEGORILER" ToRole="TBLURUNLER" />
         </EntityType>
         <EntityType Name="TBLKULLANICILAR">
@@ -425,7 +427,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QRMenuEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QRMenuEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" />
           <EntitySet Name="TBLDUKKAN" EntityType="Self.TBLDUKKAN" />
@@ -467,7 +469,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QRMenuModelStoreContainer" CdmEntityContainer="QRMenuEntities">
+        <EntityContainerMapping StorageEntityContainer="QRMenuModelStoreContainer" CdmEntityContainer="QRMenuEntities1">
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="QRMenuModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -516,6 +518,7 @@
               <MappingFragment StoreEntitySet="TBLKATEGORILER">
                 <ScalarProperty Name="KATEGORIID" ColumnName="KATEGORIID" />
                 <ScalarProperty Name="KATEGORIAD" ColumnName="KATEGORIAD" />
+                <ScalarProperty Name="URUNSAYISI" ColumnName="URUNSAYISI" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -13,10 +13,10 @@ namespace QRMENU.Models.Entity
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QRMenuEntities : DbContext
+    public partial class QRMenuEntities1 : DbContext
     {
-        public QRMenuEntities()
-            : base("name=QRMenuEntities")
+        public QRMenuEntities1()
+            : base("name=QRMenuEntities1")
         {
         }
     
