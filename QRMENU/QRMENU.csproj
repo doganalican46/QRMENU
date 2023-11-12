@@ -4173,6 +4173,8 @@
     <Content Include="Views\Kampanya\Index.cshtml" />
     <Content Include="Views\Profil\Index.cshtml" />
     <Content Include="Views\Urunler\Index.cshtml" />
+    <Content Include="Views\Kategori\YeniKategori.cshtml" />
+    <Content Include="Views\Kampanya\YeniKampanya.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

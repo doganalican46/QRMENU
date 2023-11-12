@@ -16,7 +16,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">KAMPANYA LİSTESİ<a href="#!" class="btn btn-primary float-right">Yeni Kampanya Oluştur</a></h6>
+            <h6 class="m-0 font-weight-bold text-primary">KAMPANYA LİSTESİ<a href="/Kampanya/YeniKampanya/" class="btn btn-primary float-right">Yeni Kampanya Oluştur</a></h6>
 
         </div>
         <div class="card-body">
@@ -36,13 +36,16 @@
                             <tbody>
                                 @foreach (var kampanya in Model)
                                 {
-                                    <tr>
-                                        <td>@kampanya.KAMPANYAACIKLAMA</td>
-                                        <td>@kampanya.KAMPANYALIURUN</td>
-                                        <td>@kampanya.KAMPANYASURESI</td>
+                                <tr>
+                                    <td>@kampanya.KAMPANYAACIKLAMA</td>
+                                    <td>@kampanya.KAMPANYALIURUN</td>
+                                    <td>@kampanya.KAMPANYASURESI</td>
 
-                                        <td> <a href="#!" class="btn btn-danger">SİL</a><a href="#!" class="btn btn-primary">KAMPANYA BİTİR</a></td>
-                                    </tr>
+                                    <td>
+                                        <a href="/Kampanya/KampanyaSil/@kampanya.KAMPANYAID" class="btn btn-danger">SİL</a>
+                                        <a href="/Kampanya/KampanyaGuncelle/@kampanya.KAMPANYAID" class="btn btn-primary">GÜNCELLE</a>
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>

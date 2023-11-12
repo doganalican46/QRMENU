@@ -17,5 +17,21 @@ namespace QRMENU.Controllers
             var kategori = db.TBLKATEGORILER.ToList();
             return View(kategori);
         }
+
+
+        [HttpGet]
+        public ActionResult YeniKategori()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult YeniKategori(TBLKATEGORILER k1)
+        {
+            db.TBLKATEGORILER.Add(k1);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -15,5 +15,20 @@ namespace QRMENU.Controllers
             var kampanya = db.TBLKAMPANYALAR.ToList();
             return View(kampanya);
         }
+
+        [HttpGet]
+        public ActionResult YeniKampanya()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult YeniKampanya(TBLKAMPANYALAR k1)
+        {
+            db.TBLKAMPANYALAR.Add(k1);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
