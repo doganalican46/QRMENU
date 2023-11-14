@@ -33,5 +33,26 @@ namespace QRMENU.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+
+        public ActionResult KategoriSil(int id)
+        {
+
+            var kategori = db.TBLKATEGORILER.Find(id);
+
+            var urunler = db.TBLURUNLER.Where(u => u.URUNKATEGORI == id);
+            foreach (var urun in urunler)
+            {
+                urun.URUNKATEGORI = null;
+            }
+
+            db.TBLKATEGORILER.Remove(kategori);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+
+        }
+
     }
 }

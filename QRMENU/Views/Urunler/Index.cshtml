@@ -19,7 +19,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">
-                ANA YEMEK LİSTESİ        <a href="#!" class="btn btn-primary float-right">Yeni Ürün Ekle</a>
+                ANA YEMEK LİSTESİ        <a href="/Urunler/YeniUrun/" class="btn btn-primary float-right">Yeni Ürün Ekle</a>
             </h6>
         </div>
         <div class="card-body">
@@ -30,6 +30,7 @@
                             <th>ÜRÜN RESMİ</th>
                             <th>ÜRÜN AD</th>
                             <th>FİYAT</th>
+                            <th>KATEGORİ</th>
                             <th>DURUM</th>
                             <th>İŞLEM</th>
                         </tr>
@@ -42,9 +43,30 @@
                                 <td>@urun.URUNRESIM</td>
                                 <td>@urun.URUNAD</td>
                                 <td>@urun.URUNFIYAT ₺</td>
-                                <td>@urun.URUNDURUM</td>
                                 <td>
-                                    <a href="#!" class="btn btn-danger">SİL</a> <a href="#!" class="btn btn-primary">GÜNCELLE</a>
+                                    @if (@urun.TBLKATEGORILER != null)
+                                    {
+                                        @urun.TBLKATEGORILER.KATEGORIAD
+                                    }
+                                    else
+                                    {
+                                        @: (Kategori Yok)
+                                    }
+                                </td>
+                                <td>
+                                    @if (@urun.URUNDURUM == 1)
+                                    {
+                                        <span class="text-success">AKTİF</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger">PASİF</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a href="/Urunler/UrunSil/@urun.URUNID" class="btn btn-danger">SİL</a>
+                                    <a href="/Urunler/UrunGetir/@urun.URUNID" class="btn btn-primary">GÜNCELLE</a>
+
                                 </td>
                             </tr>
                         }
