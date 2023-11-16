@@ -19,16 +19,17 @@ namespace QRMENU.Controllers
         [HttpGet]
         public ActionResult YeniUrun()
         {
-            List<SelectListItem> degerler = (from i in db.TBLKATEGORILER.ToList()
+            List<SelectListItem> degerler = (from i in db.TBLURUNLER.ToList()
                                              select new SelectListItem
                                              {
-                                                 Text=i.KATEGORIAD,
-                                                 Value=i.KATEGORIID.ToString()
+                                                 Text = i.URUNAD,
+                                                 Value = i.URUNID.ToString()
 
                                              }).ToList();
-            ViewBag.kategoriler = degerler;
+            ViewBag.urunler = degerler;
             return View();
         }
+
 
 
         [HttpPost]
@@ -45,6 +46,38 @@ namespace QRMENU.Controllers
         {
             var urun = db.TBLURUNLER.Find(id);
             db.TBLURUNLER.Remove(urun);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult UrunGetir(int id)
+        {
+            var urun = db.TBLURUNLER.Find(id);
+            List<SelectListItem> degerler = (from i in db.TBLKATEGORILER.ToList()
+                                             select new SelectListItem
+                                             {
+                                                 Text = i.KATEGORIAD,
+                                                 Value = i.KATEGORIID.ToString()
+
+                                             }).ToList();
+            ViewBag.kategoriler = degerler;
+
+            return View("UrunGetir", urun);
+        }
+
+        public ActionResult Guncelle(TBLURUNLER u1)
+        {
+            var urun = db.TBLURUNLER.Find(u1.URUNID);
+            urun.URUNAD = u1.URUNAD;
+            urun.URUNACIKLAMA = u1.URUNACIKLAMA;
+            urun.URUNFIYAT = u1.URUNFIYAT;
+            urun.URUNRESIM = u1.URUNRESIM;
+
+            var kategori = db.TBLKATEGORILER.Where(m => m.KATEGORIID == u1.TBLKATEGORILER.KATEGORIID).FirstOrDefault();
+            urun.URUNKATEGORI = kategori.KATEGORIID;
+
+
+            urun.URUNDURUM = u1.URUNDURUM;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -54,5 +54,20 @@ namespace QRMENU.Controllers
 
         }
 
+        public ActionResult KategoriGetir(int id)
+        {
+            var kategori = db.TBLKATEGORILER.Find(id);
+            return View("KategoriGetir", kategori);
+        }
+
+
+        public ActionResult Guncelle(TBLKATEGORILER k1)
+        {
+            var kategori = db.TBLKATEGORILER.Find(k1.KATEGORIID);
+            kategori.KATEGORIAD = k1.KATEGORIAD;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

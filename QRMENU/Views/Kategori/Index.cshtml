@@ -40,8 +40,8 @@
                                         <td>@kategori.KATEGORIAD</td>
                                         <td>@kategori.URUNSAYISI</td>
                                         <td>
-                                            <a href="/Kategori/KategoriSil/@kategori.KATEGORIID" class="btn btn-danger">SİL</a>
-                                            <a href="/Kategori/KategoriGuncelle/@kategori.KATEGORIID" class="btn btn-primary">SİL</a>
+                                            <a href="/Kategori/KategoriSil/@kategori.KATEGORIID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                                            <a href="/Kategori/KategoriGetir/@kategori.KATEGORIID" class="btn btn-primary">GÜNCELLE</a>
                                         </td>
                                     </tr>
                                 }

@@ -20,13 +20,13 @@
         <div class="form-group row">
             <label for="KAMPANYAACIKLAMA" class="col-sm-2 col-form-label">Kampanya Açıklama:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="KAMPANYAACIKLAMA" placeholder="Kategori adı giriniz..." required="">
+                <input type="text" class="form-control" name="KAMPANYAACIKLAMA" placeholder="Kampanya adı giriniz..." required="">
             </div>
         </div>
         <div class="form-group row">
-            <label for="KAMPANYALIURUN" class="col-sm-2 col-form-label">Kampanya Ürünü Seçin:</label>
+            <label for="KAMPANYALIURUN" class="col-sm-2 col-form-label">Ürün Seçin:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="KAMPANYALIURUN" placeholder="Kategori adı giriniz..." required="">
+                @Html.DropDownListFor(m => m.TBLURUNLER.URUNID, (List<SelectListItem>)ViewBag.urunler, new { @class = "form-control" })
             </div>
         </div>
         <hr>

@@ -36,16 +36,25 @@
                             <tbody>
                                 @foreach (var kampanya in Model)
                                 {
-                                <tr>
-                                    <td>@kampanya.KAMPANYAACIKLAMA</td>
-                                    <td>@kampanya.KAMPANYALIURUN</td>
-                                    <td>@kampanya.KAMPANYASURESI</td>
+                                    <tr>
+                                        <td>@kampanya.KAMPANYAACIKLAMA</td>
+                                        <td>@kampanya.TBLURUNLER.URUNAD</td>
+                                        <td>
+                                            @if (@kampanya.KAMPANYASURESI == "1")
+                                            {
+                                                <span class="text-success">AKTİF</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-danger">PASİF</span>
+                                            }
+                                        </td>
 
-                                    <td>
-                                        <a href="/Kampanya/KampanyaSil/@kampanya.KAMPANYAID" class="btn btn-danger">SİL</a>
-                                        <a href="/Kampanya/KampanyaGuncelle/@kampanya.KAMPANYAID" class="btn btn-primary">GÜNCELLE</a>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <a href="/Kampanya/KampanyaSil/@kampanya.KAMPANYAID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                                            <a href="/Kampanya/KampanyaGetir/@kampanya.KAMPANYAID" class="btn btn-primary">GÜNCELLE</a>
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
