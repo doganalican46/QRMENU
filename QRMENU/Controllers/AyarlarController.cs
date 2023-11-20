@@ -10,6 +10,8 @@ namespace QRMENU.Controllers
     {
         QRMenuEntities1 db = new QRMenuEntities1();
         // GET: Ayarlar
+        [Authorize]
+
         public ActionResult Index()
         {
             return View();

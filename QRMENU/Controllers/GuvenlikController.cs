@@ -9,6 +9,8 @@ namespace QRMENU.Controllers
     public class GuvenlikController : Controller
     {
         // GET: Guvenlik
+        [Authorize]
+
         public ActionResult Index()
         {
             return View();

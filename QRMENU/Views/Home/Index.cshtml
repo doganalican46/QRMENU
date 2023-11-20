@@ -1,32 +1,34 @@
-﻿@{
+﻿@using QRMENU.Models.Entity
+@model List<TBLDUKKAN>
+@{
     ViewBag.Title = "Home Page";
 }
 
-
-<section class="page-section clearfix">
-    <div class="container">
-        <div class="intro">
-            <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="~/QR_MENU/assets/img/intro.jpg" alt="..." />
-            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-                <h2 class="section-heading mb-4">
-                    <span class="section-heading-upper">SLOGAN</span>
-                    <span class="section-heading-lower">CAFE & RESTORANT ADI</span>
-                </h2>
-                <p class="mb-3">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum ratione neque a?
-                    Facere nostrum laudantium deserunt maiores veritatis, possimus dolore.
-                </p>
-                <div class="intro-button mx-auto">
-                    <a class="btn btn-primary btn-xl" href="products.html">
-                        MENÜYÜ
-                        GÖRÜNTÜLE
-                    </a>
+@foreach (var dukkan in Model)
+{
+    <section class="page-section clearfix">
+        <div class="container">
+            <div class="intro">
+                <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="~/QR_MENU/assets/img/intro.jpg" alt="..." />
+                <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                    <h2 class="section-heading mb-4">
+                        <span class="section-heading-upper">@dukkan.DUKKANSLOGAN</span>
+                        <span class="section-heading-lower">@dukkan.DUKKANAD</span>
+                    </h2>
+                    <p class="mb-3">
+                        @dukkan.DUKKANHAKKINDA
+                    </p>
+                    <div class="intro-button mx-auto">
+                        <a class="btn btn-primary btn-xl" href="/Home/Product/">
+                            MENÜYÜ
+                            GÖRÜNTÜLE
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
+}
 
 <section class="page-section cta">
     <div class="container">

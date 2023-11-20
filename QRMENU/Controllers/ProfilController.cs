@@ -9,6 +9,8 @@ namespace QRMENU.Controllers
     public class ProfilController : Controller
     {
         // GET: Profil
+        [Authorize]
+
         public ActionResult Index()
         {
             return View();

@@ -10,6 +10,8 @@ namespace QRMENU.Controllers
     {
         QRMenuEntities1 db = new QRMenuEntities1();
         // GET: Urunler
+        [Authorize]
+
         public ActionResult Index()
         {
             var urun = db.TBLURUNLER.ToList();

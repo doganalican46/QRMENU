@@ -12,6 +12,8 @@ namespace QRMENU.Controllers
         QRMenuEntities1 db = new QRMenuEntities1();
 
         // GET: Kategori
+        [Authorize]
+
         public ActionResult Index()
         {
             var kategori = db.TBLKATEGORILER.ToList();

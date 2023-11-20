@@ -14,7 +14,8 @@ namespace QRMENU.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var dukkan = db.TBLDUKKAN.ToList();
+            return View(dukkan);
         }
 
         public ActionResult About()

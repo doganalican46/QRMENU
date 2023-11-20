@@ -10,6 +10,8 @@ namespace QRMENU.Controllers
     {
         QRMenuEntities1 db = new QRMenuEntities1();
         // GET: Kampanya
+        [Authorize]
+
         public ActionResult Index()
         {
             var kampanya = db.TBLKAMPANYALAR.ToList();

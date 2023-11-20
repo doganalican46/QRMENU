@@ -10,18 +10,15 @@ namespace QRMENU.Controllers
     {
         QRMenuEntities1 db = new QRMenuEntities1();
         // GET: Admin
+
+        [Authorize]
         public ActionResult Index()
         {
-
-            return View();
+            var mail = (string)Session["KULLANICIMAIL"];
+            var degerler = db.TBLKULLANICILAR.FirstOrDefault(x => x.KULLANICIMAIL == mail);
+            ViewBag.mail = mail;
+            return View(degerler);
         }
-
-
-
-
-
-
-
 
     }
 }
