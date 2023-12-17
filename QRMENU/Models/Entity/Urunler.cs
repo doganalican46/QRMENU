@@ -12,18 +12,18 @@ namespace QRMENU.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLSAATLER
+    public partial class Urunler
     {
-        public int CALISMASAATID { get; set; }
-        public string PAZARTESI { get; set; }
-        public string SALI { get; set; }
-        public string CARSAMBA { get; set; }
-        public string PERSEMBE { get; set; }
-        public string CUMA { get; set; }
-        public string CUMARTESI { get; set; }
-        public string PAZAR { get; set; }
-        public Nullable<int> DUKKANSAAT { get; set; }
+        public int ID { get; set; }
+        public string Ad { get; set; }
+        public string Aciklama { get; set; }
+        public decimal Fiyat { get; set; }
+        public string Resim { get; set; }
+        public int KategoriID { get; set; }
+        public Nullable<int> KampanyaID { get; set; }
+        public Nullable<bool> Durum { get; set; }
     
-        public virtual TBLDUKKAN TBLDUKKAN { get; set; }
+        public virtual Kampanyalar Kampanyalar { get; set; }
+        public virtual Kategoriler Kategoriler { get; set; }
     }
 }

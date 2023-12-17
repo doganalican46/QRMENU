@@ -12,24 +12,22 @@ namespace QRMENU.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLURUNLER
+    public partial class Menuler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TBLURUNLER()
+        public Menuler()
         {
-            this.TBLKAMPANYALAR = new HashSet<TBLKAMPANYALAR>();
+            this.QR = new HashSet<QR>();
         }
     
-        public int URUNID { get; set; }
-        public string URUNAD { get; set; }
-        public string URUNACIKLAMA { get; set; }
-        public Nullable<decimal> URUNFIYAT { get; set; }
-        public string URUNRESIM { get; set; }
-        public Nullable<int> URUNKATEGORI { get; set; }
-        public Nullable<byte> URUNDURUM { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> KategoriID { get; set; }
+        public Nullable<int> CafeID { get; set; }
+        public Nullable<bool> Durum { get; set; }
     
+        public virtual Cafeler Cafeler { get; set; }
+        public virtual Kategoriler Kategoriler { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TBLKAMPANYALAR> TBLKAMPANYALAR { get; set; }
-        public virtual TBLKATEGORILER TBLKATEGORILER { get; set; }
+        public virtual ICollection<QR> QR { get; set; }
     }
 }

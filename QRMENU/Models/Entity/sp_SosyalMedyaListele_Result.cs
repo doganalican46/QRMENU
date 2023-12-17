@@ -10,12 +10,11 @@
 namespace QRMENU.Models.Entity
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TBLADMIN
+    public partial class sp_SosyalMedyaListele_Result
     {
-        public int ADMINID { get; set; }
-        public string ADMINUSERNAME { get; set; }
-        public string ADMINPASSWORD { get; set; }
+        public string CafeAdi { get; set; }
+        public string MedyaAdi { get; set; }
+        public string Link { get; set; }
     }
 }

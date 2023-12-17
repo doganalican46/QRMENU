@@ -12,18 +12,26 @@ namespace QRMENU.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLMASA
+    public partial class Kullanicilar
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TBLMASA()
+        public Kullanicilar()
         {
-            this.TBLSIPARISLER = new HashSet<TBLSIPARISLER>();
+            this.Cafeler = new HashSet<Cafeler>();
         }
     
-        public int MASAID { get; set; }
-        public Nullable<long> MASANUMARASI { get; set; }
+        public int ID { get; set; }
+        public string TC { get; set; }
+        public string Ad { get; set; }
+        public string Soyad { get; set; }
+        public string Mail { get; set; }
+        public Nullable<System.DateTime> DogumTarihi { get; set; }
+        public string Resim { get; set; }
+        public string Sifre { get; set; }
+        public Nullable<short> Rol { get; set; }
+        public Nullable<bool> Durum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TBLSIPARISLER> TBLSIPARISLER { get; set; }
+        public virtual ICollection<Cafeler> Cafeler { get; set; }
     }
 }

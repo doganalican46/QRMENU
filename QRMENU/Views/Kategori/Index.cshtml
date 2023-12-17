@@ -1,5 +1,5 @@
 ﻿@using QRMENU.Models.Entity
-@model List<TBLKATEGORILER>
+@model List<Kategoriler>
 @{
     ViewBag.Title = "Kategoriler";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -28,7 +28,7 @@
                             <thead>
                                 <tr>
                                     <th>KATEGORİ</th>
-                                    <th>ÜRÜN SAYISI</th>
+                                    <th>DURUM</th>
                                     <th>İŞLEM</th>
                                 </tr>
                             </thead>
@@ -37,11 +37,15 @@
                                 @foreach (var kategori in Model)
                                 {
                                     <tr>
-                                        <td>@kategori.KATEGORIAD</td>
-                                        <td>@kategori.URUNSAYISI</td>
+                                        <td>@kategori.Ad</td>
+                                        <td style="color: @(kategori.Durum.HasValue && kategori.Durum.Value ? "green" : "red")">
+                                            @(kategori.Durum.HasValue ? (kategori.Durum.Value ? "AKTİF" : "PASİF") : "N/A")
+                                        </td>
                                         <td>
-                                            <a href="/Kategori/KategoriSil/@kategori.KATEGORIID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
-                                            <a href="/Kategori/KategoriGetir/@kategori.KATEGORIID" class="btn btn-primary">GÜNCELLE</a>
+                                            <a href="/Kategori/KategoriSil/@kategori.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                                            <a href="/Kategori/KategoriGetir/@kategori.ID" class="btn btn-primary">GÜNCELLE</a>
+                                            <a href="/Urunler/YeniUrun/@kategori.ID" class="btn btn-warning">ÜRÜN EKLE</a>
+
                                         </td>
                                     </tr>
                                 }

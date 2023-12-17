@@ -5,6 +5,93 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="QRMenuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cafeler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Slogan" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hakkinda" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="500" />
+          <Property Name="KullaniciID" Type="int" Nullable="false" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="Kampanyalar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Baslik" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="Kategoriler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="150" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TC" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DogumTarihi" Type="date" />
+          <Property Name="Resim" Type="nvarchar" MaxLength="500" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Rol" Type="smallint" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="Menuler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategoriID" Type="int" />
+          <Property Name="CafeID" Type="int" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="QR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QR" Type="nvarchar" MaxLength="250" />
+          <Property Name="MenuID" Type="int" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="Saatler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pazartesi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sali" Type="nvarchar" MaxLength="50" />
+          <Property Name="Carsamba" Type="nvarchar" MaxLength="50" />
+          <Property Name="Persembe" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cuma" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cumartesi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pazar" Type="nvarchar" MaxLength="50" />
+          <Property Name="CafeID" Type="int" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
+        <EntityType Name="SosyalMedyalar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CafeID" Type="int" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -15,215 +102,253 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="TBLADMIN">
+        <EntityType Name="Urunler">
           <Key>
-            <PropertyRef Name="ADMINID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ADMINID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ADMINUSERNAME" Type="varchar" MaxLength="50" />
-          <Property Name="ADMINPASSWORD" Type="varchar" MaxLength="50" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="250" />
+          <Property Name="Fiyat" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Resim" Type="nvarchar" MaxLength="500" />
+          <Property Name="KategoriID" Type="int" Nullable="false" />
+          <Property Name="KampanyaID" Type="int" />
+          <Property Name="Durum" Type="bit" />
         </EntityType>
-        <EntityType Name="TBLDUKKAN">
-          <Key>
-            <PropertyRef Name="DUKKANID" />
-          </Key>
-          <Property Name="DUKKANID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DUKKANAD" Type="varchar" MaxLength="100" />
-          <Property Name="DUKKANSLOGAN" Type="varchar" MaxLength="250" />
-          <Property Name="DUKKANHAKKINDA" Type="varchar" MaxLength="500" />
-          <Property Name="DUKKANSAHIBI" Type="int" />
-          <Property Name="DUKKANADRES" Type="varchar" MaxLength="250" />
-          <Property Name="DUKKANSAAT" Type="int" />
-        </EntityType>
-        <EntityType Name="TBLKAMPANYALAR">
-          <Key>
-            <PropertyRef Name="KAMPANYAID" />
-          </Key>
-          <Property Name="KAMPANYAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="KAMPANYAACIKLAMA" Type="varchar" MaxLength="250" />
-          <Property Name="KAMPANYALIURUN" Type="int" />
-          <Property Name="KAMPANYASURESI" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="TBLKATEGORILER">
-          <Key>
-            <PropertyRef Name="KATEGORIID" />
-          </Key>
-          <Property Name="KATEGORIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="KATEGORIAD" Type="varchar" MaxLength="50" />
-          <Property Name="URUNSAYISI" Type="int" />
-        </EntityType>
-        <EntityType Name="TBLKULLANICILAR">
-          <Key>
-            <PropertyRef Name="KULLANICIID" />
-          </Key>
-          <Property Name="KULLANICIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="KULLANICIAD" Type="varchar" MaxLength="50" />
-          <Property Name="KULLANICISOYAD" Type="varchar" MaxLength="50" />
-          <Property Name="KULLANICIMAIL" Type="varchar" MaxLength="100" />
-          <Property Name="KULLANICIDOGUMGUNU" Type="varchar" MaxLength="100" />
-          <Property Name="KULLANICIRESIM" Type="varchar" MaxLength="500" />
-          <Property Name="KULLANICISIFRE" Type="varchar" MaxLength="25" />
-          <Property Name="KULLANICIDUKKAN" Type="int" />
-          <Property Name="KULLANICIDURUM" Type="tinyint" />
-        </EntityType>
-        <EntityType Name="TBLMASA">
-          <Key>
-            <PropertyRef Name="MASAID" />
-          </Key>
-          <Property Name="MASAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MASANUMARASI" Type="bigint" />
-        </EntityType>
-        <EntityType Name="TBLSAATLER">
-          <Key>
-            <PropertyRef Name="CALISMASAATID" />
-          </Key>
-          <Property Name="CALISMASAATID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PAZARTESI" Type="varchar" MaxLength="50" />
-          <Property Name="SALI" Type="varchar" MaxLength="50" />
-          <Property Name="CARSAMBA" Type="varchar" MaxLength="50" />
-          <Property Name="PERSEMBE" Type="varchar" MaxLength="50" />
-          <Property Name="CUMA" Type="varchar" MaxLength="50" />
-          <Property Name="CUMARTESI" Type="varchar" MaxLength="50" />
-          <Property Name="PAZAR" Type="varchar" MaxLength="50" />
-          <Property Name="DUKKANSAAT" Type="int" />
-        </EntityType>
-        <EntityType Name="TBLSIPARISLER">
-          <Key>
-            <PropertyRef Name="SIPARISID" />
-          </Key>
-          <Property Name="SIPARISID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MASANUMARASI" Type="int" />
-          <Property Name="SIPARISLER" Type="int" />
-          <Property Name="GECENSURE" Type="time" Precision="7" />
-          <Property Name="TOPLAMFIYAT" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="SIPARISDURUM" Type="tinyint" />
-        </EntityType>
-        <EntityType Name="TBLSOCIALMEDIA">
-          <Key>
-            <PropertyRef Name="SOCIALMEDIAID" />
-          </Key>
-          <Property Name="SOCIALMEDIAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SOCIALMEDIALINK" Type="varchar" MaxLength="250" />
-        </EntityType>
-        <EntityType Name="TBLURUNLER">
-          <Key>
-            <PropertyRef Name="URUNID" />
-          </Key>
-          <Property Name="URUNID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="URUNAD" Type="varchar" MaxLength="50" />
-          <Property Name="URUNACIKLAMA" Type="varchar" MaxLength="100" />
-          <Property Name="URUNFIYAT" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="URUNRESIM" Type="varchar" MaxLength="250" />
-          <Property Name="URUNKATEGORI" Type="int" />
-          <Property Name="URUNDURUM" Type="tinyint" />
-        </EntityType>
-        <Association Name="FK_TBLDUKKAN_TBLKULLANICILAR">
-          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="0..1" />
-          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="*" />
+        <Association Name="FK_Cafeler_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Cafeler" Type="Self.Cafeler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLKULLANICILAR">
-              <PropertyRef Name="KULLANICIID" />
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLDUKKAN">
-              <PropertyRef Name="DUKKANSAHIBI" />
+            <Dependent Role="Cafeler">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLKAMPANYALAR_TBLURUNLER">
-          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="0..1" />
-          <End Role="TBLKAMPANYALAR" Type="Self.TBLKAMPANYALAR" Multiplicity="*" />
+        <Association Name="FK_Menuler_Cafeler">
+          <End Role="Cafeler" Type="Self.Cafeler" Multiplicity="0..1" />
+          <End Role="Menuler" Type="Self.Menuler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLURUNLER">
-              <PropertyRef Name="URUNID" />
+            <Principal Role="Cafeler">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLKAMPANYALAR">
-              <PropertyRef Name="KAMPANYALIURUN" />
+            <Dependent Role="Menuler">
+              <PropertyRef Name="CafeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLKULLANICILAR_TBLDUKKAN">
-          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="0..1" />
-          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="*" />
+        <Association Name="FK_Menuler_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
+          <End Role="Menuler" Type="Self.Menuler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLDUKKAN">
-              <PropertyRef Name="DUKKANID" />
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLKULLANICILAR">
-              <PropertyRef Name="KULLANICIDUKKAN" />
+            <Dependent Role="Menuler">
+              <PropertyRef Name="KategoriID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLSAATLER_TBLDUKKAN">
-          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="0..1" />
-          <End Role="TBLSAATLER" Type="Self.TBLSAATLER" Multiplicity="*" />
+        <Association Name="FK_QR_Menuler">
+          <End Role="Menuler" Type="Self.Menuler" Multiplicity="0..1" />
+          <End Role="QR" Type="Self.QR" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLDUKKAN">
-              <PropertyRef Name="DUKKANID" />
+            <Principal Role="Menuler">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLSAATLER">
-              <PropertyRef Name="DUKKANSAAT" />
+            <Dependent Role="QR">
+              <PropertyRef Name="MenuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLSIPARISLER_TBLMASA">
-          <End Role="TBLMASA" Type="Self.TBLMASA" Multiplicity="0..1" />
-          <End Role="TBLSIPARISLER" Type="Self.TBLSIPARISLER" Multiplicity="*" />
+        <Association Name="FK_Saatler_Cafeler">
+          <End Role="Cafeler" Type="Self.Cafeler" Multiplicity="0..1" />
+          <End Role="Saatler" Type="Self.Saatler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLMASA">
-              <PropertyRef Name="MASAID" />
+            <Principal Role="Cafeler">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLSIPARISLER">
-              <PropertyRef Name="MASANUMARASI" />
+            <Dependent Role="Saatler">
+              <PropertyRef Name="CafeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLURUNLER_TBLKATEGORILER">
-          <End Role="TBLKATEGORILER" Type="Self.TBLKATEGORILER" Multiplicity="0..1" />
-          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="*" />
+        <Association Name="FK_SosyalMedyalar_Cafeler">
+          <End Role="Cafeler" Type="Self.Cafeler" Multiplicity="0..1" />
+          <End Role="SosyalMedyalar" Type="Self.SosyalMedyalar" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLKATEGORILER">
-              <PropertyRef Name="KATEGORIID" />
+            <Principal Role="Cafeler">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLURUNLER">
-              <PropertyRef Name="URUNKATEGORI" />
+            <Dependent Role="SosyalMedyalar">
+              <PropertyRef Name="CafeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Urunler_Kampanyalar">
+          <End Role="Kampanyalar" Type="Self.Kampanyalar" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kampanyalar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="KampanyaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urunler_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_CafeEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Slogan" Type="nvarchar" Mode="In" />
+          <Parameter Name="Hakkinda" Type="nvarchar" Mode="In" />
+          <Parameter Name="Adres" Type="nvarchar" Mode="In" />
+          <Parameter Name="KullaniciID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_CafeGuncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Slogan" Type="nvarchar" Mode="In" />
+          <Parameter Name="Hakkinda" Type="nvarchar" Mode="In" />
+          <Parameter Name="Adres" Type="nvarchar" Mode="In" />
+          <Parameter Name="KullaniciID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_CafeListele" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_KullaniciEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TC" Type="nchar" Mode="In" />
+          <Parameter Name="Ad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Soyad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mail" Type="nvarchar" Mode="In" />
+          <Parameter Name="DogumTarihi" Type="date" Mode="In" />
+          <Parameter Name="Resim" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sifre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_KullaniciGuncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="Ad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Soyad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mail" Type="nvarchar" Mode="In" />
+          <Parameter Name="DogumTarihi" Type="date" Mode="In" />
+          <Parameter Name="Resim" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sifre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_KullaniciListele" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_SaatEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pazartesi" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sali" Type="nvarchar" Mode="In" />
+          <Parameter Name="Carsamba" Type="nvarchar" Mode="In" />
+          <Parameter Name="Persembe" Type="nvarchar" Mode="In" />
+          <Parameter Name="Cuma" Type="nvarchar" Mode="In" />
+          <Parameter Name="Cumartesi" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pazar" Type="nvarchar" Mode="In" />
+          <Parameter Name="CafeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_SaatGuncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="Pazartesi" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sali" Type="nvarchar" Mode="In" />
+          <Parameter Name="Carsamba" Type="nvarchar" Mode="In" />
+          <Parameter Name="Persembe" Type="nvarchar" Mode="In" />
+          <Parameter Name="Cuma" Type="nvarchar" Mode="In" />
+          <Parameter Name="Cumartesi" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pazar" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_SaatListele" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_SosyalMedyaEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ad" Type="nvarchar" Mode="In" />
+          <Parameter Name="Link" Type="nvarchar" Mode="In" />
+          <Parameter Name="CafeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_SosyalMedyaListele" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CafeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="QRMenuModelStoreContainer">
+          <EntitySet Name="Cafeler" EntityType="Self.Cafeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kampanyalar" EntityType="Self.Kampanyalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menuler" EntityType="Self.Menuler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QR" EntityType="Self.QR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saatler" EntityType="Self.Saatler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SosyalMedyalar" EntityType="Self.SosyalMedyalar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLDUKKAN" EntityType="Self.TBLDUKKAN" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLKAMPANYALAR" EntityType="Self.TBLKAMPANYALAR" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLKATEGORILER" EntityType="Self.TBLKATEGORILER" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLKULLANICILAR" EntityType="Self.TBLKULLANICILAR" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLMASA" EntityType="Self.TBLMASA" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLSAATLER" EntityType="Self.TBLSAATLER" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLSIPARISLER" EntityType="Self.TBLSIPARISLER" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLSOCIALMEDIA" EntityType="Self.TBLSOCIALMEDIA" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLURUNLER" EntityType="Self.TBLURUNLER" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_TBLDUKKAN_TBLKULLANICILAR" Association="Self.FK_TBLDUKKAN_TBLKULLANICILAR">
-            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
-            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cafeler_Kullanicilar" Association="Self.FK_Cafeler_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Cafeler" EntitySet="Cafeler" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLKAMPANYALAR_TBLURUNLER" Association="Self.FK_TBLKAMPANYALAR_TBLURUNLER">
-            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
-            <End Role="TBLKAMPANYALAR" EntitySet="TBLKAMPANYALAR" />
+          <AssociationSet Name="FK_Menuler_Cafeler" Association="Self.FK_Menuler_Cafeler">
+            <End Role="Cafeler" EntitySet="Cafeler" />
+            <End Role="Menuler" EntitySet="Menuler" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLKULLANICILAR_TBLDUKKAN" Association="Self.FK_TBLKULLANICILAR_TBLDUKKAN">
-            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
-            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+          <AssociationSet Name="FK_Menuler_Kategoriler" Association="Self.FK_Menuler_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Menuler" EntitySet="Menuler" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLSAATLER_TBLDUKKAN" Association="Self.FK_TBLSAATLER_TBLDUKKAN">
-            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
-            <End Role="TBLSAATLER" EntitySet="TBLSAATLER" />
+          <AssociationSet Name="FK_QR_Menuler" Association="Self.FK_QR_Menuler">
+            <End Role="Menuler" EntitySet="Menuler" />
+            <End Role="QR" EntitySet="QR" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLSIPARISLER_TBLMASA" Association="Self.FK_TBLSIPARISLER_TBLMASA">
-            <End Role="TBLMASA" EntitySet="TBLMASA" />
-            <End Role="TBLSIPARISLER" EntitySet="TBLSIPARISLER" />
+          <AssociationSet Name="FK_Saatler_Cafeler" Association="Self.FK_Saatler_Cafeler">
+            <End Role="Cafeler" EntitySet="Cafeler" />
+            <End Role="Saatler" EntitySet="Saatler" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLURUNLER_TBLKATEGORILER" Association="Self.FK_TBLURUNLER_TBLKATEGORILER">
-            <End Role="TBLKATEGORILER" EntitySet="TBLKATEGORILER" />
-            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+          <AssociationSet Name="FK_SosyalMedyalar_Cafeler" Association="Self.FK_SosyalMedyalar_Cafeler">
+            <End Role="Cafeler" EntitySet="Cafeler" />
+            <End Role="SosyalMedyalar" EntitySet="SosyalMedyalar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Kampanyalar" Association="Self.FK_Urunler_Kampanyalar">
+            <End Role="Kampanyalar" EntitySet="Kampanyalar" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Kategoriler" Association="Self.FK_Urunler_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Urunler" EntitySet="Urunler" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -231,6 +356,107 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QRMenuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cafeler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Slogan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Hakkinda" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="KullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Cafeler_Kullanicilar" FromRole="Cafeler" ToRole="Kullanicilar" />
+          <NavigationProperty Name="Menuler" Relationship="Self.FK_Menuler_Cafeler" FromRole="Cafeler" ToRole="Menuler" />
+          <NavigationProperty Name="Saatler" Relationship="Self.FK_Saatler_Cafeler" FromRole="Cafeler" ToRole="Saatler" />
+          <NavigationProperty Name="SosyalMedyalar" Relationship="Self.FK_SosyalMedyalar_Cafeler" FromRole="Cafeler" ToRole="SosyalMedyalar" />
+        </EntityType>
+        <EntityType Name="Kampanyalar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_Urunler_Kampanyalar" FromRole="Kampanyalar" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="Kategoriler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Menuler" Relationship="Self.FK_Menuler_Kategoriler" FromRole="Kategoriler" ToRole="Menuler" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK_Urunler_Kategoriler" FromRole="Kategoriler" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="Kullanicilar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TC" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DogumTarihi" Type="DateTime" Precision="0" />
+          <Property Name="Resim" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rol" Type="Int16" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Cafeler" Relationship="Self.FK_Cafeler_Kullanicilar" FromRole="Kullanicilar" ToRole="Cafeler" />
+        </EntityType>
+        <EntityType Name="Menuler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriID" Type="Int32" />
+          <Property Name="CafeID" Type="Int32" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Cafeler" Relationship="Self.FK_Menuler_Cafeler" FromRole="Menuler" ToRole="Cafeler" />
+          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Menuler_Kategoriler" FromRole="Menuler" ToRole="Kategoriler" />
+          <NavigationProperty Name="QR" Relationship="Self.FK_QR_Menuler" FromRole="Menuler" ToRole="QR" />
+        </EntityType>
+        <EntityType Name="QR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QR1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MenuID" Type="Int32" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Menuler" Relationship="Self.FK_QR_Menuler" FromRole="QR" ToRole="Menuler" />
+        </EntityType>
+        <EntityType Name="Saatler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pazartesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sali" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Carsamba" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Persembe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cuma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cumartesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pazar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CafeID" Type="Int32" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Cafeler" Relationship="Self.FK_Saatler_Cafeler" FromRole="Saatler" ToRole="Cafeler" />
+        </EntityType>
+        <EntityType Name="SosyalMedyalar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CafeID" Type="Int32" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Cafeler" Relationship="Self.FK_SosyalMedyalar_Cafeler" FromRole="SosyalMedyalar" ToRole="Cafeler" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -241,235 +467,404 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TBLADMIN">
+        <EntityType Name="Urunler">
           <Key>
-            <PropertyRef Name="ADMINID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ADMINID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ADMINUSERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ADMINPASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Fiyat" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Resim" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriID" Type="Int32" Nullable="false" />
+          <Property Name="KampanyaID" Type="Int32" />
+          <Property Name="Durum" Type="Boolean" />
+          <NavigationProperty Name="Kampanyalar" Relationship="Self.FK_Urunler_Kampanyalar" FromRole="Urunler" ToRole="Kampanyalar" />
+          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Urunler_Kategoriler" FromRole="Urunler" ToRole="Kategoriler" />
         </EntityType>
-        <EntityType Name="TBLDUKKAN">
-          <Key>
-            <PropertyRef Name="DUKKANID" />
-          </Key>
-          <Property Name="DUKKANID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DUKKANAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DUKKANSLOGAN" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="DUKKANHAKKINDA" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="DUKKANSAHIBI" Type="Int32" />
-          <Property Name="DUKKANADRES" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="DUKKANSAAT" Type="Int32" />
-          <NavigationProperty Name="TBLKULLANICILAR" Relationship="Self.FK_TBLDUKKAN_TBLKULLANICILAR" FromRole="TBLDUKKAN" ToRole="TBLKULLANICILAR" />
-          <NavigationProperty Name="TBLKULLANICILAR1" Relationship="Self.FK_TBLKULLANICILAR_TBLDUKKAN" FromRole="TBLDUKKAN" ToRole="TBLKULLANICILAR" />
-          <NavigationProperty Name="TBLSAATLER" Relationship="Self.FK_TBLSAATLER_TBLDUKKAN" FromRole="TBLDUKKAN" ToRole="TBLSAATLER" />
-        </EntityType>
-        <EntityType Name="TBLKAMPANYALAR">
-          <Key>
-            <PropertyRef Name="KAMPANYAID" />
-          </Key>
-          <Property Name="KAMPANYAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KAMPANYAACIKLAMA" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="KAMPANYALIURUN" Type="Int32" />
-          <Property Name="KAMPANYASURESI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TBLURUNLER" Relationship="Self.FK_TBLKAMPANYALAR_TBLURUNLER" FromRole="TBLKAMPANYALAR" ToRole="TBLURUNLER" />
-        </EntityType>
-        <EntityType Name="TBLKATEGORILER">
-          <Key>
-            <PropertyRef Name="KATEGORIID" />
-          </Key>
-          <Property Name="KATEGORIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KATEGORIAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="URUNSAYISI" Type="Int32" />
-          <NavigationProperty Name="TBLURUNLER" Relationship="Self.FK_TBLURUNLER_TBLKATEGORILER" FromRole="TBLKATEGORILER" ToRole="TBLURUNLER" />
-        </EntityType>
-        <EntityType Name="TBLKULLANICILAR">
-          <Key>
-            <PropertyRef Name="KULLANICIID" />
-          </Key>
-          <Property Name="KULLANICIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KULLANICIAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="KULLANICISOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="KULLANICIMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="KULLANICIDOGUMGUNU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="KULLANICIRESIM" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="KULLANICISIFRE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="KULLANICIDUKKAN" Type="Int32" />
-          <Property Name="KULLANICIDURUM" Type="Byte" />
-          <NavigationProperty Name="TBLDUKKAN" Relationship="Self.FK_TBLDUKKAN_TBLKULLANICILAR" FromRole="TBLKULLANICILAR" ToRole="TBLDUKKAN" />
-          <NavigationProperty Name="TBLDUKKAN1" Relationship="Self.FK_TBLKULLANICILAR_TBLDUKKAN" FromRole="TBLKULLANICILAR" ToRole="TBLDUKKAN" />
-        </EntityType>
-        <EntityType Name="TBLMASA">
-          <Key>
-            <PropertyRef Name="MASAID" />
-          </Key>
-          <Property Name="MASAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MASANUMARASI" Type="Int64" />
-          <NavigationProperty Name="TBLSIPARISLER" Relationship="Self.FK_TBLSIPARISLER_TBLMASA" FromRole="TBLMASA" ToRole="TBLSIPARISLER" />
-        </EntityType>
-        <EntityType Name="TBLSAATLER">
-          <Key>
-            <PropertyRef Name="CALISMASAATID" />
-          </Key>
-          <Property Name="CALISMASAATID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PAZARTESI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SALI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CARSAMBA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PERSEMBE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CUMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CUMARTESI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PAZAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DUKKANSAAT" Type="Int32" />
-          <NavigationProperty Name="TBLDUKKAN" Relationship="Self.FK_TBLSAATLER_TBLDUKKAN" FromRole="TBLSAATLER" ToRole="TBLDUKKAN" />
-        </EntityType>
-        <EntityType Name="TBLSIPARISLER">
-          <Key>
-            <PropertyRef Name="SIPARISID" />
-          </Key>
-          <Property Name="SIPARISID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MASANUMARASI" Type="Int32" />
-          <Property Name="SIPARISLER" Type="Int32" />
-          <Property Name="GECENSURE" Type="Time" Precision="7" />
-          <Property Name="TOPLAMFIYAT" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="SIPARISDURUM" Type="Byte" />
-          <NavigationProperty Name="TBLMASA" Relationship="Self.FK_TBLSIPARISLER_TBLMASA" FromRole="TBLSIPARISLER" ToRole="TBLMASA" />
-        </EntityType>
-        <EntityType Name="TBLSOCIALMEDIA">
-          <Key>
-            <PropertyRef Name="SOCIALMEDIAID" />
-          </Key>
-          <Property Name="SOCIALMEDIAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SOCIALMEDIALINK" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="TBLURUNLER">
-          <Key>
-            <PropertyRef Name="URUNID" />
-          </Key>
-          <Property Name="URUNID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="URUNAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="URUNACIKLAMA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="URUNFIYAT" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="URUNRESIM" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="URUNKATEGORI" Type="Int32" />
-          <Property Name="URUNDURUM" Type="Byte" />
-          <NavigationProperty Name="TBLKAMPANYALAR" Relationship="Self.FK_TBLKAMPANYALAR_TBLURUNLER" FromRole="TBLURUNLER" ToRole="TBLKAMPANYALAR" />
-          <NavigationProperty Name="TBLKATEGORILER" Relationship="Self.FK_TBLURUNLER_TBLKATEGORILER" FromRole="TBLURUNLER" ToRole="TBLKATEGORILER" />
-        </EntityType>
-        <Association Name="FK_TBLDUKKAN_TBLKULLANICILAR">
-          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="0..1" />
-          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="*" />
+        <Association Name="FK_Cafeler_Kullanicilar">
+          <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="1" />
+          <End Role="Cafeler" Type="Self.Cafeler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLKULLANICILAR">
-              <PropertyRef Name="KULLANICIID" />
+            <Principal Role="Kullanicilar">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLDUKKAN">
-              <PropertyRef Name="DUKKANSAHIBI" />
+            <Dependent Role="Cafeler">
+              <PropertyRef Name="KullaniciID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLKULLANICILAR_TBLDUKKAN">
-          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="0..1" />
-          <End Role="TBLKULLANICILAR" Type="Self.TBLKULLANICILAR" Multiplicity="*" />
+        <Association Name="FK_Menuler_Cafeler">
+          <End Role="Cafeler" Type="Self.Cafeler" Multiplicity="0..1" />
+          <End Role="Menuler" Type="Self.Menuler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLDUKKAN">
-              <PropertyRef Name="DUKKANID" />
+            <Principal Role="Cafeler">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLKULLANICILAR">
-              <PropertyRef Name="KULLANICIDUKKAN" />
+            <Dependent Role="Menuler">
+              <PropertyRef Name="CafeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLSAATLER_TBLDUKKAN">
-          <End Role="TBLDUKKAN" Type="Self.TBLDUKKAN" Multiplicity="0..1" />
-          <End Role="TBLSAATLER" Type="Self.TBLSAATLER" Multiplicity="*" />
+        <Association Name="FK_Saatler_Cafeler">
+          <End Role="Cafeler" Type="Self.Cafeler" Multiplicity="0..1" />
+          <End Role="Saatler" Type="Self.Saatler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLDUKKAN">
-              <PropertyRef Name="DUKKANID" />
+            <Principal Role="Cafeler">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLSAATLER">
-              <PropertyRef Name="DUKKANSAAT" />
+            <Dependent Role="Saatler">
+              <PropertyRef Name="CafeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLKAMPANYALAR_TBLURUNLER">
-          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="0..1" />
-          <End Role="TBLKAMPANYALAR" Type="Self.TBLKAMPANYALAR" Multiplicity="*" />
+        <Association Name="FK_SosyalMedyalar_Cafeler">
+          <End Role="Cafeler" Type="Self.Cafeler" Multiplicity="0..1" />
+          <End Role="SosyalMedyalar" Type="Self.SosyalMedyalar" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLURUNLER">
-              <PropertyRef Name="URUNID" />
+            <Principal Role="Cafeler">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLKAMPANYALAR">
-              <PropertyRef Name="KAMPANYALIURUN" />
+            <Dependent Role="SosyalMedyalar">
+              <PropertyRef Name="CafeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLURUNLER_TBLKATEGORILER">
-          <End Role="TBLKATEGORILER" Type="Self.TBLKATEGORILER" Multiplicity="0..1" />
-          <End Role="TBLURUNLER" Type="Self.TBLURUNLER" Multiplicity="*" />
+        <Association Name="FK_Urunler_Kampanyalar">
+          <End Role="Kampanyalar" Type="Self.Kampanyalar" Multiplicity="0..1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLKATEGORILER">
-              <PropertyRef Name="KATEGORIID" />
+            <Principal Role="Kampanyalar">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLURUNLER">
-              <PropertyRef Name="URUNKATEGORI" />
+            <Dependent Role="Urunler">
+              <PropertyRef Name="KampanyaID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TBLSIPARISLER_TBLMASA">
-          <End Role="TBLMASA" Type="Self.TBLMASA" Multiplicity="0..1" />
-          <End Role="TBLSIPARISLER" Type="Self.TBLSIPARISLER" Multiplicity="*" />
+        <Association Name="FK_Menuler_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
+          <End Role="Menuler" Type="Self.Menuler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TBLMASA">
-              <PropertyRef Name="MASAID" />
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="TBLSIPARISLER">
-              <PropertyRef Name="MASANUMARASI" />
+            <Dependent Role="Menuler">
+              <PropertyRef Name="KategoriID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QRMenuEntities1" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Urunler_Kategoriler">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QR_Menuler">
+          <End Role="Menuler" Type="Self.Menuler" Multiplicity="0..1" />
+          <End Role="QR" Type="Self.QR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menuler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QR">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QRMenuEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cafeler" EntityType="Self.Cafeler" />
+          <EntitySet Name="Kampanyalar" EntityType="Self.Kampanyalar" />
+          <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" />
+          <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" />
+          <EntitySet Name="Menuler" EntityType="Self.Menuler" />
+          <EntitySet Name="QR" EntityType="Self.QR" />
+          <EntitySet Name="Saatler" EntityType="Self.Saatler" />
+          <EntitySet Name="SosyalMedyalar" EntityType="Self.SosyalMedyalar" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" />
-          <EntitySet Name="TBLDUKKAN" EntityType="Self.TBLDUKKAN" />
-          <EntitySet Name="TBLKAMPANYALAR" EntityType="Self.TBLKAMPANYALAR" />
-          <EntitySet Name="TBLKATEGORILER" EntityType="Self.TBLKATEGORILER" />
-          <EntitySet Name="TBLKULLANICILAR" EntityType="Self.TBLKULLANICILAR" />
-          <EntitySet Name="TBLMASA" EntityType="Self.TBLMASA" />
-          <EntitySet Name="TBLSAATLER" EntityType="Self.TBLSAATLER" />
-          <EntitySet Name="TBLSIPARISLER" EntityType="Self.TBLSIPARISLER" />
-          <EntitySet Name="TBLSOCIALMEDIA" EntityType="Self.TBLSOCIALMEDIA" />
-          <EntitySet Name="TBLURUNLER" EntityType="Self.TBLURUNLER" />
-          <AssociationSet Name="FK_TBLDUKKAN_TBLKULLANICILAR" Association="Self.FK_TBLDUKKAN_TBLKULLANICILAR">
-            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
-            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" />
+          <AssociationSet Name="FK_Cafeler_Kullanicilar" Association="Self.FK_Cafeler_Kullanicilar">
+            <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+            <End Role="Cafeler" EntitySet="Cafeler" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLKULLANICILAR_TBLDUKKAN" Association="Self.FK_TBLKULLANICILAR_TBLDUKKAN">
-            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
-            <End Role="TBLKULLANICILAR" EntitySet="TBLKULLANICILAR" />
+          <AssociationSet Name="FK_Menuler_Cafeler" Association="Self.FK_Menuler_Cafeler">
+            <End Role="Cafeler" EntitySet="Cafeler" />
+            <End Role="Menuler" EntitySet="Menuler" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLSAATLER_TBLDUKKAN" Association="Self.FK_TBLSAATLER_TBLDUKKAN">
-            <End Role="TBLDUKKAN" EntitySet="TBLDUKKAN" />
-            <End Role="TBLSAATLER" EntitySet="TBLSAATLER" />
+          <AssociationSet Name="FK_Saatler_Cafeler" Association="Self.FK_Saatler_Cafeler">
+            <End Role="Cafeler" EntitySet="Cafeler" />
+            <End Role="Saatler" EntitySet="Saatler" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLKAMPANYALAR_TBLURUNLER" Association="Self.FK_TBLKAMPANYALAR_TBLURUNLER">
-            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
-            <End Role="TBLKAMPANYALAR" EntitySet="TBLKAMPANYALAR" />
+          <AssociationSet Name="FK_SosyalMedyalar_Cafeler" Association="Self.FK_SosyalMedyalar_Cafeler">
+            <End Role="Cafeler" EntitySet="Cafeler" />
+            <End Role="SosyalMedyalar" EntitySet="SosyalMedyalar" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLURUNLER_TBLKATEGORILER" Association="Self.FK_TBLURUNLER_TBLKATEGORILER">
-            <End Role="TBLKATEGORILER" EntitySet="TBLKATEGORILER" />
-            <End Role="TBLURUNLER" EntitySet="TBLURUNLER" />
+          <AssociationSet Name="FK_Urunler_Kampanyalar" Association="Self.FK_Urunler_Kampanyalar">
+            <End Role="Kampanyalar" EntitySet="Kampanyalar" />
+            <End Role="Urunler" EntitySet="Urunler" />
           </AssociationSet>
-          <AssociationSet Name="FK_TBLSIPARISLER_TBLMASA" Association="Self.FK_TBLSIPARISLER_TBLMASA">
-            <End Role="TBLMASA" EntitySet="TBLMASA" />
-            <End Role="TBLSIPARISLER" EntitySet="TBLSIPARISLER" />
+          <AssociationSet Name="FK_Menuler_Kategoriler" Association="Self.FK_Menuler_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Menuler" EntitySet="Menuler" />
           </AssociationSet>
+          <AssociationSet Name="FK_Urunler_Kategoriler" Association="Self.FK_Urunler_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QR_Menuler" Association="Self.FK_QR_Menuler">
+            <End Role="Menuler" EntitySet="Menuler" />
+            <End Role="QR" EntitySet="QR" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CafeEkle">
+            <Parameter Name="Ad" Mode="In" Type="String" />
+            <Parameter Name="Slogan" Mode="In" Type="String" />
+            <Parameter Name="Hakkinda" Mode="In" Type="String" />
+            <Parameter Name="Adres" Mode="In" Type="String" />
+            <Parameter Name="KullaniciID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CafeGuncelle">
+            <Parameter Name="Ad" Mode="In" Type="String" />
+            <Parameter Name="Slogan" Mode="In" Type="String" />
+            <Parameter Name="Hakkinda" Mode="In" Type="String" />
+            <Parameter Name="Adres" Mode="In" Type="String" />
+            <Parameter Name="KullaniciID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CafeListele" ReturnType="Collection(QRMenuModel.sp_CafeListele_Result)" />
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QRMenuModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QRMenuModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_KullaniciEkle">
+            <Parameter Name="TC" Mode="In" Type="String" />
+            <Parameter Name="Ad" Mode="In" Type="String" />
+            <Parameter Name="Soyad" Mode="In" Type="String" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+            <Parameter Name="DogumTarihi" Mode="In" Type="DateTime" />
+            <Parameter Name="Resim" Mode="In" Type="String" />
+            <Parameter Name="Sifre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_KullaniciGuncelle">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="Ad" Mode="In" Type="String" />
+            <Parameter Name="Soyad" Mode="In" Type="String" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+            <Parameter Name="DogumTarihi" Mode="In" Type="DateTime" />
+            <Parameter Name="Resim" Mode="In" Type="String" />
+            <Parameter Name="Sifre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_KullaniciListele" ReturnType="Collection(QRMenuModel.sp_KullaniciListele_Result)" />
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SaatEkle">
+            <Parameter Name="Pazartesi" Mode="In" Type="String" />
+            <Parameter Name="Sali" Mode="In" Type="String" />
+            <Parameter Name="Carsamba" Mode="In" Type="String" />
+            <Parameter Name="Persembe" Mode="In" Type="String" />
+            <Parameter Name="Cuma" Mode="In" Type="String" />
+            <Parameter Name="Cumartesi" Mode="In" Type="String" />
+            <Parameter Name="Pazar" Mode="In" Type="String" />
+            <Parameter Name="CafeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SaatGuncelle">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="Pazartesi" Mode="In" Type="String" />
+            <Parameter Name="Sali" Mode="In" Type="String" />
+            <Parameter Name="Carsamba" Mode="In" Type="String" />
+            <Parameter Name="Persembe" Mode="In" Type="String" />
+            <Parameter Name="Cuma" Mode="In" Type="String" />
+            <Parameter Name="Cumartesi" Mode="In" Type="String" />
+            <Parameter Name="Pazar" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SaatListele" ReturnType="Collection(QRMenuModel.sp_SaatListele_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SosyalMedyaEkle">
+            <Parameter Name="Ad" Mode="In" Type="String" />
+            <Parameter Name="Link" Mode="In" Type="String" />
+            <Parameter Name="CafeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_SosyalMedyaListele" ReturnType="Collection(QRMenuModel.sp_SosyalMedyaListele_Result)">
+            <Parameter Name="CafeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="sp_CafeListele_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Ad" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Slogan" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Hakkinda" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Adres" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="KullaniciID" Nullable="false" />
+          <Property Type="Boolean" Name="Durum" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_KullaniciListele_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="TC" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="Ad" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Soyad" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Mail" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="DogumTarihi" Nullable="true" />
+          <Property Type="String" Name="Resim" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Sifre" Nullable="false" MaxLength="100" />
+          <Property Type="Int16" Name="Rol" Nullable="true" />
+          <Property Type="Boolean" Name="Durum" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_SaatListele_Result">
+          <Property Type="String" Name="Ad" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Pazartesi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Sali" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Carsamba" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Persembe" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cuma" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cumartesi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Pazar" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_SosyalMedyaListele_Result">
+          <Property Type="String" Name="CafeAdi" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="MedyaAdi" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Link" Nullable="false" MaxLength="250" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QRMenuModelStoreContainer" CdmEntityContainer="QRMenuEntities1">
+        <EntityContainerMapping StorageEntityContainer="QRMenuModelStoreContainer" CdmEntityContainer="QRMenuEntities2">
+          <EntitySetMapping Name="Cafeler">
+            <EntityTypeMapping TypeName="QRMenuModel.Cafeler">
+              <MappingFragment StoreEntitySet="Cafeler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+                <ScalarProperty Name="Hakkinda" ColumnName="Hakkinda" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kampanyalar">
+            <EntityTypeMapping TypeName="QRMenuModel.Kampanyalar">
+              <MappingFragment StoreEntitySet="Kampanyalar">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoriler">
+            <EntityTypeMapping TypeName="QRMenuModel.Kategoriler">
+              <MappingFragment StoreEntitySet="Kategoriler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanicilar">
+            <EntityTypeMapping TypeName="QRMenuModel.Kullanicilar">
+              <MappingFragment StoreEntitySet="Kullanicilar">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TC" ColumnName="TC" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menuler">
+            <EntityTypeMapping TypeName="QRMenuModel.Menuler">
+              <MappingFragment StoreEntitySet="Menuler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="CafeID" ColumnName="CafeID" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QR">
+            <EntityTypeMapping TypeName="QRMenuModel.QR">
+              <MappingFragment StoreEntitySet="QR">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="QR1" ColumnName="QR" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saatler">
+            <EntityTypeMapping TypeName="QRMenuModel.Saatler">
+              <MappingFragment StoreEntitySet="Saatler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Pazartesi" ColumnName="Pazartesi" />
+                <ScalarProperty Name="Sali" ColumnName="Sali" />
+                <ScalarProperty Name="Carsamba" ColumnName="Carsamba" />
+                <ScalarProperty Name="Persembe" ColumnName="Persembe" />
+                <ScalarProperty Name="Cuma" ColumnName="Cuma" />
+                <ScalarProperty Name="Cumartesi" ColumnName="Cumartesi" />
+                <ScalarProperty Name="Pazar" ColumnName="Pazar" />
+                <ScalarProperty Name="CafeID" ColumnName="CafeID" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SosyalMedyalar">
+            <EntityTypeMapping TypeName="QRMenuModel.SosyalMedyalar">
+              <MappingFragment StoreEntitySet="SosyalMedyalar">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="CafeID" ColumnName="CafeID" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="QRMenuModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -481,118 +876,103 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TBLADMIN">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLADMIN">
-              <MappingFragment StoreEntitySet="TBLADMIN">
-                <ScalarProperty Name="ADMINID" ColumnName="ADMINID" />
-                <ScalarProperty Name="ADMINUSERNAME" ColumnName="ADMINUSERNAME" />
-                <ScalarProperty Name="ADMINPASSWORD" ColumnName="ADMINPASSWORD" />
+          <EntitySetMapping Name="Urunler">
+            <EntityTypeMapping TypeName="QRMenuModel.Urunler">
+              <MappingFragment StoreEntitySet="Urunler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="KampanyaID" ColumnName="KampanyaID" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TBLDUKKAN">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLDUKKAN">
-              <MappingFragment StoreEntitySet="TBLDUKKAN">
-                <ScalarProperty Name="DUKKANID" ColumnName="DUKKANID" />
-                <ScalarProperty Name="DUKKANAD" ColumnName="DUKKANAD" />
-                <ScalarProperty Name="DUKKANSLOGAN" ColumnName="DUKKANSLOGAN" />
-                <ScalarProperty Name="DUKKANHAKKINDA" ColumnName="DUKKANHAKKINDA" />
-                <ScalarProperty Name="DUKKANSAHIBI" ColumnName="DUKKANSAHIBI" />
-                <ScalarProperty Name="DUKKANADRES" ColumnName="DUKKANADRES" />
-                <ScalarProperty Name="DUKKANSAAT" ColumnName="DUKKANSAAT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLKAMPANYALAR">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLKAMPANYALAR">
-              <MappingFragment StoreEntitySet="TBLKAMPANYALAR">
-                <ScalarProperty Name="KAMPANYAID" ColumnName="KAMPANYAID" />
-                <ScalarProperty Name="KAMPANYAACIKLAMA" ColumnName="KAMPANYAACIKLAMA" />
-                <ScalarProperty Name="KAMPANYALIURUN" ColumnName="KAMPANYALIURUN" />
-                <ScalarProperty Name="KAMPANYASURESI" ColumnName="KAMPANYASURESI" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLKATEGORILER">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLKATEGORILER">
-              <MappingFragment StoreEntitySet="TBLKATEGORILER">
-                <ScalarProperty Name="KATEGORIID" ColumnName="KATEGORIID" />
-                <ScalarProperty Name="KATEGORIAD" ColumnName="KATEGORIAD" />
-                <ScalarProperty Name="URUNSAYISI" ColumnName="URUNSAYISI" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLKULLANICILAR">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLKULLANICILAR">
-              <MappingFragment StoreEntitySet="TBLKULLANICILAR">
-                <ScalarProperty Name="KULLANICIID" ColumnName="KULLANICIID" />
-                <ScalarProperty Name="KULLANICIAD" ColumnName="KULLANICIAD" />
-                <ScalarProperty Name="KULLANICISOYAD" ColumnName="KULLANICISOYAD" />
-                <ScalarProperty Name="KULLANICIMAIL" ColumnName="KULLANICIMAIL" />
-                <ScalarProperty Name="KULLANICIDOGUMGUNU" ColumnName="KULLANICIDOGUMGUNU" />
-                <ScalarProperty Name="KULLANICIRESIM" ColumnName="KULLANICIRESIM" />
-                <ScalarProperty Name="KULLANICISIFRE" ColumnName="KULLANICISIFRE" />
-                <ScalarProperty Name="KULLANICIDUKKAN" ColumnName="KULLANICIDUKKAN" />
-                <ScalarProperty Name="KULLANICIDURUM" ColumnName="KULLANICIDURUM" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLMASA">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLMASA">
-              <MappingFragment StoreEntitySet="TBLMASA">
-                <ScalarProperty Name="MASAID" ColumnName="MASAID" />
-                <ScalarProperty Name="MASANUMARASI" ColumnName="MASANUMARASI" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLSAATLER">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLSAATLER">
-              <MappingFragment StoreEntitySet="TBLSAATLER">
-                <ScalarProperty Name="CALISMASAATID" ColumnName="CALISMASAATID" />
-                <ScalarProperty Name="PAZARTESI" ColumnName="PAZARTESI" />
-                <ScalarProperty Name="SALI" ColumnName="SALI" />
-                <ScalarProperty Name="CARSAMBA" ColumnName="CARSAMBA" />
-                <ScalarProperty Name="PERSEMBE" ColumnName="PERSEMBE" />
-                <ScalarProperty Name="CUMA" ColumnName="CUMA" />
-                <ScalarProperty Name="CUMARTESI" ColumnName="CUMARTESI" />
-                <ScalarProperty Name="PAZAR" ColumnName="PAZAR" />
-                <ScalarProperty Name="DUKKANSAAT" ColumnName="DUKKANSAAT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLSIPARISLER">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLSIPARISLER">
-              <MappingFragment StoreEntitySet="TBLSIPARISLER">
-                <ScalarProperty Name="SIPARISID" ColumnName="SIPARISID" />
-                <ScalarProperty Name="MASANUMARASI" ColumnName="MASANUMARASI" />
-                <ScalarProperty Name="SIPARISLER" ColumnName="SIPARISLER" />
-                <ScalarProperty Name="GECENSURE" ColumnName="GECENSURE" />
-                <ScalarProperty Name="TOPLAMFIYAT" ColumnName="TOPLAMFIYAT" />
-                <ScalarProperty Name="SIPARISDURUM" ColumnName="SIPARISDURUM" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLSOCIALMEDIA">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLSOCIALMEDIA">
-              <MappingFragment StoreEntitySet="TBLSOCIALMEDIA">
-                <ScalarProperty Name="SOCIALMEDIAID" ColumnName="SOCIALMEDIAID" />
-                <ScalarProperty Name="SOCIALMEDIALINK" ColumnName="SOCIALMEDIALINK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLURUNLER">
-            <EntityTypeMapping TypeName="QRMenuModel.TBLURUNLER">
-              <MappingFragment StoreEntitySet="TBLURUNLER">
-                <ScalarProperty Name="URUNID" ColumnName="URUNID" />
-                <ScalarProperty Name="URUNAD" ColumnName="URUNAD" />
-                <ScalarProperty Name="URUNACIKLAMA" ColumnName="URUNACIKLAMA" />
-                <ScalarProperty Name="URUNFIYAT" ColumnName="URUNFIYAT" />
-                <ScalarProperty Name="URUNRESIM" ColumnName="URUNRESIM" />
-                <ScalarProperty Name="URUNKATEGORI" ColumnName="URUNKATEGORI" />
-                <ScalarProperty Name="URUNDURUM" ColumnName="URUNDURUM" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QRMenuModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_CafeEkle" FunctionName="QRMenuModel.Store.sp_CafeEkle" />
+          <FunctionImportMapping FunctionImportName="sp_CafeGuncelle" FunctionName="QRMenuModel.Store.sp_CafeGuncelle" />
+          <FunctionImportMapping FunctionImportName="sp_CafeListele" FunctionName="QRMenuModel.Store.sp_CafeListele">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QRMenuModel.sp_CafeListele_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+                <ScalarProperty Name="Hakkinda" ColumnName="Hakkinda" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QRMenuModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QRMenuModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QRMenuModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QRMenuModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QRMenuModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QRMenuModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_KullaniciEkle" FunctionName="QRMenuModel.Store.sp_KullaniciEkle" />
+          <FunctionImportMapping FunctionImportName="sp_KullaniciGuncelle" FunctionName="QRMenuModel.Store.sp_KullaniciGuncelle" />
+          <FunctionImportMapping FunctionImportName="sp_KullaniciListele" FunctionName="QRMenuModel.Store.sp_KullaniciListele">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QRMenuModel.sp_KullaniciListele_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TC" ColumnName="TC" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QRMenuModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_SaatEkle" FunctionName="QRMenuModel.Store.sp_SaatEkle" />
+          <FunctionImportMapping FunctionImportName="sp_SaatGuncelle" FunctionName="QRMenuModel.Store.sp_SaatGuncelle" />
+          <FunctionImportMapping FunctionImportName="sp_SaatListele" FunctionName="QRMenuModel.Store.sp_SaatListele">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QRMenuModel.sp_SaatListele_Result">
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Pazartesi" ColumnName="Pazartesi" />
+                <ScalarProperty Name="Sali" ColumnName="Sali" />
+                <ScalarProperty Name="Carsamba" ColumnName="Carsamba" />
+                <ScalarProperty Name="Persembe" ColumnName="Persembe" />
+                <ScalarProperty Name="Cuma" ColumnName="Cuma" />
+                <ScalarProperty Name="Cumartesi" ColumnName="Cumartesi" />
+                <ScalarProperty Name="Pazar" ColumnName="Pazar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SosyalMedyaEkle" FunctionName="QRMenuModel.Store.sp_SosyalMedyaEkle" />
+          <FunctionImportMapping FunctionImportName="sp_SosyalMedyaListele" FunctionName="QRMenuModel.Store.sp_SosyalMedyaListele">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QRMenuModel.sp_SosyalMedyaListele_Result">
+                <ScalarProperty Name="CafeAdi" ColumnName="CafeAdi" />
+                <ScalarProperty Name="MedyaAdi" ColumnName="MedyaAdi" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QRMenuModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

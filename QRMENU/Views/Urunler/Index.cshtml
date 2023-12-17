@@ -1,5 +1,5 @@
 ﻿@using QRMENU.Models.Entity
-@model List<TBLURUNLER>
+@model List<Urunler>
 @{
     ViewBag.Title = "Urunler";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -40,13 +40,13 @@
                         @foreach (var urun in Model)
                         {
                             <tr>
-                                <td><img src="@urun.URUNRESIM" alt="Product Image" style="max-width: 100px; max-height: 100px;" /></td>
-                                <td>@urun.URUNAD</td>
-                                <td>@urun.URUNFIYAT ₺</td>
+                                <td><img src="@urun.Resim" alt="Product Image" style="max-width: 100px; max-height: 100px;" /></td>
+                                <td>@urun.Ad</td>
+                                <td>@urun.Fiyat ₺</td>
                                 <td>
-                                    @if (@urun.TBLKATEGORILER != null)
+                                    @if (@urun.Kategoriler != null)
                                     {
-                                        @urun.TBLKATEGORILER.KATEGORIAD
+                                        @urun.Kategoriler.Ad
                                     }
                                     else
                                     {
@@ -54,7 +54,7 @@
                                     }
                                 </td>
                                 <td>
-                                    @if (@urun.URUNDURUM == 1)
+                                    @if (@urun.Durum == true)
                                     {
                                         <span class="text-success">AKTİF</span>
                                     }
@@ -64,8 +64,8 @@
                                     }
                                 </td>
                                 <td>
-                                    <a href="/Urunler/UrunSil/@urun.URUNID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
-                                    <a href="/Urunler/UrunGetir/@urun.URUNID" class="btn btn-primary">GÜNCELLE</a>
+                                    <a href="/Urunler/UrunSil/@urun.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                                    <a href="/Urunler/UrunGetir/@urun.ID" class="btn btn-primary">GÜNCELLE</a>
 
                                 </td>
                             </tr>

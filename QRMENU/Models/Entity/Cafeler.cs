@@ -12,27 +12,30 @@ namespace QRMENU.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLDUKKAN
+    public partial class Cafeler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TBLDUKKAN()
+        public Cafeler()
         {
-            this.TBLKULLANICILAR1 = new HashSet<TBLKULLANICILAR>();
-            this.TBLSAATLER = new HashSet<TBLSAATLER>();
+            this.Menuler = new HashSet<Menuler>();
+            this.Saatler = new HashSet<Saatler>();
+            this.SosyalMedyalar = new HashSet<SosyalMedyalar>();
         }
     
-        public int DUKKANID { get; set; }
-        public string DUKKANAD { get; set; }
-        public string DUKKANSLOGAN { get; set; }
-        public string DUKKANHAKKINDA { get; set; }
-        public Nullable<int> DUKKANSAHIBI { get; set; }
-        public string DUKKANADRES { get; set; }
-        public Nullable<int> DUKKANSAAT { get; set; }
+        public int ID { get; set; }
+        public string Ad { get; set; }
+        public string Slogan { get; set; }
+        public string Hakkinda { get; set; }
+        public string Adres { get; set; }
+        public int KullaniciID { get; set; }
+        public Nullable<bool> Durum { get; set; }
     
-        public virtual TBLKULLANICILAR TBLKULLANICILAR { get; set; }
+        public virtual Kullanicilar Kullanicilar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TBLKULLANICILAR> TBLKULLANICILAR1 { get; set; }
+        public virtual ICollection<Menuler> Menuler { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TBLSAATLER> TBLSAATLER { get; set; }
+        public virtual ICollection<Saatler> Saatler { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SosyalMedyalar> SosyalMedyalar { get; set; }
     }
 }

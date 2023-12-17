@@ -9,7 +9,7 @@ namespace QRMENU.Controllers
 {
     public class LoginController : Controller
     {
-        QRMenuEntities1 db = new QRMenuEntities1();
+        QRMenuEntities2 db = new QRMenuEntities2();
         // GET: Login
         public ActionResult Index()
         {
@@ -24,9 +24,9 @@ namespace QRMENU.Controllers
 
 
         [HttpPost]
-        public ActionResult Register(TBLKULLANICILAR k)
+        public ActionResult Register(Kullanicilar k)
         {
-            db.TBLKULLANICILAR.Add(k);
+            db.Kullanicilar.Add(k);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -39,14 +39,14 @@ namespace QRMENU.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginUser(TBLKULLANICILAR log)
+        public ActionResult LoginUser(Kullanicilar log)
         {
-            var login = db.TBLKULLANICILAR.FirstOrDefault(x => x.KULLANICIMAIL == log.KULLANICIMAIL && x.KULLANICISIFRE == log.KULLANICISIFRE);
+            var login = db.Kullanicilar.FirstOrDefault(x => x.Mail == log.Mail && x.Sifre == log.Sifre);
 
             if (login != null)
             {
-                FormsAuthentication.SetAuthCookie(login.KULLANICIMAIL, false);
-                Session["KULLANICIMAIL"] = login.KULLANICIMAIL.ToString();
+                FormsAuthentication.SetAuthCookie(login.Mail, false);
+                Session["Mail"] = login.Mail.ToString();
                 return RedirectToAction("Index", "Admin");
             }
             else
@@ -55,6 +55,6 @@ namespace QRMENU.Controllers
             }
         }
 
-
+        
     }
 }

@@ -1,5 +1,5 @@
 ﻿@using QRMENU.Models.Entity
-@model List<TBLURUNLER>
+@model List<Urunler>
 @{
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -44,7 +44,7 @@
 <section class="page-section">
     <div class="container">
 
-        @foreach (var category in Model.Select(u => u.TBLKATEGORILER.KATEGORIAD).Distinct())
+        @foreach (var category in Model.Select(u => u.Kategoriler.Ad).Distinct())
         {
             <div class="product-item" id="@category">
                 <div class="product-item-title d-flex mt-5 mb-2">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="bg-faded p-5 rounded">
-                    @foreach (var product in Model.Where(u => u.TBLKATEGORILER.KATEGORIAD == category))
+                    @foreach (var product in Model.Where(u => u.Kategoriler.Ad== category))
                     {
 
                         <div class="row">
@@ -64,13 +64,13 @@
                                 <div class="card mb-3" style="max-width: 500px;">
                                     <div class="row g-0">
                                         <div class="col-md-4">
-                                            <img src="@product.URUNRESIM" style="width: auto; height: auto;" class="img-fluid rounded-start mt-0 " alt="...">
+                                            <img src="@product.Resim" style="width: auto; height: auto;" class="img-fluid rounded-start mt-0 " alt="...">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <h5 class="card-title">@product.URUNAD</h5>
-                                                <p class="card-text">@product.URUNACIKLAMA</p>
-                                                <p class="card-text"><b>@product.URUNFIYAT ₺</b></p>
+                                                <h5 class="card-title">@product.Ad</h5>
+                                                <p class="card-text">@product.Aciklama</p>
+                                                <p class="card-text"><b>@product.Fiyat ₺</b></p>
                                             </div>
                                         </div>
                                     </div>

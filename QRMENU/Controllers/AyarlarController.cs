@@ -8,7 +8,7 @@ namespace QRMENU.Controllers
 {
     public class AyarlarController : Controller
     {
-        QRMenuEntities1 db = new QRMenuEntities1();
+        QRMenuEntities2 db = new QRMenuEntities2();
         // GET: Ayarlar
         [Authorize]
 
@@ -19,17 +19,17 @@ namespace QRMENU.Controllers
 
         public ActionResult DukkanGetir(int id)
         {
-            var dukkan = db.TBLDUKKAN.Find(id);
+            var dukkan = db.Cafeler.Find(id);
             return View("DukkanGetir", dukkan);
         }
 
-        public ActionResult Guncelle(TBLDUKKAN u1)
+        public ActionResult Guncelle(Cafeler u1)
         {
-            var dukkan = db.TBLDUKKAN.Find(u1.DUKKANID);
-            dukkan.DUKKANAD = u1.DUKKANAD;
-            dukkan.DUKKANSLOGAN = u1.DUKKANSLOGAN;
-            dukkan.DUKKANHAKKINDA = u1.DUKKANHAKKINDA;
-            dukkan.DUKKANADRES = u1.DUKKANADRES;
+            var dukkan = db.Cafeler.Find(u1.ID);
+            dukkan.Ad = u1.Ad;
+            dukkan.Slogan = u1.Slogan;
+            dukkan.Hakkinda = u1.Hakkinda;
+            dukkan.Adres = u1.Adres;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

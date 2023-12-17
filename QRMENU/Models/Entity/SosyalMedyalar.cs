@@ -12,13 +12,14 @@ namespace QRMENU.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLKAMPANYALAR
+    public partial class SosyalMedyalar
     {
-        public int KAMPANYAID { get; set; }
-        public string KAMPANYAACIKLAMA { get; set; }
-        public Nullable<int> KAMPANYALIURUN { get; set; }
-        public string KAMPANYASURESI { get; set; }
+        public int ID { get; set; }
+        public string Ad { get; set; }
+        public string Link { get; set; }
+        public Nullable<int> CafeID { get; set; }
+        public Nullable<bool> Durum { get; set; }
     
-        public virtual TBLURUNLER TBLURUNLER { get; set; }
+        public virtual Cafeler Cafeler { get; set; }
     }
 }

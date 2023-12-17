@@ -10,11 +10,15 @@
 namespace QRMENU.Models.Entity
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TBLSOCIALMEDIA
+    public partial class sp_CafeListele_Result
     {
-        public int SOCIALMEDIAID { get; set; }
-        public string SOCIALMEDIALINK { get; set; }
+        public int ID { get; set; }
+        public string Ad { get; set; }
+        public string Slogan { get; set; }
+        public string Hakkinda { get; set; }
+        public string Adres { get; set; }
+        public int KullaniciID { get; set; }
+        public Nullable<bool> Durum { get; set; }
     }
 }

@@ -12,19 +12,20 @@ namespace QRMENU.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLKATEGORILER
+    public partial class Kampanyalar
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TBLKATEGORILER()
+        public Kampanyalar()
         {
-            this.TBLURUNLER = new HashSet<TBLURUNLER>();
+            this.Urunler = new HashSet<Urunler>();
         }
     
-        public int KATEGORIID { get; set; }
-        public string KATEGORIAD { get; set; }
-        public Nullable<int> URUNSAYISI { get; set; }
+        public int ID { get; set; }
+        public string Baslik { get; set; }
+        public string Aciklama { get; set; }
+        public Nullable<bool> Durum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TBLURUNLER> TBLURUNLER { get; set; }
+        public virtual ICollection<Urunler> Urunler { get; set; }
     }
 }

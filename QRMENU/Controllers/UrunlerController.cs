@@ -8,58 +8,58 @@ namespace QRMENU.Controllers
 {
     public class UrunlerController : Controller
     {
-        QRMenuEntities1 db = new QRMenuEntities1();
+        QRMenuEntities2 db = new QRMenuEntities2();
         // GET: Urunler
         [Authorize]
 
         public ActionResult Index()
         {
-            var urun = db.TBLURUNLER.ToList();
+            var urun = db.Urunler.ToList();
             return View(urun);
         }
 
         [HttpGet]
         public ActionResult YeniUrun()
         {
-            List<SelectListItem> degerler = (from i in db.TBLURUNLER.ToList()
+            List<SelectListItem> degerler = (from i in db.Kategoriler.ToList()
                                              select new SelectListItem
                                              {
-                                                 Text = i.URUNAD,
-                                                 Value = i.URUNID.ToString()
+                                                 Text = i.Ad,
+                                                 Value = i.ID.ToString()
 
                                              }).ToList();
-            ViewBag.urunler = degerler;
+            ViewBag.kategoriler = degerler;
             return View();
         }
 
 
 
         [HttpPost]
-        public ActionResult YeniUrun(TBLURUNLER u1)
+        public ActionResult YeniUrun(Urunler u1)
         {
-            var kategori = db.TBLKATEGORILER.Where(m => m.KATEGORIID == u1.TBLKATEGORILER.KATEGORIID).FirstOrDefault();
-            u1.TBLKATEGORILER = kategori;
-            db.TBLURUNLER.Add(u1);
+            var kategori = db.Kategoriler.Where(m => m.ID == u1.Kategoriler.ID).FirstOrDefault();
+            u1.Kategoriler = kategori;
+            db.Urunler.Add(u1);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult UrunSil(int id)
         {
-            var urun = db.TBLURUNLER.Find(id);
-            db.TBLURUNLER.Remove(urun);
+            var urun = db.Urunler.Find(id);
+            urun.Durum = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult UrunGetir(int id)
         {
-            var urun = db.TBLURUNLER.Find(id);
-            List<SelectListItem> degerler = (from i in db.TBLKATEGORILER.ToList()
+            var urun = db.Urunler.Find(id);
+            List<SelectListItem> degerler = (from i in db.Kategoriler.ToList()
                                              select new SelectListItem
                                              {
-                                                 Text = i.KATEGORIAD,
-                                                 Value = i.KATEGORIID.ToString()
+                                                 Text = i.Ad,
+                                                 Value = i.ID.ToString()
 
                                              }).ToList();
             ViewBag.kategoriler = degerler;
@@ -67,19 +67,19 @@ namespace QRMENU.Controllers
             return View("UrunGetir", urun);
         }
 
-        public ActionResult Guncelle(TBLURUNLER u1)
+        public ActionResult Guncelle(Urunler u1)
         {
-            var urun = db.TBLURUNLER.Find(u1.URUNID);
-            urun.URUNAD = u1.URUNAD;
-            urun.URUNACIKLAMA = u1.URUNACIKLAMA;
-            urun.URUNFIYAT = u1.URUNFIYAT;
-            urun.URUNRESIM = u1.URUNRESIM;
+            var urun = db.Urunler.Find(u1.ID);
+            urun.Ad = u1.Ad;
+            urun.Aciklama = u1.Aciklama;
+            urun.Fiyat = u1.Fiyat;
+            urun.Resim = u1.Resim;
 
-            var kategori = db.TBLKATEGORILER.Where(m => m.KATEGORIID == u1.TBLKATEGORILER.KATEGORIID).FirstOrDefault();
-            urun.URUNKATEGORI = kategori.KATEGORIID;
+            var kategori = db.Kategoriler.Where(m => m.ID == u1.Kategoriler.ID).FirstOrDefault();
+            urun.KategoriID = kategori.ID;
 
 
-            urun.URUNDURUM = u1.URUNDURUM;
+            urun.Durum = u1.Durum;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

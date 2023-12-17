@@ -10,11 +10,11 @@ namespace QRMENU.Controllers
     public class HomeController : Controller
     {
 
-        QRMenuEntities1 db = new QRMenuEntities1();
+        QRMenuEntities2 db = new QRMenuEntities2();
 
         public ActionResult Index()
         {
-            var dukkan = db.TBLDUKKAN.ToList();
+            var dukkan = db.Cafeler.ToList();
             return View(dukkan);
         }
 
@@ -25,7 +25,7 @@ namespace QRMENU.Controllers
 
         public ActionResult Product()
         {
-            var urunler = db.TBLURUNLER.ToList();
+            var urunler = db.Urunler.ToList();
             return View(urunler);
         }
 

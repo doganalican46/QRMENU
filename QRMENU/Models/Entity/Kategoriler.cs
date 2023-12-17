@@ -12,26 +12,22 @@ namespace QRMENU.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class TBLKULLANICILAR
+    public partial class Kategoriler
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TBLKULLANICILAR()
+        public Kategoriler()
         {
-            this.TBLDUKKAN = new HashSet<TBLDUKKAN>();
+            this.Menuler = new HashSet<Menuler>();
+            this.Urunler = new HashSet<Urunler>();
         }
     
-        public int KULLANICIID { get; set; }
-        public string KULLANICIAD { get; set; }
-        public string KULLANICISOYAD { get; set; }
-        public string KULLANICIMAIL { get; set; }
-        public string KULLANICIDOGUMGUNU { get; set; }
-        public string KULLANICIRESIM { get; set; }
-        public string KULLANICISIFRE { get; set; }
-        public Nullable<int> KULLANICIDUKKAN { get; set; }
-        public Nullable<byte> KULLANICIDURUM { get; set; }
+        public int ID { get; set; }
+        public string Ad { get; set; }
+        public Nullable<bool> Durum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TBLDUKKAN> TBLDUKKAN { get; set; }
-        public virtual TBLDUKKAN TBLDUKKAN1 { get; set; }
+        public virtual ICollection<Menuler> Menuler { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Urunler> Urunler { get; set; }
     }
 }

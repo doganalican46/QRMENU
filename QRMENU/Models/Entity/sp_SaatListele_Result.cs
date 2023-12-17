@@ -10,17 +10,16 @@
 namespace QRMENU.Models.Entity
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TBLSIPARISLER
+    public partial class sp_SaatListele_Result
     {
-        public int SIPARISID { get; set; }
-        public Nullable<int> MASANUMARASI { get; set; }
-        public Nullable<int> SIPARISLER { get; set; }
-        public Nullable<System.TimeSpan> GECENSURE { get; set; }
-        public Nullable<decimal> TOPLAMFIYAT { get; set; }
-        public Nullable<byte> SIPARISDURUM { get; set; }
-    
-        public virtual TBLMASA TBLMASA { get; set; }
+        public string Ad { get; set; }
+        public string Pazartesi { get; set; }
+        public string Sali { get; set; }
+        public string Carsamba { get; set; }
+        public string Persembe { get; set; }
+        public string Cuma { get; set; }
+        public string Cumartesi { get; set; }
+        public string Pazar { get; set; }
     }
 }

@@ -12,11 +12,13 @@ namespace QRMENU.Models.Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class QRMenuEntities1 : DbContext
+    public partial class QRMenuEntities2 : DbContext
     {
-        public QRMenuEntities1()
-            : base("name=QRMenuEntities1")
+        public QRMenuEntities2()
+            : base("name=QRMenuEntities2")
         {
         }
     
@@ -25,16 +27,353 @@ namespace QRMENU.Models.Entity
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Cafeler> Cafeler { get; set; }
+        public virtual DbSet<Kampanyalar> Kampanyalar { get; set; }
+        public virtual DbSet<Kategoriler> Kategoriler { get; set; }
+        public virtual DbSet<Kullanicilar> Kullanicilar { get; set; }
+        public virtual DbSet<Menuler> Menuler { get; set; }
+        public virtual DbSet<QR> QR { get; set; }
+        public virtual DbSet<Saatler> Saatler { get; set; }
+        public virtual DbSet<SosyalMedyalar> SosyalMedyalar { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<TBLADMIN> TBLADMIN { get; set; }
-        public virtual DbSet<TBLDUKKAN> TBLDUKKAN { get; set; }
-        public virtual DbSet<TBLKAMPANYALAR> TBLKAMPANYALAR { get; set; }
-        public virtual DbSet<TBLKATEGORILER> TBLKATEGORILER { get; set; }
-        public virtual DbSet<TBLKULLANICILAR> TBLKULLANICILAR { get; set; }
-        public virtual DbSet<TBLMASA> TBLMASA { get; set; }
-        public virtual DbSet<TBLSAATLER> TBLSAATLER { get; set; }
-        public virtual DbSet<TBLSIPARISLER> TBLSIPARISLER { get; set; }
-        public virtual DbSet<TBLSOCIALMEDIA> TBLSOCIALMEDIA { get; set; }
-        public virtual DbSet<TBLURUNLER> TBLURUNLER { get; set; }
+        public virtual DbSet<Urunler> Urunler { get; set; }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_CafeEkle(string ad, string slogan, string hakkinda, string adres, Nullable<int> kullaniciID)
+        {
+            var adParameter = ad != null ?
+                new ObjectParameter("Ad", ad) :
+                new ObjectParameter("Ad", typeof(string));
+    
+            var sloganParameter = slogan != null ?
+                new ObjectParameter("Slogan", slogan) :
+                new ObjectParameter("Slogan", typeof(string));
+    
+            var hakkindaParameter = hakkinda != null ?
+                new ObjectParameter("Hakkinda", hakkinda) :
+                new ObjectParameter("Hakkinda", typeof(string));
+    
+            var adresParameter = adres != null ?
+                new ObjectParameter("Adres", adres) :
+                new ObjectParameter("Adres", typeof(string));
+    
+            var kullaniciIDParameter = kullaniciID.HasValue ?
+                new ObjectParameter("KullaniciID", kullaniciID) :
+                new ObjectParameter("KullaniciID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CafeEkle", adParameter, sloganParameter, hakkindaParameter, adresParameter, kullaniciIDParameter);
+        }
+    
+        public virtual int sp_CafeGuncelle(string ad, string slogan, string hakkinda, string adres, Nullable<int> kullaniciID)
+        {
+            var adParameter = ad != null ?
+                new ObjectParameter("Ad", ad) :
+                new ObjectParameter("Ad", typeof(string));
+    
+            var sloganParameter = slogan != null ?
+                new ObjectParameter("Slogan", slogan) :
+                new ObjectParameter("Slogan", typeof(string));
+    
+            var hakkindaParameter = hakkinda != null ?
+                new ObjectParameter("Hakkinda", hakkinda) :
+                new ObjectParameter("Hakkinda", typeof(string));
+    
+            var adresParameter = adres != null ?
+                new ObjectParameter("Adres", adres) :
+                new ObjectParameter("Adres", typeof(string));
+    
+            var kullaniciIDParameter = kullaniciID.HasValue ?
+                new ObjectParameter("KullaniciID", kullaniciID) :
+                new ObjectParameter("KullaniciID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CafeGuncelle", adParameter, sloganParameter, hakkindaParameter, adresParameter, kullaniciIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_CafeListele_Result> sp_CafeListele()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_CafeListele_Result>("sp_CafeListele");
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_KullaniciEkle(string tC, string ad, string soyad, string mail, Nullable<System.DateTime> dogumTarihi, string resim, string sifre)
+        {
+            var tCParameter = tC != null ?
+                new ObjectParameter("TC", tC) :
+                new ObjectParameter("TC", typeof(string));
+    
+            var adParameter = ad != null ?
+                new ObjectParameter("Ad", ad) :
+                new ObjectParameter("Ad", typeof(string));
+    
+            var soyadParameter = soyad != null ?
+                new ObjectParameter("Soyad", soyad) :
+                new ObjectParameter("Soyad", typeof(string));
+    
+            var mailParameter = mail != null ?
+                new ObjectParameter("Mail", mail) :
+                new ObjectParameter("Mail", typeof(string));
+    
+            var dogumTarihiParameter = dogumTarihi.HasValue ?
+                new ObjectParameter("DogumTarihi", dogumTarihi) :
+                new ObjectParameter("DogumTarihi", typeof(System.DateTime));
+    
+            var resimParameter = resim != null ?
+                new ObjectParameter("Resim", resim) :
+                new ObjectParameter("Resim", typeof(string));
+    
+            var sifreParameter = sifre != null ?
+                new ObjectParameter("Sifre", sifre) :
+                new ObjectParameter("Sifre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_KullaniciEkle", tCParameter, adParameter, soyadParameter, mailParameter, dogumTarihiParameter, resimParameter, sifreParameter);
+        }
+    
+        public virtual int sp_KullaniciGuncelle(Nullable<int> iD, string ad, string soyad, string mail, Nullable<System.DateTime> dogumTarihi, string resim, string sifre)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var adParameter = ad != null ?
+                new ObjectParameter("Ad", ad) :
+                new ObjectParameter("Ad", typeof(string));
+    
+            var soyadParameter = soyad != null ?
+                new ObjectParameter("Soyad", soyad) :
+                new ObjectParameter("Soyad", typeof(string));
+    
+            var mailParameter = mail != null ?
+                new ObjectParameter("Mail", mail) :
+                new ObjectParameter("Mail", typeof(string));
+    
+            var dogumTarihiParameter = dogumTarihi.HasValue ?
+                new ObjectParameter("DogumTarihi", dogumTarihi) :
+                new ObjectParameter("DogumTarihi", typeof(System.DateTime));
+    
+            var resimParameter = resim != null ?
+                new ObjectParameter("Resim", resim) :
+                new ObjectParameter("Resim", typeof(string));
+    
+            var sifreParameter = sifre != null ?
+                new ObjectParameter("Sifre", sifre) :
+                new ObjectParameter("Sifre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_KullaniciGuncelle", iDParameter, adParameter, soyadParameter, mailParameter, dogumTarihiParameter, resimParameter, sifreParameter);
+        }
+    
+        public virtual ObjectResult<sp_KullaniciListele_Result> sp_KullaniciListele()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_KullaniciListele_Result>("sp_KullaniciListele");
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_SaatEkle(string pazartesi, string sali, string carsamba, string persembe, string cuma, string cumartesi, string pazar, Nullable<int> cafeID)
+        {
+            var pazartesiParameter = pazartesi != null ?
+                new ObjectParameter("Pazartesi", pazartesi) :
+                new ObjectParameter("Pazartesi", typeof(string));
+    
+            var saliParameter = sali != null ?
+                new ObjectParameter("Sali", sali) :
+                new ObjectParameter("Sali", typeof(string));
+    
+            var carsambaParameter = carsamba != null ?
+                new ObjectParameter("Carsamba", carsamba) :
+                new ObjectParameter("Carsamba", typeof(string));
+    
+            var persembeParameter = persembe != null ?
+                new ObjectParameter("Persembe", persembe) :
+                new ObjectParameter("Persembe", typeof(string));
+    
+            var cumaParameter = cuma != null ?
+                new ObjectParameter("Cuma", cuma) :
+                new ObjectParameter("Cuma", typeof(string));
+    
+            var cumartesiParameter = cumartesi != null ?
+                new ObjectParameter("Cumartesi", cumartesi) :
+                new ObjectParameter("Cumartesi", typeof(string));
+    
+            var pazarParameter = pazar != null ?
+                new ObjectParameter("Pazar", pazar) :
+                new ObjectParameter("Pazar", typeof(string));
+    
+            var cafeIDParameter = cafeID.HasValue ?
+                new ObjectParameter("CafeID", cafeID) :
+                new ObjectParameter("CafeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SaatEkle", pazartesiParameter, saliParameter, carsambaParameter, persembeParameter, cumaParameter, cumartesiParameter, pazarParameter, cafeIDParameter);
+        }
+    
+        public virtual int sp_SaatGuncelle(Nullable<int> iD, string pazartesi, string sali, string carsamba, string persembe, string cuma, string cumartesi, string pazar)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var pazartesiParameter = pazartesi != null ?
+                new ObjectParameter("Pazartesi", pazartesi) :
+                new ObjectParameter("Pazartesi", typeof(string));
+    
+            var saliParameter = sali != null ?
+                new ObjectParameter("Sali", sali) :
+                new ObjectParameter("Sali", typeof(string));
+    
+            var carsambaParameter = carsamba != null ?
+                new ObjectParameter("Carsamba", carsamba) :
+                new ObjectParameter("Carsamba", typeof(string));
+    
+            var persembeParameter = persembe != null ?
+                new ObjectParameter("Persembe", persembe) :
+                new ObjectParameter("Persembe", typeof(string));
+    
+            var cumaParameter = cuma != null ?
+                new ObjectParameter("Cuma", cuma) :
+                new ObjectParameter("Cuma", typeof(string));
+    
+            var cumartesiParameter = cumartesi != null ?
+                new ObjectParameter("Cumartesi", cumartesi) :
+                new ObjectParameter("Cumartesi", typeof(string));
+    
+            var pazarParameter = pazar != null ?
+                new ObjectParameter("Pazar", pazar) :
+                new ObjectParameter("Pazar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SaatGuncelle", iDParameter, pazartesiParameter, saliParameter, carsambaParameter, persembeParameter, cumaParameter, cumartesiParameter, pazarParameter);
+        }
+    
+        public virtual ObjectResult<sp_SaatListele_Result> sp_SaatListele(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SaatListele_Result>("sp_SaatListele", iDParameter);
+        }
+    
+        public virtual int sp_SosyalMedyaEkle(string ad, string link, Nullable<int> cafeID)
+        {
+            var adParameter = ad != null ?
+                new ObjectParameter("Ad", ad) :
+                new ObjectParameter("Ad", typeof(string));
+    
+            var linkParameter = link != null ?
+                new ObjectParameter("Link", link) :
+                new ObjectParameter("Link", typeof(string));
+    
+            var cafeIDParameter = cafeID.HasValue ?
+                new ObjectParameter("CafeID", cafeID) :
+                new ObjectParameter("CafeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SosyalMedyaEkle", adParameter, linkParameter, cafeIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_SosyalMedyaListele_Result> sp_SosyalMedyaListele(Nullable<int> cafeID)
+        {
+            var cafeIDParameter = cafeID.HasValue ?
+                new ObjectParameter("CafeID", cafeID) :
+                new ObjectParameter("CafeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_SosyalMedyaListele_Result>("sp_SosyalMedyaListele", cafeIDParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
     }
 }

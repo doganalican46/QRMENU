@@ -9,14 +9,14 @@ namespace QRMENU.Controllers
 {
     public class KategoriController : Controller
     {
-        QRMenuEntities1 db = new QRMenuEntities1();
+        QRMenuEntities2 db = new QRMenuEntities2();
 
         // GET: Kategori
         [Authorize]
 
         public ActionResult Index()
         {
-            var kategori = db.TBLKATEGORILER.ToList();
+            var kategori = db.Kategoriler.ToList();
             return View(kategori);
         }
 
@@ -29,9 +29,9 @@ namespace QRMENU.Controllers
 
 
         [HttpPost]
-        public ActionResult YeniKategori(TBLKATEGORILER k1)
+        public ActionResult YeniKategori(Kategoriler k1)
         {
-            db.TBLKATEGORILER.Add(k1);
+            db.Kategoriler.Add(k1);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -41,15 +41,15 @@ namespace QRMENU.Controllers
         public ActionResult KategoriSil(int id)
         {
 
-            var kategori = db.TBLKATEGORILER.Find(id);
+            var kategori = db.Kategoriler.Find(id);
 
-            var urunler = db.TBLURUNLER.Where(u => u.URUNKATEGORI == id);
+            var urunler = db.Urunler.Where(u => u.KategoriID == id);
             foreach (var urun in urunler)
             {
-                urun.URUNKATEGORI = null;
+                urun.Ad = null;
             }
 
-            db.TBLKATEGORILER.Remove(kategori);
+            db.Kategoriler.Remove(kategori);
             db.SaveChanges();
             return RedirectToAction("Index");
 
@@ -58,15 +58,16 @@ namespace QRMENU.Controllers
 
         public ActionResult KategoriGetir(int id)
         {
-            var kategori = db.TBLKATEGORILER.Find(id);
+            var kategori = db.Kategoriler.Find(id);
             return View("KategoriGetir", kategori);
         }
 
 
-        public ActionResult Guncelle(TBLKATEGORILER k1)
+        public ActionResult Guncelle(Kategoriler k1)
         {
-            var kategori = db.TBLKATEGORILER.Find(k1.KATEGORIID);
-            kategori.KATEGORIAD = k1.KATEGORIAD;
+            var kategori = db.Kategoriler.Find(k1.ID);
+            kategori.Ad = k1.Ad;
+            kategori.Durum = k1.Durum;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

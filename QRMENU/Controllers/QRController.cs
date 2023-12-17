@@ -9,7 +9,7 @@ namespace QRMENU.Controllers
 {
     public class QRController : Controller
     {
-        QRMenuEntities1 db = new QRMenuEntities1();
+        QRMenuEntities2 db = new QRMenuEntities2();
 
         [Authorize]
 

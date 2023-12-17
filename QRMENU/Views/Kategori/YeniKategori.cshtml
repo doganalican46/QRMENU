@@ -1,5 +1,5 @@
 ﻿@using QRMENU.Models.Entity
-@model List<TBLKATEGORILER>
+@model List<Kategoriler>
 @{
     ViewBag.Title = "Kategoriler";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,18 +10,19 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">KATEGORİLER / <small> KATEGORİ EKLE</small></h1> 
+        <h1 class="h3 mb-0 text-gray-800">KATEGORİLER / <small> KATEGORİ EKLE</small></h1>
 
     </div>
 
     <form class="form-group" method="post">
-       
+        <p>Menü oluşturmak için ilk olarak yeni bir kategori eklemeniz gerekmektedir.</p>
+
         <hr />
         <div class="form-group row">
             <label for="KATEGORIAD" class="col-sm-2 col-form-label">Kategori Ad:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="KATEGORIAD" placeholder="Kategori adı giriniz..." required="">
-                <input type="hidden" class="form-control" name="URUNSAYISI" value="0">
+                <input type="text" class="form-control" name="Ad" placeholder="Kategori adı giriniz..." required="">
+                <input type="hidden" class="form-control" name="Durum" value="true">
 
             </div>
         </div>
