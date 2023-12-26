@@ -1,4 +1,4 @@
-﻿
+﻿@model QRMENU.Models.Entity.Kullanicilar
 @{
     ViewBag.Title = "Guvenlik";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -27,25 +27,25 @@
             <div class="card mb-4">
                 <div class="card-header">ŞİFRE DEĞİŞTİR</div>
                 <div class="card-body">
-                    <form>
-                        <!-- Form Group (current password)-->
+                    @using (Html.BeginForm("Index", "Guvenlik", FormMethod.Post))
+                    {
                         <div class="mb-3">
-                            <label class="small mb-1" for="currentPassword">Güncel Şifreniz</label>
-                            <input class="form-control" id="currentPassword" type="password" placeholder="Güncel şifrenizi giriniz...">
+                            <label class="small mb-1" for="currentPassword">Güncel Şifreniz:</label>
+                            <input type="password" name="GuncelSifre" placeholder="Güncel şifrenizi girin..." class="form-control" required />
                         </div>
-                        <!-- Form Group (new password)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="newPassword">Yeni Şifreniz</label>
-                            <input class="form-control" id="newPassword" type="password" placeholder="Yeni şifrenizi giriniz...">
+                            <label class="small mb-1">Yeni Şifreniz:</label>
+                            <input type="password" name="YeniSifre" placeholder="Yeni şifrenizi girin..." class="form-control" required />
                         </div>
-                        <!-- Form Group (confirm password)-->
                         <div class="mb-3">
-                            <label class="small mb-1" for="confirmPassword">Yeni Şifre Tekrar</label>
-                            <input class="form-control" id="confirmPassword" type="password" placeholder="Yeni şifrenizi tekrardan giriniz...">
+                            <label class="small mb-1">Yeni Şifreniz (Tekrar):</label>
+                            <input type="password" name="YeniSifreTekrar" placeholder="Yeni şifrenizi tekrar girin..." class="form-control" required />
                         </div>
-                        <button class="btn btn-primary" type="button">KAYDET</button>
-                    </form>
+
+                        <button class="btn btn-primary">KAYDET</button>
+                    }
                 </div>
+
             </div>
 
         </div>

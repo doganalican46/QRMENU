@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using QRMENU.Models.Entity;
 namespace QRMENU.Controllers
 {
@@ -14,11 +15,19 @@ namespace QRMENU.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var mail = (string)Session["KULLANICIMAIL"];
+            var mail = (string)Session["Mail"];
             var degerler = db.Kullanicilar.FirstOrDefault(x => x.Mail == mail);
             ViewBag.mail = mail;
+
             return View(degerler);
         }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index","Login");
+        }
+
 
     }
 }

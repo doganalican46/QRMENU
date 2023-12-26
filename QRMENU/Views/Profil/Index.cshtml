@@ -1,4 +1,4 @@
-﻿
+﻿@model QRMENU.Models.Entity.Kullanicilar
 @{
     ViewBag.Title = "Profil";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -23,69 +23,62 @@
     <hr class="mt-0 mb-4">
     <div class="row">
         <div class="col-xl-4">
-
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header">Profil Resmi</div>
                 <div class="card-body text-center">
-
                     <img class="img-account-profile rounded-circle mb-2"
-                         src="https://bootdey.com/img/Content/avatar/avatar1.png" alt>
+                         src="@((Session["Resim"] ?? "").ToString())" width="150px" height="150px" alt="Kullanıcı Resmi">
 
                     <div class="small font-italic text-muted mb-4">JPG veya PNG, 5 MB'dan küçük</div>
 
-                    <button class="btn btn-primary" type="button">Yeni Resim Ekle</button>
+                    @using (Html.BeginForm("ProfilResmiYukle", "Profil", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="file" name="file" accept=".jpg, .jpeg, .png" class="form-control-file mb-3" />
+                        <button class="btn btn-primary" type="submit">Resmi Güncelle</button>
+                    }
                 </div>
             </div>
         </div>
+
         <div class="col-xl-8">
 
             <div class="card mb-4">
                 <div class="card-header">Hesap Detayları</div>
                 <div class="card-body">
-                    <form>
-
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Kullanıcı Adı</label>
-                            <input class="form-control" id="inputUsername" type="text"
-                                   placeholder="Enter your username" value="username">
-                        </div>
+                    @using (Html.BeginForm("Index", "Profil", FormMethod.Post))
+                    {
 
                         <div class="row gx-3 mb-3">
 
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputFirstName">Ad</label>
-                                <input class="form-control" id="inputFirstName" type="text"
-                                       placeholder="Enter your first name" value="Valerie">
+                                @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
                             </div>
 
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLastName">Soyad</label>
-                                <input class="form-control" id="inputLastName" type="text"
-                                       placeholder="Enter your last name" value="Luna">
+                                @Html.TextBoxFor(x => x.Soyad, new { @class = "form-control" })
+
                             </div>
                         </div>
-
-
-
 
 
                         <div class="row gx-3 mb-3">
 
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputEmailAddress">Email Adresi</label>
-                                <input class="form-control" id="inputEmailAddress" type="email"
-                                       placeholder="Enter your email address" value="isimsoyisim@example.com">
+
+                                <input name="Mail" class="form-control" id="inputEmailAddress" type="email"
+                                       placeholder="Enter your email address" value="@HttpContext.Current.User.Identity.Name">
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputBirthday">Doğum Günü</label>
-                                <input class="form-control" id="inputBirthday" type="text"
-                                       name="birthday" placeholder="Doğum gününüzü girin..."
-                                       value="">
+                                @Html.TextBoxFor(x => x.DogumTarihi, "{0:dd.MM.yyyy}", new { @class = "form-control" })
                             </div>
                         </div>
 
-                        <button class="btn btn-primary" type="button">KAYDET</button>
-                    </form>
+                        <button class="btn btn-primary">KAYDET</button>
+                    }
                 </div>
             </div>
         </div>

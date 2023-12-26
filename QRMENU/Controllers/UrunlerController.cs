@@ -21,7 +21,7 @@ namespace QRMENU.Controllers
         [HttpGet]
         public ActionResult YeniUrun()
         {
-            List<SelectListItem> degerler = (from i in db.Kategoriler.ToList()
+            List<SelectListItem> degerler = (from i in db.Kategoriler.Where(x=>x.Durum==true).ToList()
                                              select new SelectListItem
                                              {
                                                  Text = i.Ad,

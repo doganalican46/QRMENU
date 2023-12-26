@@ -47,6 +47,12 @@ namespace QRMENU.Controllers
             {
                 FormsAuthentication.SetAuthCookie(login.Mail, false);
                 Session["Mail"] = login.Mail.ToString();
+                Session["AdSoyad"] = login.Ad+" "+login.Soyad;
+
+                Session["Sifre"] = login.Sifre;
+                
+                Session["Resim"] = login.Resim;
+
                 return RedirectToAction("Index", "Admin");
             }
             else
