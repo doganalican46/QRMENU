@@ -1,0 +1,69 @@
+﻿@model QRMENU.Models.Entity.Cafeler
+@{
+    ViewBag.Title = "CafeGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">CAFE / <small> CAFE GÜNCELLE</small></h1>
+
+    </div>
+
+    @using (Html.BeginForm("Guncelle", "Cafe", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.ID, new { @class = "form-control" })
+        <hr />
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Cafe Ad:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Cafe Slogan:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Slogan, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Cafe Hakkında:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Hakkinda, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Cafe Adres:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Adres, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Cafe Telefon:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control" })
+            </div>
+        </div>
+       
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Cafe Durum:</label>
+            <div class="col-sm-10">
+                @Html.DropDownListFor(m => m.Durum, new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "true", Text = "AKTİF" },
+                    new SelectListItem { Value = "false", Text = "PASİF" }
+                }, "Lütfen durumu seçiniz", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <hr>
+        <div class=" mt-4">
+            <a href="/Cafe/Index/" class="btn btn-danger">VAZGEÇ</a>
+            <button class="btn btn-primary">GÜNCELLE</button>
+        </div>
+    }
+</div>
+<!-- /.container-fluid -->
