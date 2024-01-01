@@ -28,6 +28,7 @@
                                 <tr>
                                     <th>CAFE AD</th>
                                     <th>DURUM</th>
+                                    <th>AYARLAR</th>
                                     <th>İŞLEM</th>
                                 </tr>
                             </thead>
@@ -41,11 +42,14 @@
                                             @(cafe.Durum.HasValue ? (cafe.Durum.Value ? "AKTİF" : "PASİF") : "N/A")
                                         </td>
                                         <td>
+                                            <a href="/Cafe/CafeSosyalMedya/@cafe.ID" class="btn btn-sm btn-success">SOSYAL MEDYA AYARLARI</a>
+                                            <a href="/Cafe/CafeSaat/@cafe.ID" class="btn btn-sm btn-success">SAAT AYARLARI</a>
+                                            <a href="/Cafe/MenüGetir/@cafe.ID" class="btn btn-sm btn-success">MENÜ AYARLARI</a>
+
+                                        </td>
+                                        <td>
                                             <a href="/Cafe/CafeSil/@cafe.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
                                             <a href="/Cafe/CafeGetir/@cafe.ID" class="btn btn-primary">GÜNCELLE</a>
-                                            <a href="/Cafe/CafeSosyalMedya/@cafe.ID" class="btn btn-primary">SOSYAL MEDYA AYARLARI</a>
-                                            <a href="/Cafe/CafeSaat/@cafe.ID" class="btn btn-primary">SAAT AYARLARI</a>
-                                            <a href="/Cafe/MenüGetir/@cafe.ID" class="btn btn-warning">MENÜ GÖRÜNTÜLE</a>
 
                                         </td>
                                     </tr>

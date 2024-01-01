@@ -27,9 +27,9 @@ namespace QRMENU.Models.Entity
         public string Slogan { get; set; }
         public string Hakkinda { get; set; }
         public string Adres { get; set; }
+        public string Telefon { get; set; }
         public int KullaniciID { get; set; }
         public Nullable<bool> Durum { get; set; }
-        public string Telefon { get; set; }
     
         public virtual Kullanicilar Kullanicilar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

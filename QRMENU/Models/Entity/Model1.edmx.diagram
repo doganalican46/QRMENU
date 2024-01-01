@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="371d675f650942568106df47c5061eda" Name="Diagram1">
-        <EntityTypeShape EntityType="QRMenuModel.Cafeler" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QRMenuModel.Kampanyalar" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="QRMenuModel.Kategoriler" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QRMenuModel.Kullanicilar" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QRMenuModel.Menuler" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QRMenuModel.QR" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QRMenuModel.Saatler" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QRMenuModel.SosyalMedyalar" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QRMenuModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="QRMenuModel.Urunler" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="c7a4450327b64bbfa1eea4508799b9e2" Name="Diagram1">
+        <EntityTypeShape EntityType="QRMenuModel.Cafeler" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRMenuModel.Kampanyalar" Width="1.5" PointX="7.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRMenuModel.Kategoriler" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRMenuModel.Kullanicilar" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRMenuModel.Menuler" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRMenuModel.QR" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRMenuModel.Saatler" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRMenuModel.SosyalMedyalar" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRMenuModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRMenuModel.Urunler" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="QRMenuModel.FK_Cafeler_Kullanicilar" ManuallyRouted="false" />
         <AssociationConnector Association="QRMenuModel.FK_Menuler_Cafeler" ManuallyRouted="false" />
         <AssociationConnector Association="QRMenuModel.FK_Saatler_Cafeler" ManuallyRouted="false" />
         <AssociationConnector Association="QRMenuModel.FK_SosyalMedyalar_Cafeler" ManuallyRouted="false" />
         <AssociationConnector Association="QRMenuModel.FK_Urunler_Kampanyalar" ManuallyRouted="false" />
-        <AssociationConnector Association="QRMenuModel.FK_Menuler_Kategoriler" ManuallyRouted="false" />
+        <AssociationConnector Association="QRMenuModel.FK_Kategoriler_Menuler" ManuallyRouted="false" />
         <AssociationConnector Association="QRMenuModel.FK_Urunler_Kategoriler" ManuallyRouted="false" />
         <AssociationConnector Association="QRMenuModel.FK_QR_Menuler" ManuallyRouted="false" />
       </Diagram>

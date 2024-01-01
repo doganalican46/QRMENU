@@ -228,6 +228,12 @@ namespace QRMENU.Controllers
         }
 
 
+        public ActionResult CafeMenu()
+        {
+            return View();
+        }
+
+
 
 
 

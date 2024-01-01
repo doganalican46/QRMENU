@@ -15,6 +15,7 @@ namespace QRMENU.Models.Entity
     public partial class Saatler
     {
         public int ID { get; set; }
+        public string Ad { get; set; }
         public string Pazartesi { get; set; }
         public string Sali { get; set; }
         public string Carsamba { get; set; }
@@ -24,7 +25,6 @@ namespace QRMENU.Models.Entity
         public string Pazar { get; set; }
         public Nullable<int> CafeID { get; set; }
         public Nullable<bool> Durum { get; set; }
-        public string Ad { get; set; }
     
         public virtual Cafeler Cafeler { get; set; }
     }

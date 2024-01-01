@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QRMenuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QRMenuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cafeler">
           <Key>
             <PropertyRef Name="ID" />
@@ -33,6 +33,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ad" Type="nvarchar" MaxLength="150" />
+          <Property Name="MenuID" Type="int" />
           <Property Name="Durum" Type="bit" />
         </EntityType>
         <EntityType Name="Kullanicilar">
@@ -55,7 +56,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="KategoriID" Type="int" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="100" />
           <Property Name="CafeID" Type="int" />
           <Property Name="Durum" Type="bit" />
         </EntityType>
@@ -129,6 +130,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Kategoriler_Menuler">
+          <End Role="Menuler" Type="Self.Menuler" Multiplicity="0..1" />
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menuler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Kategoriler">
+              <PropertyRef Name="MenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Menuler_Cafeler">
           <End Role="Cafeler" Type="Self.Cafeler" Multiplicity="0..1" />
           <End Role="Menuler" Type="Self.Menuler" Multiplicity="*" />
@@ -138,18 +151,6 @@
             </Principal>
             <Dependent Role="Menuler">
               <PropertyRef Name="CafeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Menuler_Kategoriler">
-          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
-          <End Role="Menuler" Type="Self.Menuler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Kategoriler">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Menuler">
-              <PropertyRef Name="KategoriID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -324,12 +325,12 @@
             <End Role="Kullanicilar" EntitySet="Kullanicilar" />
             <End Role="Cafeler" EntitySet="Cafeler" />
           </AssociationSet>
+          <AssociationSet Name="FK_Kategoriler_Menuler" Association="Self.FK_Kategoriler_Menuler">
+            <End Role="Menuler" EntitySet="Menuler" />
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+          </AssociationSet>
           <AssociationSet Name="FK_Menuler_Cafeler" Association="Self.FK_Menuler_Cafeler">
             <End Role="Cafeler" EntitySet="Cafeler" />
-            <End Role="Menuler" EntitySet="Menuler" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Menuler_Kategoriler" Association="Self.FK_Menuler_Kategoriler">
-            <End Role="Kategoriler" EntitySet="Kategoriler" />
             <End Role="Menuler" EntitySet="Menuler" />
           </AssociationSet>
           <AssociationSet Name="FK_QR_Menuler" Association="Self.FK_QR_Menuler">
@@ -353,7 +354,8 @@
             <End Role="Urunler" EntitySet="Urunler" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QRMenuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -366,13 +368,13 @@
           <Property Name="Slogan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Hakkinda" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Adres" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="KullaniciID" Type="Int32" Nullable="false" />
           <Property Name="Durum" Type="Boolean" />
           <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Cafeler_Kullanicilar" FromRole="Cafeler" ToRole="Kullanicilar" />
           <NavigationProperty Name="Menuler" Relationship="Self.FK_Menuler_Cafeler" FromRole="Cafeler" ToRole="Menuler" />
           <NavigationProperty Name="Saatler" Relationship="Self.FK_Saatler_Cafeler" FromRole="Cafeler" ToRole="Saatler" />
           <NavigationProperty Name="SosyalMedyalar" Relationship="Self.FK_SosyalMedyalar_Cafeler" FromRole="Cafeler" ToRole="SosyalMedyalar" />
-          <Property Name="Telefon" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="Kampanyalar">
           <Key>
@@ -390,8 +392,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ad" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MenuID" Type="Int32" />
           <Property Name="Durum" Type="Boolean" />
-          <NavigationProperty Name="Menuler" Relationship="Self.FK_Menuler_Kategoriler" FromRole="Kategoriler" ToRole="Menuler" />
+          <NavigationProperty Name="Menuler" Relationship="Self.FK_Kategoriler_Menuler" FromRole="Kategoriler" ToRole="Menuler" />
           <NavigationProperty Name="Urunler" Relationship="Self.FK_Urunler_Kategoriler" FromRole="Kategoriler" ToRole="Urunler" />
         </EntityType>
         <EntityType Name="Kullanicilar">
@@ -415,11 +418,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KategoriID" Type="Int32" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CafeID" Type="Int32" />
           <Property Name="Durum" Type="Boolean" />
           <NavigationProperty Name="Cafeler" Relationship="Self.FK_Menuler_Cafeler" FromRole="Menuler" ToRole="Cafeler" />
-          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Menuler_Kategoriler" FromRole="Menuler" ToRole="Kategoriler" />
+          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Kategoriler_Menuler" FromRole="Menuler" ToRole="Kategoriler" />
           <NavigationProperty Name="QR" Relationship="Self.FK_QR_Menuler" FromRole="Menuler" ToRole="QR" />
         </EntityType>
         <EntityType Name="QR">
@@ -437,6 +440,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Pazartesi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Sali" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Carsamba" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -447,7 +451,6 @@
           <Property Name="CafeID" Type="Int32" />
           <Property Name="Durum" Type="Boolean" />
           <NavigationProperty Name="Cafeler" Relationship="Self.FK_Saatler_Cafeler" FromRole="Saatler" ToRole="Cafeler" />
-          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SosyalMedyalar">
           <Key>
@@ -545,15 +548,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Menuler_Kategoriler">
-          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
-          <End Role="Menuler" Type="Self.Menuler" Multiplicity="*" />
+        <Association Name="FK_Kategoriler_Menuler">
+          <End Role="Menuler" Type="Self.Menuler" Multiplicity="0..1" />
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Kategoriler">
+            <Principal Role="Menuler">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Menuler">
-              <PropertyRef Name="KategoriID" />
+            <Dependent Role="Kategoriler">
+              <PropertyRef Name="MenuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -612,9 +615,9 @@
             <End Role="Kampanyalar" EntitySet="Kampanyalar" />
             <End Role="Urunler" EntitySet="Urunler" />
           </AssociationSet>
-          <AssociationSet Name="FK_Menuler_Kategoriler" Association="Self.FK_Menuler_Kategoriler">
-            <End Role="Kategoriler" EntitySet="Kategoriler" />
+          <AssociationSet Name="FK_Kategoriler_Menuler" Association="Self.FK_Kategoriler_Menuler">
             <End Role="Menuler" EntitySet="Menuler" />
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
           </AssociationSet>
           <AssociationSet Name="FK_Urunler_Kategoriler" Association="Self.FK_Urunler_Kategoriler">
             <End Role="Kategoriler" EntitySet="Kategoriler" />
@@ -708,7 +711,7 @@
             <Parameter Name="Pazar" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_SaatListele" ReturnType="Collection(QRMenuModel.sp_SaatListele_Result)">
-          <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_SosyalMedyaEkle">
             <Parameter Name="Ad" Mode="In" Type="String" />
@@ -716,7 +719,7 @@
             <Parameter Name="CafeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_SosyalMedyaListele" ReturnType="Collection(QRMenuModel.sp_SosyalMedyaListele_Result)">
-          <Parameter Name="CafeID" Mode="In" Type="Int32" />
+            <Parameter Name="CafeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
@@ -726,6 +729,7 @@
           <Property Type="String" Name="Slogan" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="Hakkinda" Nullable="true" MaxLength="1000" />
           <Property Type="String" Name="Adres" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Telefon" Nullable="true" MaxLength="11" />
           <Property Type="Int32" Name="KullaniciID" Nullable="false" />
           <Property Type="Boolean" Name="Durum" Nullable="true" />
         </ComplexType>
@@ -776,12 +780,12 @@
           <EntitySetMapping Name="Cafeler">
             <EntityTypeMapping TypeName="QRMenuModel.Cafeler">
               <MappingFragment StoreEntitySet="Cafeler">
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />
                 <ScalarProperty Name="Slogan" ColumnName="Slogan" />
                 <ScalarProperty Name="Hakkinda" ColumnName="Hakkinda" />
                 <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
                 <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
                 <ScalarProperty Name="Durum" ColumnName="Durum" />
               </MappingFragment>
@@ -802,6 +806,7 @@
               <MappingFragment StoreEntitySet="Kategoriler">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
                 <ScalarProperty Name="Durum" ColumnName="Durum" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -826,7 +831,7 @@
             <EntityTypeMapping TypeName="QRMenuModel.Menuler">
               <MappingFragment StoreEntitySet="Menuler">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
                 <ScalarProperty Name="CafeID" ColumnName="CafeID" />
                 <ScalarProperty Name="Durum" ColumnName="Durum" />
               </MappingFragment>
@@ -845,8 +850,8 @@
           <EntitySetMapping Name="Saatler">
             <EntityTypeMapping TypeName="QRMenuModel.Saatler">
               <MappingFragment StoreEntitySet="Saatler">
-                <ScalarProperty Name="Ad" ColumnName="Ad" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
                 <ScalarProperty Name="Pazartesi" ColumnName="Pazartesi" />
                 <ScalarProperty Name="Sali" ColumnName="Sali" />
                 <ScalarProperty Name="Carsamba" ColumnName="Carsamba" />
@@ -906,6 +911,7 @@
                 <ScalarProperty Name="Slogan" ColumnName="Slogan" />
                 <ScalarProperty Name="Hakkinda" ColumnName="Hakkinda" />
                 <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
                 <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
                 <ScalarProperty Name="Durum" ColumnName="Durum" />
               </ComplexTypeMapping>

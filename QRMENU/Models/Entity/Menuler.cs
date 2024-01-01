@@ -17,16 +17,18 @@ namespace QRMENU.Models.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Menuler()
         {
+            this.Kategoriler = new HashSet<Kategoriler>();
             this.QR = new HashSet<QR>();
         }
     
         public int ID { get; set; }
-        public Nullable<int> KategoriID { get; set; }
+        public string Ad { get; set; }
         public Nullable<int> CafeID { get; set; }
         public Nullable<bool> Durum { get; set; }
     
         public virtual Cafeler Cafeler { get; set; }
-        public virtual Kategoriler Kategoriler { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Kategoriler> Kategoriler { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QR> QR { get; set; }
     }
