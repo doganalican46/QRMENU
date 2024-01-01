@@ -1,7 +1,7 @@
 ﻿@using QRMENU.Models.Entity
-@model List<Cafeler>
+@model List<SosyalMedyalar>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "SosyalMedyalar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,13 +10,13 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">CAFE LİSTESİ</h1>
+        <h1 class="h3 mb-0 text-gray-800">SOSYAL MEDYA LİSTESİ</h1>
     </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">CAFE LİSTESİ<a href="/Cafe/YeniCafe/" class="btn btn-primary float-right">Yeni Cafe Ekle</a></h6>
+            <h6 class="m-0 font-weight-bold text-primary">SOSYAL MEDYA LİSTESİ<a href="/Cafe/YeniSosyalMedya/@ViewBag.cafeid" class="btn btn-primary float-right">Yeni Sosyal Medya Ekle</a></h6>
 
         </div>
         <div class="card-body">
@@ -26,27 +26,25 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>CAFE AD</th>
+                                    <th>SOSYAL MEDYA ADI</th>
+                                    <th>LİNK</th>
                                     <th>DURUM</th>
                                     <th>İŞLEM</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                @foreach (var cafe in Model)
+                                @foreach (var sosyal in Model)
                                 {
                                     <tr>
-                                        <td>@cafe.Ad</td>
-                                        <td style="color: @(cafe.Durum.HasValue && cafe.Durum.Value ? "green" : "red")">
-                                            @(cafe.Durum.HasValue ? (cafe.Durum.Value ? "AKTİF" : "PASİF") : "N/A")
+                                        <td>@sosyal.Ad</td>
+                                        <td>@sosyal.Link</td>
+                                        <td style="color: @(sosyal.Durum.HasValue && sosyal.Durum.Value ? "green" : "red")">
+                                            @(sosyal.Durum.HasValue ? (sosyal.Durum.Value ? "AKTİF" : "PASİF") : "N/A")
                                         </td>
                                         <td>
-                                            <a href="/Cafe/CafeSil/@cafe.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
-                                            <a href="/Cafe/CafeGetir/@cafe.ID" class="btn btn-primary">GÜNCELLE</a>
-                                            <a href="/Cafe/CafeSosyalMedya/@cafe.ID" class="btn btn-primary">SOSYAL MEDYA AYARLARI</a>
-                                            <a href="/Cafe/Saat/@cafe.ID" class="btn btn-primary">SAAT AYARLARI</a>
-                                            <a href="/Cafe/MenüGetir/@cafe.ID" class="btn btn-warning">MENÜ GÖRÜNTÜLE</a>
-
+                                            <a href="/Cafe/SosyalMedyaSil/@sosyal.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                                            <a href="/Cafe/SosyalMedyaGetir/@sosyal.ID" class="btn btn-primary">GÜNCELLE</a>
                                         </td>
                                     </tr>
                                 }

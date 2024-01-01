@@ -4209,6 +4209,10 @@
     <Content Include="Views\Cafe\Index.cshtml" />
     <Content Include="Views\Cafe\YeniCafe.cshtml" />
     <Content Include="Views\Cafe\CafeGetir.cshtml" />
+    <Content Include="Views\Cafe\Saat.cshtml" />
+    <Content Include="Views\Cafe\CafeSosyalMedya.cshtml" />
+    <Content Include="Views\Cafe\YeniSosyalMedya.cshtml" />
+    <Content Include="Views\Cafe\SosyalMedyaGetir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

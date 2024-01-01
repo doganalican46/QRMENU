@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -76,6 +77,91 @@ namespace QRMENU.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+
+        public ActionResult CafeSil(int id)
+        {
+            var cafe = db.Cafeler.Find(id);
+            cafe.Durum = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Saat()
+        {
+            return View();
+        }
+
+
+        public ActionResult CafeSosyalMedya(int id)
+        {
+            var cafe = db.Cafeler.Find(id);
+
+            if (cafe != null)
+            {
+                ViewBag.cafeid = cafe.ID;
+
+                var socialMedias = cafe.SosyalMedyalar.ToList();
+
+                return View("CafeSosyalMedya", socialMedias);
+            }
+
+            return View("Error");
+        }
+
+
+
+        [HttpGet]
+        public ActionResult YeniSosyalMedya(int id)
+        {
+            var cafe = db.Cafeler.Find(id);
+            ViewBag.cafeid = cafe.ID;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult YeniSosyalMedya(SosyalMedyalar yeniSosyalMedya)
+        {
+  
+            db.SosyalMedyalar.Add(yeniSosyalMedya);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
+        public ActionResult SosyalMedyaSil(int id)
+        {
+            var sosyal = db.SosyalMedyalar.Find(id);
+            sosyal.Durum = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
+
+        public ActionResult SosyalMedyaGetir(int id)
+        {
+            var sosyal = db.SosyalMedyalar.Find(id);
+            return View("SosyalMedyaGetir", sosyal);
+        }
+
+
+        public ActionResult SosyalMedyaGuncelle(SosyalMedyalar u1)
+        {
+            var sosyal = db.SosyalMedyalar.Find(u1.ID);
+            sosyal.Ad = u1.Ad;
+            sosyal.Link = u1.Link;
+            sosyal.Durum = u1.Durum;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
 
 
 

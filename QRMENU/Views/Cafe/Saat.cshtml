@@ -1,0 +1,89 @@
+﻿@using QRMENU.Models.Entity
+@model List<Saatler>
+@{
+    ViewBag.Title = "Saat";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">CAFE & Restoran Saat Ayarı</h1>
+    </div>
+
+    <form action="" method="post">
+        <h4 class=" mb-2 mt-5">Çalışma Saatleri Düzenleme</h4>
+
+        <!-- Pazartesi -->
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">Pazartesi:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Pazartesi" placeholder="09:00 - 22:00 arası">
+            </div>
+        </div>
+
+        <!-- Salı -->
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">Salı:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Sali" placeholder="09:00 - 22:00 arası">
+            </div>
+        </div>
+
+        <!-- Çarşamba -->
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">Çarşamba:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Carsamba"  placeholder="09:00 - 22:00 arası">
+            </div>
+        </div>
+
+        <!-- Perşembe -->
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">Perşembe:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Persembe" placeholder="09:00 - 22:00 arası">
+            </div>
+        </div>
+
+        <!-- Cuma -->
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">Cuma:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Cuma" placeholder="09:00 - 22:00 arası">
+            </div>
+        </div>
+
+        <!-- Cumartesi -->
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">Cumartesi:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Cumartesi" placeholder="09:00 - 22:00 arası">
+            </div>
+        </div>
+
+        <!-- Pazar -->
+        <div class="form-group row">
+            <label  class="col-sm-2 col-form-label">Pazar:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Pazar" placeholder="09:00 - 22:00 arası">
+            </div>
+        </div>
+
+        <div class=" mt-4">
+            <a href="/Cafe/Index/" class="btn btn-danger">İptal</a>
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </div>
+
+    </form>
+
+
+</div>
+<!-- /.container-fluid -->
+
+
+
+
+

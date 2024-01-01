@@ -1,0 +1,41 @@
+﻿@model QRMENU.Models.Entity.SosyalMedyalar
+@{
+    ViewBag.Title = "YeniSosyalMedya";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">CAFELER / <small> SOSYAL MEDYA EKLE</small></h1>
+
+    </div>
+
+    <form class="form-group" method="post">
+        <hr />
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sosyal Medya Ad:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Ad" placeholder="Sosyal medya adı giriniz..." required="">
+                <input type="hidden" class="form-control" name="Durum" value="true">
+                <input type="hidden" class="form-control" name="CafeID" value="@ViewBag.cafeid">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Link:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Link" placeholder="Link giriniz..." required="">
+            </div>
+        </div>
+
+        <hr>
+        <div class=" mt-4">
+            <a href="/Cafe/Index/" class="btn btn-danger">VAZGEÇ</a>
+            <button class="btn btn-primary">EKLE</button>
+        </div>
+    </form>
+
+</div>
+<!-- /.container-fluid -->
