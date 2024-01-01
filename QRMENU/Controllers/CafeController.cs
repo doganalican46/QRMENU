@@ -88,11 +88,76 @@ namespace QRMENU.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public ActionResult Saat()
+        public ActionResult CafeSaat(int id)
         {
+            var cafe = db.Cafeler.Find(id);
+
+            if (cafe != null)
+            {
+                ViewBag.cafeid = cafe.ID;
+                ViewBag.cafead = cafe.Ad;
+
+                var saat = cafe.Saatler.ToList();
+
+                return View("CafeSaat", saat);
+            }
+
+            return View("Error");
+        }
+
+
+
+        [HttpGet]
+        public ActionResult YeniCafeSaat(int id)
+        {
+            var cafe = db.Cafeler.Find(id);
+            ViewBag.cafeid = cafe.ID;
+
             return View();
         }
+
+        [HttpPost]
+        public ActionResult YeniCafeSaat(Saatler yenisaat)
+        {
+
+            db.Saatler.Add(yenisaat);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult SaatSil(int id)
+        {
+            var saat = db.Saatler.Find(id);
+            saat.Durum = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult SaatGetir(int id)
+        {
+            var saat = db.Saatler.Find(id);
+            return View("SaatGetir", saat);
+        }
+
+
+        public ActionResult SaatGuncelle(Saatler u1)
+        {
+            var saat = db.Saatler.Find(u1.ID);
+            saat.Ad = u1.Ad;
+            saat.Pazartesi = u1.Pazartesi;
+            saat.Sali = u1.Sali;
+            saat.Carsamba = u1.Carsamba;
+            saat.Persembe = u1.Persembe;
+            saat.Cuma = u1.Cuma;
+            saat.Cumartesi = u1.Cumartesi;
+            saat.Pazar = u1.Pazar;
+            saat.Durum = u1.Durum;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
 
 
         public ActionResult CafeSosyalMedya(int id)
@@ -102,6 +167,7 @@ namespace QRMENU.Controllers
             if (cafe != null)
             {
                 ViewBag.cafeid = cafe.ID;
+                ViewBag.cafead = cafe.Ad;
 
                 var socialMedias = cafe.SosyalMedyalar.ToList();
 

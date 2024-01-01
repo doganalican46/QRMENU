@@ -24,6 +24,7 @@ namespace QRMENU.Models.Entity
         public string Pazar { get; set; }
         public Nullable<int> CafeID { get; set; }
         public Nullable<bool> Durum { get; set; }
+        public string Ad { get; set; }
     
         public virtual Cafeler Cafeler { get; set; }
     }

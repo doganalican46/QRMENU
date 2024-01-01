@@ -10,15 +10,22 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">CAFE & Restoran Saat Ayarı</h1>
+        <h1 class="h3 mb-0 text-gray-800"> <B>CAFELER</B> / YENİ SAAT EKLE</h1>
     </div>
 
     <form action="" method="post">
-        <h4 class=" mb-2 mt-5">Çalışma Saatleri Düzenleme</h4>
+        <input type="hidden" class="form-control" name="Durum" value="true">
+        <input type="hidden" class="form-control" name="CafeID" value="@ViewBag.cafeid">
 
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Saat Adı:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Ad" placeholder="Saatinizi tanımlayan bir ad girin...">
+            </div>
+        </div>
         <!-- Pazartesi -->
         <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Pazartesi:</label>
+            <label class="col-sm-2 col-form-label">Pazartesi:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="Pazartesi" placeholder="09:00 - 22:00 arası">
             </div>
@@ -26,7 +33,7 @@
 
         <!-- Salı -->
         <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Salı:</label>
+            <label class="col-sm-2 col-form-label">Salı:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="Sali" placeholder="09:00 - 22:00 arası">
             </div>
@@ -34,15 +41,15 @@
 
         <!-- Çarşamba -->
         <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Çarşamba:</label>
+            <label class="col-sm-2 col-form-label">Çarşamba:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="Carsamba"  placeholder="09:00 - 22:00 arası">
+                <input type="text" class="form-control" name="Carsamba" placeholder="09:00 - 22:00 arası">
             </div>
         </div>
 
         <!-- Perşembe -->
         <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Perşembe:</label>
+            <label class="col-sm-2 col-form-label">Perşembe:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="Persembe" placeholder="09:00 - 22:00 arası">
             </div>
@@ -50,7 +57,7 @@
 
         <!-- Cuma -->
         <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Cuma:</label>
+            <label class="col-sm-2 col-form-label">Cuma:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="Cuma" placeholder="09:00 - 22:00 arası">
             </div>
@@ -58,7 +65,7 @@
 
         <!-- Cumartesi -->
         <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Cumartesi:</label>
+            <label class="col-sm-2 col-form-label">Cumartesi:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="Cumartesi" placeholder="09:00 - 22:00 arası">
             </div>
@@ -66,7 +73,7 @@
 
         <!-- Pazar -->
         <div class="form-group row">
-            <label  class="col-sm-2 col-form-label">Pazar:</label>
+            <label class="col-sm-2 col-form-label">Pazar:</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="Pazar" placeholder="09:00 - 22:00 arası">
             </div>
@@ -74,7 +81,7 @@
 
         <div class=" mt-4">
             <a href="/Cafe/Index/" class="btn btn-danger">İptal</a>
-            <button type="submit" class="btn btn-primary">Güncelle</button>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
         </div>
 
     </form>
@@ -82,8 +89,3 @@
 
 </div>
 <!-- /.container-fluid -->
-
-
-
-
-
