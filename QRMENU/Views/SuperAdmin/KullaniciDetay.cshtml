@@ -1,0 +1,85 @@
+﻿@using QRMENU.Models.Entity
+@model List<Cafeler>
+@{
+    ViewBag.Title = "KullaniciDetay";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Kullanıcılar / </b>Kullanıcı Detay</h2>
+        <br />
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Üye Bilgileri</h3><br />
+                <img src="@ViewBag.Kullanicifotograf" alt="Üye Fotoğraf" width="200px" height="300px" />
+                <br /> <br />
+                <p><strong>Adı Soyadı:</strong> @ViewBag.Kullaniciadsoyad  </p>
+                <p><strong>Telefon:</strong> @ViewBag.Kullanicitelefon </p>
+                <p><strong>Mail:</strong> @ViewBag.Kullanicimail </p>
+                <p><strong>Doğum Tarihi:</strong> @ViewBag.KullaniciDogumTar </p>
+                <p><strong>Şifre:</strong> @ViewBag.Kullanicisifre </p>
+                <p><strong>Rol:</strong> @ViewBag.Kullanicirol </p>
+
+
+
+            </div>
+
+            <div class="col-md-8">
+                <h3>Cafe Listesi</h3><br />
+                @if (Model.Any())
+                {
+                    <table id="DataTable" class="table table-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cafe Ad</th>
+                                <th>Durum</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cafe in Model)
+                            {
+                                <tr>
+                                    <td>@cafe.ID</td>
+                                    <td>@cafe.Ad</td>
+                                    <td>@cafe.Durum</td>
+                                    <td> <a href="/SuperAdmin/CafeGetir/@cafe.ID" class="btn btn-success">DETAY GÖR</a> </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>Kullanıcının cafesi yoktur.</p>
+                }
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card-footer">
+        <br />
+        <a href="/SuperAdmin/Index/" class="btn btn-danger">Geri Dön</a>
+        <a href="/SuperAdmin/kullaniciGetir/@ViewBag.KullaniciID" class="btn btn-primary">Düzenle</a>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

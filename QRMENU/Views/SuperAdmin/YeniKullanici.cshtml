@@ -1,0 +1,58 @@
+﻿@model QRMENU.Models.Entity.Kullanicilar
+@{
+    ViewBag.Title = "YeniKullanici";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Kullanıcılar / </b>Yeni Kullanıcı Ekle</h2>
+        <br />
+    </div>
+    <form method="post" class="form-group">
+        <div class="card-body">
+            <label>Ad:</label>
+            <input type="text" name="Ad" class="form-control" required="" />
+            <br />
+            <label>Soyadı</label>
+            <input type="text" name="Soyad" class="form-control" required="" />
+            <br />
+            <label>TC:</label>
+            <input type="text" name="TC" class="form-control" required="" />
+            <br />
+            <label>Mail:</label>
+            <input type="text" name="Mail" class="form-control" required="" />
+            <br />
+            <label>Telefon:</label>
+            <input type="text" name="Telefon" class="form-control" />
+            <br />
+            <label>Doğum Tarihi:</label>
+            <input type="text" name="DogumTarihi" class="form-control" />
+            <br />
+            <label>Resim:</label>
+            <input type="text" name="Resim" class="form-control" />
+            <br />
+            <label>Sifre:</label>
+            <input type="text" name="Sifre" class="form-control" />
+            <br />
+            <label>Rol:</label>
+            <input type="text" name="Rol" class="form-control" />
+
+
+
+            <input type="hidden" name="Durum" value="true" />
+            
+
+        </div>
+
+        <div class="card-footer">
+            <br />
+            <a href="/SuperAdmin/Index/" class="btn btn-danger">Vazgeç</a>
+            <button class="btn btn-primary">Ekle</button>
+        </div>
+    </form>
+
+</div>
+
+

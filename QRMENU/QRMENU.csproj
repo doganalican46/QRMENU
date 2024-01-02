@@ -150,6 +150,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Controllers\QRController.cs" />
+    <Compile Include="Controllers\SuperAdminController.cs" />
     <Compile Include="Controllers\UrunlerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -4225,6 +4226,12 @@
     <Content Include="Views\Cafe\YeniMenu.cshtml" />
     <Content Include="Views\Cafe\MenuGetir.cshtml" />
     <Content Include="Views\QR\YeniQR.cshtml" />
+    <Content Include="Views\Shared\_SuperAdminLayout.cshtml" />
+    <Content Include="Views\SuperAdmin\Index.cshtml" />
+    <Content Include="Views\SuperAdmin\YeniKullanici.cshtml" />
+    <Content Include="Views\SuperAdmin\KullaniciGetir.cshtml" />
+    <Content Include="Views\SuperAdmin\KullaniciDetay.cshtml" />
+    <Content Include="Views\Admin\Mesaj.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

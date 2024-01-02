@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>KÜTÜPHANE SİSTEMİ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif
+        }
+
+        .w3-third img {
+            margin-bottom: -6px;
+            opacity: 0.8;
+            cursor: pointer
+        }
+
+            .w3-third img:hover {
+                opacity: 1
+            }
+    </style>
+</head>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center" style="z-index:3;width:300px;font-weight:bold" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hide-large">X</a>
+        <br>
+        <h3 class="w3-padding-64 w3-center"><b>QR MENÜ<br>SİSTEMİ</b></h3>
+
+        <a href="/SuperAdmin/Istatislik/" onclick="w3_close()" class="w3-bar-item w3-button">ANA SAYFA</a>
+        <a href="/SuperAdmin/Index/" onclick="w3_close()" class="w3-bar-item w3-button">KULLANICILAR</a>
+        <a href="/SuperAdmin/CafeRest/" onclick="w3_close()" class="w3-bar-item w3-button">CAFE & RESTORANLAR</a>
+        <a href="/Mesajlar/Index/" onclick="w3_close()" class="w3-bar-item w3-button">MESAJLAR</a>
+        <a href="/Ayarlar/Index/" onclick="w3_close()" class="w3-bar-item w3-button">AYARLAR</a>
+        <a href="/SuperAdmin/LogOut/" onclick="w3_close()" class="w3-bar-item w3-button">ÇIKIŞ YAP</a>
+
+
+
+    </nav>
+
+    <script>
+        function myFunction(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+
+
+    <!-- Top menu on small screens -->
+    <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
+        <span class="w3-left w3-padding">QR MENÜ SİSTEMİ</span>
+        <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+    </header>
+
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style=" padding:50px; margin-top:75px;  margin-left:300px">
+
+        @RenderBody()
+
+    </div>
+    <!-- !PAGE CONTENT! -->
+
+
+
+    <script>
+
+        // Script to open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
+
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#DataTable').DataTable();
+        });
+    </script>
+
+
+
+</body>
+</html>

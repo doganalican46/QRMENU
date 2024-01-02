@@ -22,6 +22,11 @@ namespace QRMENU.Controllers
             return View(degerler);
         }
 
+        public ActionResult Mesaj()
+        {
+            return View();
+        }
+
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

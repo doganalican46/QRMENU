@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QRMenuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QRMenuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cafeler">
           <Key>
             <PropertyRef Name="ID" />
@@ -45,6 +45,7 @@
           <Property Name="Ad" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Soyad" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Mail" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Telefon" Type="char" MaxLength="11" />
           <Property Name="DogumTarihi" Type="date" />
           <Property Name="Resim" Type="nvarchar" MaxLength="500" />
           <Property Name="Sifre" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -354,8 +355,7 @@
             <End Role="Urunler" EntitySet="Urunler" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QRMenuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -412,6 +412,7 @@
           <Property Name="Rol" Type="Int16" />
           <Property Name="Durum" Type="Boolean" />
           <NavigationProperty Name="Cafeler" Relationship="Self.FK_Cafeler_Kullanicilar" FromRole="Kullanicilar" ToRole="Cafeler" />
+          <Property Name="Telefon" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="Menuler">
           <Key>
@@ -711,7 +712,7 @@
             <Parameter Name="Pazar" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_SaatListele" ReturnType="Collection(QRMenuModel.sp_SaatListele_Result)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_SosyalMedyaEkle">
             <Parameter Name="Ad" Mode="In" Type="String" />
@@ -719,7 +720,7 @@
             <Parameter Name="CafeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_SosyalMedyaListele" ReturnType="Collection(QRMenuModel.sp_SosyalMedyaListele_Result)">
-            <Parameter Name="CafeID" Mode="In" Type="Int32" />
+          <Parameter Name="CafeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
@@ -814,6 +815,7 @@
           <EntitySetMapping Name="Kullanicilar">
             <EntityTypeMapping TypeName="QRMenuModel.Kullanicilar">
               <MappingFragment StoreEntitySet="Kullanicilar">
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TC" ColumnName="TC" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />

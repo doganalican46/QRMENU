@@ -47,13 +47,22 @@ namespace QRMENU.Controllers
             {
                 FormsAuthentication.SetAuthCookie(login.Mail, false);
                 Session["Mail"] = login.Mail.ToString();
-                Session["AdSoyad"] = login.Ad+" "+login.Soyad;
-
+                Session["AdSoyad"] = login.Ad + " " + login.Soyad;
                 Session["Sifre"] = login.Sifre;
-                
                 Session["Resim"] = login.Resim;
 
-                return RedirectToAction("Index", "Admin");
+                if (login.Rol == 0)
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
+                else if (login.Rol == 1)
+                {
+                    return RedirectToAction("Index", "SuperAdmin");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
@@ -61,6 +70,7 @@ namespace QRMENU.Controllers
             }
         }
 
-        
+
+
     }
 }

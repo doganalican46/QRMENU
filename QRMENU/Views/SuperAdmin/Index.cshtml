@@ -1,0 +1,54 @@
+﻿@using QRMENU.Models.Entity
+@model List<Kullanicilar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Kullanıcılar / </b>Kullanıcı Listesi</h2>
+        <br />
+    </div>
+
+    <div class="card-body">
+        <table id="DataTable" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>AD-SOYAD</th>
+                    <th>CAFE</th>
+                    <th>DURUM</th>
+                    <th>İŞLEMLER</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var kullanici in Model)
+                {
+                    <tr>
+                        <td>@kullanici.Ad @kullanici.Soyad</td>
+                        <td>
+                            Cafe Adı
+                        </td>
+
+                        <td style="color: @(kullanici.Durum.HasValue && kullanici.Durum.Value ? "green" : "red")">
+                            @(kullanici.Durum.HasValue ? (kullanici.Durum.Value ? "AKTİF" : "PASİF") : "N/A")
+                        </td>
+
+                        <td>
+                            <a href="/SuperAdmin/KullaniciSil/@kullanici.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                            <a href="/SuperAdmin/KullaniciGetir/@kullanici.ID" class="btn btn-primary">GÜNCELLE</a>
+                            <a href="/SuperAdmin/KullaniciDetay/@kullanici.ID" class="btn btn-success">DETAY</a>
+                        </td>
+                        <td> <a href="/Mesaj/MesajGönder/@kullanici.ID" class="btn btn-info">MESAJ GÖNDER</a> </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-footer">
+        <br />
+        <a href="/SuperAdmin/YeniKullanici/" class="btn btn-warning">Yeni Kullanici Ekle</a>
+    </div>
+</div>
