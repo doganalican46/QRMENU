@@ -228,11 +228,70 @@ namespace QRMENU.Controllers
         }
 
 
-        public ActionResult CafeMenu()
+
+        public ActionResult CafeMenu(int id)
         {
+            var cafe = db.Cafeler.Find(id);
+
+            if (cafe != null)
+            {
+                ViewBag.cafeid = cafe.ID;
+                ViewBag.cafead = cafe.Ad;
+
+                var menu = cafe.Menuler.ToList();
+
+                return View("CafeMenu", menu);
+            }
+
+            return View("Error");
+        }
+
+
+        [HttpGet]
+        public ActionResult YeniMenu(int id)
+        {
+            var cafe = db.Cafeler.Find(id);
+            ViewBag.cafeid = cafe.ID;
+
             return View();
         }
 
+        [HttpPost]
+        public ActionResult YeniMenu(Menuler menu)
+        {
+
+            db.Menuler.Add(menu);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult MenuSil(int id)
+        {
+            var menu = db.Menuler.Find(id);
+            menu.Durum = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
+
+        public ActionResult MenuGetir(int id)
+        {
+            var menu = db.Menuler.Find(id);
+            return View("MenuGetir", menu);
+        }
+
+
+        public ActionResult MenuGuncelle(Menuler u1)
+        {
+            var menu = db.Menuler.Find(u1.ID);
+            menu.Ad = u1.Ad;
+            menu.Durum = u1.Durum;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
 
 

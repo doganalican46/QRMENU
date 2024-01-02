@@ -16,14 +16,34 @@ namespace QRMENU.Controllers
 
         public ActionResult Index()
         {
-            var kategori = db.Kategoriler.ToList();
-            return View(kategori);
+            var mail = (string)Session["Mail"];
+
+            var kategoriler = (from k in db.Kategoriler
+                               join m in db.Menuler on k.MenuID equals m.ID
+                               join c in db.Cafeler on m.CafeID equals c.ID
+                               where c.Kullanicilar.Mail == mail
+                               select k).ToList();
+
+            return View(kategoriler);
         }
+
 
 
         [HttpGet]
         public ActionResult YeniKategori()
         {
+            var mail = (string)Session["Mail"];
+
+            List<SelectListItem> degerler = (from c in db.Cafeler
+                                             join m in db.Menuler on c.ID equals m.CafeID
+                                             where c.Kullanicilar.Mail == mail && m.Durum == true
+                                             select new SelectListItem
+                                             {
+                                                 Text = m.Ad,
+                                                 Value = m.ID.ToString()
+                                             }).ToList();
+
+            ViewBag.menuler = degerler;
             return View();
         }
 
@@ -31,9 +51,22 @@ namespace QRMENU.Controllers
         [HttpPost]
         public ActionResult YeniKategori(Kategoriler k1)
         {
-            db.Kategoriler.Add(k1);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            var menuId = k1.MenuID; // Assuming MenuID is a property in Kategoriler class
+            var menu = db.Menuler.FirstOrDefault(m => m.ID == menuId);
+
+            if (menu != null)
+            {
+                k1.Menuler = menu;
+                db.Kategoriler.Add(k1);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // Handle the case where the menu is not found
+                // You might want to display an error message or redirect to an error page.
+                return View("Error");
+            }
         }
 
 

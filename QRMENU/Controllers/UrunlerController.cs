@@ -14,23 +14,41 @@ namespace QRMENU.Controllers
 
         public ActionResult Index()
         {
-            var urun = db.Urunler.ToList();
+            // Session üzerinden kullanıcının mail bilgisini alalım
+            var mail = (string)Session["Mail"];
+
+            // Kullanıcının cafesine ait menülerdeki ürünleri çekelim
+            var urun = (from u in db.Urunler
+                        join k in db.Kategoriler on u.KategoriID equals k.ID
+                        join m in db.Menuler on k.MenuID equals m.ID
+                        join c in db.Cafeler on m.CafeID equals c.ID
+                        where c.Kullanicilar.Mail == mail
+                        select u).ToList();
+
             return View(urun);
         }
 
         [HttpGet]
         public ActionResult YeniUrun()
         {
-            List<SelectListItem> degerler = (from i in db.Kategoriler.Where(x=>x.Durum==true).ToList()
+            // Session üzerinden kullanıcının mail bilgisini alalım
+            var mail = (string)Session["Mail"];
+
+            // Kullanıcının cafesine ait aktif menülerdeki kategorileri çekelim
+            List<SelectListItem> degerler = (from c in db.Cafeler
+                                             join m in db.Menuler on c.ID equals m.CafeID
+                                             join k in db.Kategoriler on m.ID equals k.MenuID
+                                             where c.Kullanicilar.Mail == mail && k.Durum == true
                                              select new SelectListItem
                                              {
-                                                 Text = i.Ad,
-                                                 Value = i.ID.ToString()
-
+                                                 Text = k.Ad,
+                                                 Value = k.ID.ToString()
                                              }).ToList();
+
             ViewBag.kategoriler = degerler;
             return View();
         }
+
 
 
 
