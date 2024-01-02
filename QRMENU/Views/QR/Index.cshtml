@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "Ayarlar";
+﻿@using QRMENU.Models.Entity
+@model List<QR>
+@{
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -8,44 +10,54 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">QR OLUŞTURMA</h1>
+        <h1 class="h3 mb-0 text-gray-800"> <B>QR</B> / QR LİSTESİ</h1>
     </div>
 
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">QR LİSTESİ<a href="/QR/YeniQR/" class="btn btn-primary float-right">Yeni QR Ekle</a></h6>
 
-    <div class="row">
-        <div class="col-8">
-            <input class="form-control" type="text" name="menuadresi" id="menuadresi" placeholder="Menu Linki" />
-            <br />
-            <button class="btn btn-primary" onclick="generateQR()">OLUŞTUR</button>
         </div>
-        <div class="col-4">
-            <img src="#" alt="QR Image" id="qrCodeImage" />
-            <hr />
-            <a class="btn btn-warning" id="downloadLink" download="qrcode.png">İNDİR</a>
+        <div class="card-body">
+            <asp:Repeater id="Repeater1" runat="server">
+                <ItemTemplate>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>MENU ADI</th>
+                                    <th>QR</th>
+                                    <th>DURUM</th>
+                                    <th>İŞLEM</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var qr in Model)
+                                {
+                                    <tr>
+                                        <td>@qr.Menuler.Ad</td>
+                                        
+                                        <td style="color: @(qr.Durum.HasValue && qr.Durum.Value ? "green" : "red")">
+                                            @(qr.Durum.HasValue ? (qr.Durum.Value ? "AKTİF" : "PASİF") : "N/A")
+                                        </td>
+
+                                        <td>
+                                            <a href="/QR/QRSil/@qr.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                                            <a href="/QR/QRGetir/@qr.ID" class="btn btn-primary">GÜNCELLE</a>
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
     </div>
 
 
 </div>
-<!-- /.container-fluid -->
 
-<script>
-    function generateQR() {
-        var menuLink = document.getElementById("menuadresi").value;
-        var qrCodeImage = document.getElementById("qrCodeImage");
-        var downloadLink = document.getElementById("downloadLink");
-
-        var qrCodeImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + menuLink;
-        qrCodeImage.src = qrCodeImageUrl;
-
-        downloadLink.href = qrCodeImageUrl;
-        downloadLink.target = "_blank";
-        downloadLink.style.display = "block";
-        console.log("QR Code URL:", qrCodeImageUrl);
-        console.log("Image Source:", qrCodeImage.src);
-        console.log("Download Link Href:", downloadLink.href);
-
-
-    }
-
-</script>
