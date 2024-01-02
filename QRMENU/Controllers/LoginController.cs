@@ -57,7 +57,7 @@ namespace QRMENU.Controllers
                 }
                 else if (login.Rol == 1)
                 {
-                    return RedirectToAction("Index", "SuperAdmin");
+                    return RedirectToAction("AnaSayfa", "SuperAdmin");
                 }
                 else
                 {

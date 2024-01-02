@@ -15,6 +15,7 @@ namespace QRMENU.Controllers
         [Authorize]
         public ActionResult Index()
         {
+
             var kullanicilar = db.Kullanicilar.ToList();
             return View(kullanicilar);
         }
@@ -88,6 +89,26 @@ namespace QRMENU.Controllers
             return View("KullaniciDetay", cafe);
 
         }
+
+
+        public ActionResult AnaSayfa()
+        {
+            var mail = (string)Session["Mail"];
+            var degerler = db.Kullanicilar.FirstOrDefault(x => x.Mail == mail);
+            ViewBag.mail = mail;
+            ViewBag.adsoyad = degerler.Ad + " " + degerler.Soyad;
+
+            return View(degerler);
+        }
+
+
+
+        public ActionResult CafeRest()
+        {
+            return View();
+        }
+
+
 
 
         public ActionResult LogOut()

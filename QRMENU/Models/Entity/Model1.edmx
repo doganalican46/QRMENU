@@ -61,6 +61,16 @@
           <Property Name="CafeID" Type="int" />
           <Property Name="Durum" Type="bit" />
         </EntityType>
+        <EntityType Name="Mesajlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GonderenID" Type="int" />
+          <Property Name="AliciID" Type="int" />
+          <Property Name="Mesaj" Type="nvarchar" MaxLength="500" />
+          <Property Name="Tarih" Type="date" />
+        </EntityType>
         <EntityType Name="QR">
           <Key>
             <PropertyRef Name="ID" />
@@ -317,6 +327,7 @@
           <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menuler" EntityType="Self.Menuler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesajlar" EntityType="Self.Mesajlar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QR" EntityType="Self.QR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Saatler" EntityType="Self.Saatler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SosyalMedyalar" EntityType="Self.SosyalMedyalar" Schema="dbo" store:Type="Tables" />
@@ -723,6 +734,7 @@
           <Parameter Name="CafeID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Mesajlar" EntityType="QRMenuModel.Mesajlar" />
         </EntityContainer>
         <ComplexType Name="sp_CafeListele_Result">
           <Property Type="Int32" Name="ID" Nullable="false" />
@@ -772,6 +784,16 @@
           <Property Type="String" Name="MedyaAdi" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Link" Nullable="false" MaxLength="250" />
         </ComplexType>
+        <EntityType Name="Mesajlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GonderenID" Type="Int32" />
+          <Property Name="AliciID" Type="Int32" />
+          <Property Name="Mesaj" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -986,6 +1008,17 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QRMenuModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Mesajlar">
+            <EntityTypeMapping TypeName="QRMenuModel.Mesajlar">
+              <MappingFragment StoreEntitySet="Mesajlar">
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="AliciID" ColumnName="AliciID" />
+                <ScalarProperty Name="GonderenID" ColumnName="GonderenID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

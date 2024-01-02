@@ -1,0 +1,43 @@
+﻿@model QRMENU.Models.Entity.Mesajlar
+@{
+    ViewBag.Title = "MesajGonder";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Mesajlar / </b>Mesaj Gönder</h2>
+        <br />
+    </div>
+    <div class="form-group">
+        @using (Html.BeginForm("BelliKisiyeYeniMesaj", "Mesaj", FormMethod.Post))
+        {
+        <div class="card-body">
+            @Html.HiddenFor(k => k.AliciID)
+            <BR />
+            
+            <label>Mesaj:</label>
+            @Html.TextAreaFor(k => k.Mesaj, new { @class = "form-control" })
+            <br />
+
+
+
+
+        </div>
+
+            <div class="card-footer">
+                <br />
+                <a href="/Mesaj/Index/" class="btn btn-danger">Vazgeç</a>
+                <button class="btn btn-warning">Gönder</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+

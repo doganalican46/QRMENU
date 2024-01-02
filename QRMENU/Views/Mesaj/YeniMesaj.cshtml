@@ -1,0 +1,54 @@
+﻿@model QRMENU.Models.Entity.Mesajlar
+@{
+    ViewBag.Title = "YeniMesaj";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Mesajlar / </b>Yeni Mesaj Gönder</h2>
+        <br />
+    </div>
+    <form method="post" class="form-group">
+        <div class="card-body">
+            <label>Alici:</label>
+            @Html.DropDownListFor(m => m.AliciID, (List<SelectListItem>)ViewBag.alicilar, new { @class = "form-control" })
+            <br />
+            <label>Mesaj:</label>
+            <textarea type="text" name="Mesaj" class="form-control" required=""></textarea>
+
+
+
+            <input type="hidden" class="form-control" name="GonderenID" value="@ViewBag.gonderenID">
+            <input type="hidden" class="form-control" name="Tarih" id="tarihInput" value="">
+
+            
+
+
+        </div>
+
+        <div class="card-footer">
+            <br />
+            <a href="/Mesaj/Index/" class="btn btn-danger">Vazgeç</a>
+            <button class="btn btn-primary">Gönder</button>
+        </div>
+    </form>
+
+</div>
+
+
+<script>
+    // Get the current date and time
+    var currentDate = new Date();
+
+    // Format the date as per your requirements
+    var formattedDate = currentDate.getFullYear() + '-' +
+        ('0' + (currentDate.getMonth() + 1)).slice(-2) + '-' +
+        ('0' + currentDate.getDate()).slice(-2) + ' ' +
+        ('0' + currentDate.getHours()).slice(-2) + ':' +
+        ('0' + currentDate.getMinutes()).slice(-2) + ':' +
+        ('0' + currentDate.getSeconds()).slice(-2);
+
+    // Set the formatted date as the value for the hidden input
+    document.getElementById('tarihInput').value = formattedDate;
+</script>

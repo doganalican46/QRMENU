@@ -1,0 +1,43 @@
+﻿@using QRMENU.Models.Entity
+@model List<Mesajlar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Mesajlar / </b>Mesaj Listesi</h2>
+        <br />
+    </div>
+
+    <div class="card-body">
+        <table id="DataTable" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>GÖNDEREN</th>
+                    <th>MESAJ</th>
+                    <th>İŞLEMLER</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var mesaj in Model)
+                {
+                    <tr>
+                        <td>@mesaj.GonderenID</td>
+                        <td>@mesaj.Mesaj</td>
+                        <td>
+                            <a href="/Mesaj/MesajSil/@mesaj.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                            <a href="/Mesaj/MesajGönder/@mesaj.ID" class="btn btn-primary">CEVAP VER</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-footer">
+        <br />
+        <a href="/Mesaj/YeniMesaj/" class="btn btn-warning">Yeni Mesaj Yaz</a>
+    </div>
+</div>
