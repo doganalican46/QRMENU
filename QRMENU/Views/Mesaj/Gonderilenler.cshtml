@@ -1,13 +1,13 @@
 ﻿@using QRMENU.Models.Entity
 @model List<Mesajlar>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gonderilenler";
     Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
 }
 
 <div class="card">
     <div class="card-header">
-        <h2 class="mb-5"><b>Mesajlar / </b>Gelen Mesajlar</h2>
+        <h2 class="mb-5"><b>Mesajlar / </b>Gönderilen Mesajlar</h2>
         <br />
     </div>
 
@@ -15,7 +15,7 @@
         <table id="DataTable" class="table table-hover" style="width:100%">
             <thead>
                 <tr>
-                    <th>GÖNDEREN</th>
+                    <th>ALICI</th>
                     <th>MESAJ</th>
                     <th>İŞLEMLER</th>
                 </tr>
@@ -24,14 +24,14 @@
                 @foreach (var mesaj in Model)
                 {
                     <tr>
-                        <td>@mesaj.GonderenID</td>
-                        <td>@mesaj.Mesaj</td>
+                        <td>@mesaj.AliciID</td>
+                        <td>@(mesaj.Mesaj ?? "N/A")</td>
                         <td>
                             <a href="/Mesaj/MesajSil/@mesaj.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
-                            <a href="/Mesaj/YeniMesajGönder/@mesaj.GonderenID" class="btn btn-primary">CEVAP VER</a>
                         </td>
                     </tr>
                 }
+
             </tbody>
         </table>
     </div>

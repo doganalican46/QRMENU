@@ -4241,6 +4241,8 @@
     <Content Include="Views\Mesaj\Index.cshtml" />
     <Content Include="Views\Mesaj\MesajGonder.cshtml" />
     <Content Include="Views\Mesaj\YeniMesaj.cshtml" />
+    <Content Include="Views\Mesaj\YeniMesajGönder.cshtml" />
+    <Content Include="Views\Mesaj\Gonderilenler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

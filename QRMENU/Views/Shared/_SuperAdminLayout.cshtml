@@ -35,7 +35,14 @@
         <a href="/SuperAdmin/AnaSayfa/" onclick="w3_close()" class="w3-bar-item w3-button">ANA SAYFA</a>
         <a href="/SuperAdmin/Index/" onclick="w3_close()" class="w3-bar-item w3-button">KULLANICILAR</a>
         <a href="/SuperAdmin/CafeRest/" onclick="w3_close()" class="w3-bar-item w3-button">CAFE & RESTORANLAR</a>
-        <a href="/Mesaj/Index/" onclick="w3_close()" class="w3-bar-item w3-button">MESAJLAR</a>
+        <div class="w3-dropdown-click">
+            <button onclick="myFunction('oduncDropdown')" class="w3-bar-item w3-button">MESAJLAR</button>
+            <div id="oduncDropdown" class="w3-dropdown-content w3-bar-block w3-card">
+                <a href="/Mesaj/Index/" onclick="w3_close()" class="w3-bar-item w3-button">GELEN MESAJLAR</a>
+                <a href="/Mesaj/Gonderilenler/" onclick="w3_close()" class="w3-bar-item w3-button">GÖNDERİLEN MESAJLAR</a>
+
+            </div>
+        </div>
         <a href="/Ayarlar/Index/" onclick="w3_close()" class="w3-bar-item w3-button">AYARLAR</a>
         <a href="/SuperAdmin/LogOut/" onclick="w3_close()" class="w3-bar-item w3-button">ÇIKIŞ YAP</a>
 

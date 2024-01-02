@@ -1,0 +1,35 @@
+﻿@model QRMENU.Models.Entity.Mesajlar
+@{
+    ViewBag.Title = "YeniMesajGönder";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Mesajlar / </b>Yeni Mesaj Gönder / @ViewBag.AliciAd</h2>
+        <br />
+    </div>
+    <form method="post" class="form-group">
+        <div class="card-body">
+
+            <label>Mesajınızı yazınız:</label>
+            <textarea type="text" name="Mesaj" class="form-control" required=""></textarea>
+
+            <input type="hidden" class="form-control" name="GonderenID" value="@ViewBag.gonderenID">
+           
+
+        </div>
+
+        <div class="card-footer">
+            <br />
+            <a href="/Mesaj/Index/" class="btn btn-danger">Vazgeç</a>
+            <button class="btn btn-primary">Gönder</button>
+        </div>
+    </form>
+
+</div>
+
+
+
+

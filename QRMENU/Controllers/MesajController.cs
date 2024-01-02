@@ -33,6 +33,8 @@ namespace QRMENU.Controllers
         }
 
 
+
+
         public ActionResult MesajSil(int id)
         {
             var mesaj = db.Mesajlar.Find(id);
@@ -52,7 +54,7 @@ namespace QRMENU.Controllers
         [HttpGet]
         public ActionResult YeniMesaj()
         {
-            List<SelectListItem> alicilar = (from i in db.Kullanicilar.Where(x=>x.Rol==0).ToList()
+            List<SelectListItem> alicilar = (from i in db.Kullanicilar.Where(x => x.Rol == 0).ToList()
                                              select new SelectListItem
                                              {
                                                  Text = i.Ad,
@@ -79,6 +81,63 @@ namespace QRMENU.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        [HttpGet]
+        public ActionResult YeniMesajGönder()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult YeniMesajGönder(int id, string Mesaj)
+        {
+            var Alici = db.Kullanicilar.Find(id);
+            ViewBag.AliciAd = Alici.Ad + " " + Alici.Soyad;
+
+            var mail = (string)Session["Mail"];
+            var kullanici = db.Kullanicilar.FirstOrDefault(x => x.Mail == mail);
+            var kullaniciid = kullanici.ID;
+            ViewBag.gonderenID = kullaniciid;
+
+            var yeniMesaj = new Mesajlar
+            {
+                AliciID = Alici.ID,
+                GonderenID = kullaniciid,
+                Mesaj = Mesaj,
+                Tarih= DateTime.Now
+            };
+           
+
+            db.Mesajlar.Add(yeniMesaj);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Gonderilenler()
+        {
+            var mail = (string)Session["Mail"];
+
+            var kullanici = db.Kullanicilar.FirstOrDefault(x => x.Mail == mail);
+
+            if (kullanici != null)
+            {
+                var kullaniciid = kullanici.ID;
+
+                var mesajlar = db.Mesajlar.Where(x => x.GonderenID == kullaniciid).ToList();
+
+                return View(mesajlar);
+            }
+            else
+            {
+
+                return RedirectToAction("UserNotFound");
+            }
+        }
+
 
 
 
