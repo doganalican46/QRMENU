@@ -83,10 +83,17 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/Admin/Mesaj/">
-                    <i class="fas fa-toolbox"></i>
-                    <span>MESAJ GÖNDER</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMesajlar" aria-expanded="true" aria-controls="collapseMesajlar">
+                    <i class="fas fa-envelope"></i>
+                    <span>MESAJLAR</span>
                 </a>
+                <div id="collapseMesajlar" class="collapse" aria-labelledby="headingMesajlar" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/Admin/GelenKutusu/">GELEN KUTUSU</a>
+                        <a class="collapse-item" href="/Admin/Gonderilenler/">GÖNDERİLENLER</a>
+                        <a class="collapse-item" href="/Admin/MesajGonder/">MESAJ GÖNDER</a>
+                    </div>
+                </div>
             </li>
 
 

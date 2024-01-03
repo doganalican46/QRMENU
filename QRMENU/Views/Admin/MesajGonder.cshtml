@@ -1,0 +1,74 @@
+﻿
+@using QRMENU.Models.Entity
+@model List<Mesajlar>
+@{
+    ViewBag.Title = "MesajGonder";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    /* Stil eklemeleri */
+    body {
+        background-color: #f8f9fc;
+    }
+
+    .container-fluid {
+        padding: 20px;
+    }
+
+    .container {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #fff;
+    }
+
+    .darker {
+        background-color: #f8f9fc;
+    }
+
+    textarea {
+        width: 80%;
+        height: 90px;
+        resize: none;
+        margin-top: 10px;
+    }
+</style>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><b>MESAJLAR</b> / MESAJ GÖNDER</h1>
+    </div>
+
+    <div class="card shadow mb-4">
+        <form action="/" method="post">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">ADMİN İLE MESAJLAŞ</h6>
+            </div>
+
+            <div class="card-body">
+
+                <div class="container">
+                    <img src="~/QR_MENU/assets/img/admin img.png" alt="Avatar" style="width:70px; height:70px;">
+                    <p>Hello. How are you today?</p>
+                    <span class="time-right">11:00</span>
+                </div>
+
+                <div class="container darker">
+                    <img src="@((Session["Resim"] ?? "").ToString())" alt="Avatar" class="right" style="width:70px; height:70px;">
+                    <p>Hey! I'm fine. Thanks for asking!</p>
+                    <span class="time-left">11:01</span>
+                </div>
+
+            </div>
+
+            <textarea class="form-control" name="Mesaj" placeholder="Mesajınızı Yazın..."></textarea>
+
+            <a href="/Admin/MesajGonder/" class="btn btn-primary float-right">Gönder</a>
+        </form>
+    </div>
+
+</div>
+<!-- /.container-fluid -->

@@ -22,12 +22,51 @@ namespace QRMENU.Controllers
             return View(degerler);
         }
 
-        public ActionResult Mesaj()
+        public ActionResult GelenKutusu()
         {
+            var mail = (string)Session["Mail"];
+
+            var kullanici = db.Kullanicilar.FirstOrDefault(x => x.Mail == mail);
+
+            if (kullanici != null)
+            {
+                var kullaniciid = kullanici.ID;
+
+                var mesajlar = db.Mesajlar.Where(x => x.AliciID == kullaniciid).ToList();
+
+                return View(mesajlar);
+            }
+            else
+            {
+
+                return RedirectToAction("UserNotFound");
+            }
+        }
+
+
+        public ActionResult MesajGonder()
+        {
+
             return View();
         }
 
-        public ActionResult LogOut()
+        public ActionResult MesajSil(int id)
+        {
+            var mesaj = db.Mesajlar.Find(id);
+
+            if (mesaj != null)
+            {
+                db.Mesajlar.Remove(mesaj);
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("GelenKutusu");
+        }
+        
+
+
+    public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index","Login");

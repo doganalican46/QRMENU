@@ -1955,6 +1955,7 @@
     <Content Include="QR_MENU\admin\vendor\jquery\jquery.slim.min.js" />
     <Content Include="QR_MENU\assets\favicon.ico" />
     <Content Include="QR_MENU\assets\img\about.jpg" />
+    <Content Include="QR_MENU\assets\img\admin img.png" />
     <Content Include="QR_MENU\assets\img\bg.jpg" />
     <Content Include="QR_MENU\assets\img\intro.jpg" />
     <Content Include="QR_MENU\assets\img\products-01.jpg" />
@@ -4235,7 +4236,7 @@
     <Content Include="Views\SuperAdmin\YeniKullanici.cshtml" />
     <Content Include="Views\SuperAdmin\KullaniciGetir.cshtml" />
     <Content Include="Views\SuperAdmin\KullaniciDetay.cshtml" />
-    <Content Include="Views\Admin\Mesaj.cshtml" />
+    <Content Include="Views\Admin\GelenKutusu.cshtml" />
     <Content Include="Views\SuperAdmin\AnaSayfa.cshtml" />
     <Content Include="Views\SuperAdmin\CafeRest.cshtml" />
     <Content Include="Views\Mesaj\Index.cshtml" />
@@ -4246,6 +4247,7 @@
     <Content Include="Views\SuperAdmin\YeniCafe.cshtml" />
     <Content Include="Views\SuperAdmin\CafeGetir.cshtml" />
     <Content Include="Views\SuperAdmin\CafeDetay.cshtml" />
+    <Content Include="Views\Admin\MesajGonder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
