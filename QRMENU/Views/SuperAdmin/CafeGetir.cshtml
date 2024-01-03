@@ -1,0 +1,59 @@
+﻿@model QRMENU.Models.Entity.Cafeler
+@{
+    ViewBag.Title = "CafeGetir";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Cafe & Restoranlar / </b>Cafe & Restoran Güncelle</h2>
+        <br />
+    </div>
+    <div class="form-group">
+        @using (Html.BeginForm("CafeGuncelle", "SuperAdmin", FormMethod.Post))
+        {
+            <div class="card-body">
+                @Html.HiddenFor(k => k.ID)
+                <BR />
+                <label>Cafe Ad:</label>
+                @Html.TextBoxFor(k => k.Ad, new { @class = "form-control" })
+                <br />
+                <label>Slogan:</label>
+                @Html.TextBoxFor(k => k.Slogan, new { @class = "form-control" })
+                <br />
+                <label>Hakkında:</label>
+                @Html.TextBoxFor(k => k.Hakkinda, new { @class = "form-control" })
+                <br />
+                <label>Telefon:</label>
+                @Html.TextBoxFor(k => k.Telefon, new { @class = "form-control" })
+                <br />
+                <label>Adres:</label>
+                @Html.TextBoxFor(k => k.Adres, new { @class = "form-control" })
+                <br />
+                <label>Cafe Sahibi:</label>
+                @Html.TextBoxFor(k => k.KullaniciID, new { @class = "form-control" })
+                <br />
+               
+                <label>Durum:</label>
+                @Html.DropDownListFor(k => k.Durum, new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "AKTİF", Value = "true" },
+                    new SelectListItem { Text = "PASİF", Value = "false" }
+                }, new { @class = "form-control" })
+
+
+            </div>
+
+            <div class="card-footer">
+                <br />
+                <a href="/SuperAdmin/CafeRest/" class="btn btn-danger">Vazgeç</a>
+                <button class="btn btn-warning">Güncelle</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

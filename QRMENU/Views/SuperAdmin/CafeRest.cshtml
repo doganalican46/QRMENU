@@ -1,8 +1,57 @@
-﻿
+﻿@using QRMENU.Models.Entity
+@model List<Cafeler>
 @{
     ViewBag.Title = "CafeRest";
     Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
 }
 
-<h2>CafeRest</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Cafe & Restoranlar / </b>Cafe & Restoran Listesi</h2>
+        <br />
+    </div>
+
+    <div class="card-body">
+        <table id="DataTable" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>CAFE ADI</th>
+                    <th>SAHİBİ</th>
+                    <th>DURUM</th>
+                    <th>İŞLEMLER</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cafe in Model)
+                {
+                    <tr>
+                        <td>@cafe.Ad</td>
+                        <td>
+                            @cafe.KullaniciID
+                        </td>
+
+                        <td style="color: @(cafe.Durum.HasValue && cafe.Durum.Value ? "green" : "red")">
+                            @(cafe.Durum.HasValue ? (cafe.Durum.Value ? "AKTİF" : "PASİF") : "N/A")
+                        </td>
+
+                        <td>
+                            <a href="/SuperAdmin/CafeSil/@cafe.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                            <a href="/SuperAdmin/CafeGetir/@cafe.ID" class="btn btn-primary">GÜNCELLE</a>
+                            <a href="/SuperAdmin/CafeDetay/@cafe.ID" class="btn btn-success">DETAY</a>
+                        </td>
+                        <td> <a href="/Mesaj/YeniMesaj/@cafe.KullaniciID" class="btn btn-info">MESAJ GÖNDER</a> </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-footer">
+        <br />
+        <a href="/SuperAdmin/YeniCafe/" class="btn btn-warning">Yeni Cafe & Restoran Ekle</a>
+    </div>
+</div>
+
 

@@ -4243,6 +4243,9 @@
     <Content Include="Views\Mesaj\YeniMesaj.cshtml" />
     <Content Include="Views\Mesaj\YeniMesajGönder.cshtml" />
     <Content Include="Views\Mesaj\Gonderilenler.cshtml" />
+    <Content Include="Views\SuperAdmin\YeniCafe.cshtml" />
+    <Content Include="Views\SuperAdmin\CafeGetir.cshtml" />
+    <Content Include="Views\SuperAdmin\CafeDetay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

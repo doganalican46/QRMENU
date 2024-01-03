@@ -1,0 +1,50 @@
+﻿@model QRMENU.Models.Entity.Cafeler
+@{
+    ViewBag.Title = "YeniCafe";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Cafe & Restoranlar / </b> Yeni Cafe & Restoran Ekle</h2>
+        <br />
+    </div>
+    <form method="post" class="form-group">
+        <div class="card-body">
+            <label>Cafe Ad:</label>
+            <input type="text" name="Ad" class="form-control" required="" />
+            <br />
+            <label>Slogan:</label>
+            <input type="text" name="Slogan" class="form-control" required="" />
+            <br />
+            <label>Hakkında:</label>
+            <input type="text" name="Hakkinda" class="form-control" required="" />
+            <br />
+            <label>Adres:</label>
+            <input type="text" name="Adres" class="form-control" required="" />
+            <br />
+            <label>Telefon:</label>
+            <input type="text" name="Telefon" class="form-control" />
+            <br />
+            <label>Kafe Sahibi:</label>
+            <input type="text" name="KullaniciID" class="form-control" />
+
+
+
+            <input type="hidden" name="Durum" value="true" />
+
+
+        </div>
+
+        <div class="card-footer">
+            <br />
+            <a href="/SuperAdmin/CafeRest/" class="btn btn-danger">Vazgeç</a>
+            <button class="btn btn-primary">Ekle</button>
+        </div>
+    </form>
+
+</div>
+
+
+

@@ -1,0 +1,65 @@
+﻿@using QRMENU.Models.Entity
+@model List<Cafeler>
+@{
+    ViewBag.Title = "CafeDetay";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Cafe & Restoranlar / </b>Cafe & Restoran Detay</h2>
+        <br />
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Cafe Bilgileri</h3><br />
+
+
+                @foreach (var cafe in Model)
+                {
+                    <img src="" alt="Cafe Fotoğraf" width="200px" height="300px" />
+                    <br /> <br />
+                    <p><strong>Cafe Ad:</strong> @cafe.Ad  </p>
+                    <p><strong>Cafe Slogan:</strong> @cafe.Slogan  </p>
+                    <p><strong>Cafe Hakkında:</strong> @cafe.Hakkinda  </p>
+                    <p><strong>Cafe Adres:</strong> @cafe.Adres </p>
+                    <p><strong>Cafe Telefon:</strong> @cafe.Telefon  </p>
+                    <p><strong>Cafe Durum:</strong> @cafe.Durum  </p>
+                    <p><strong>Cafe Sahibi:</strong> @ViewBag.KafeSahibi  </p>
+                    <a href="/SuperAdmin/CafeSil/@cafe.ID" class="btn btn-danger">Cafe Sil</a>
+
+                }
+
+            </div>
+
+            <div class="col-md-8">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card-footer">
+        <br />
+        <a href="/SuperAdmin/CafeRest/" class="btn btn-warning">Geri Dön</a>
+        <a href="/SuperAdmin/KullaniciDetay/@ViewBag.kafesahipid" class="btn btn-primary">Cafe Sahibi Detay</a>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

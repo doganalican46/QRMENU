@@ -105,8 +105,83 @@ namespace QRMENU.Controllers
 
         public ActionResult CafeRest()
         {
+            var cafeler = db.Cafeler.ToList();
+            
+            return View(cafeler);
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult YeniCafe()
+        {
             return View();
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult YeniCafe(Cafeler k)
+        {
+            db.Cafeler.Add(k);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult CafeSil(int id)
+        {
+            var cafe = db.Cafeler.Find(id);
+            cafe.Durum = false;
+            db.SaveChanges();
+            return RedirectToAction("CafeRest");
+        }
+
+
+        [Authorize]
+        public ActionResult CafeGetir(int id)
+        {
+            var cafe = db.Cafeler.Find(id);
+            return View("CafeGetir", cafe);
+        }
+
+        [Authorize]
+        public ActionResult CafeGuncelle(Cafeler k)
+        {
+            var cafe = db.Cafeler.Find(k.ID);
+
+            cafe.Ad = k.Ad;
+            cafe.Slogan = k.Slogan;
+            cafe.Hakkinda = k.Hakkinda;
+            cafe.Telefon = k.Telefon;
+            cafe.Adres = k.Adres;
+            cafe.KullaniciID = k.KullaniciID;
+
+            cafe.Durum = k.Durum;
+            db.SaveChanges();
+            return RedirectToAction("CafeRest");
+        }
+
+
+        [Authorize]
+        public ActionResult CafeDetay(int id)
+        {
+            var cafe = db.Cafeler.Find(id);
+
+            if (cafe != null)
+            {
+                var kafeSahibi = db.Kullanicilar.Find(cafe.KullaniciID);
+
+                if (kafeSahibi != null)
+                {
+                    ViewBag.KafeSahibi = kafeSahibi.Ad + " " + kafeSahibi.Soyad;
+                    ViewBag.kafesahipid = kafeSahibi.ID;
+                }
+            }
+
+            return View(new List<Cafeler> { cafe });
+        }
+
+
+
 
 
 
