@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>QR MENU SİSTEMİ - ADMİN</title>
+    <title>QR MENU SİSTEMİ - ADMİN PANELİ</title>
 
     <!-- Custom fonts for this template-->
     <link href="~/QR_MENU/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,7 +35,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">QR MENU SİSTEMİ - ADMİN</div>
+                <div class="sidebar-brand-text mx-3">QR MENU SİSTEMİ - ADMİN PANELİ</div>
             </a>
 
             <!-- Divider -->
@@ -44,7 +44,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/Admin/Index/">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-home"></i>
                     <span>ANA SAYFA</span>
                 </a>
             </li>
@@ -54,70 +54,70 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="/Cafe/Index/">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-coffee"></i>
                     <span>CAFE & RESTORAN</span>
                 </a>
             </li>
 
-
             <li class="nav-item">
                 <a class="nav-link" href="/Kategori/Index/">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-tags"></i>
                     <span>KATEGORİLER</span>
                 </a>
             </li>
 
-
             <li class="nav-item">
                 <a class="nav-link" href="/Urunler/Index/">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-shopping-basket"></i>
                     <span>ÜRÜN LİSTESİ</span>
                 </a>
             </li>
 
-
             <li class="nav-item">
                 <a class="nav-link" href="/QR/Index/">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-qrcode"></i>
                     <span>QR OLUŞTUR</span>
                 </a>
             </li>
 
+
             @*<li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMesajlar" aria-expanded="true" aria-controls="collapseMesajlar">
-                        <i class="fas fa-envelope"></i>
-                        <span>MESAJLAR</span>
-                    </a>
-                    <div id="collapseMesajlar" class="collapse" aria-labelledby="headingMesajlar" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="/Admin/GelenKutusu/">GELEN KUTUSU</a>
-                            <a class="collapse-item" href="/Admin/Gonderilenler/">GÖNDERİLENLER</a>
-                            <a class="collapse-item" href="/Admin/MesajGonder/">MESAJ GÖNDER</a>
-                        </div>
-                    </div>
-                </li>*@
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMesajlar" aria-expanded="true" aria-controls="collapseMesajlar">
+                <i class="fas fa-envelope"></i>
+                <span>MESAJLAR</span>
+            </a>
+            <div id="collapseMesajlar" class="collapse" aria-labelledby="headingMesajlar" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="/Admin/GelenKutusu/">GELEN KUTUSU</a>
+                    <a class="collapse-item" href="/Admin/Gonderilenler/">GÖNDERİLENLER</a>
+                    <a class="collapse-item" href="/Admin/MesajGonder/">MESAJ GÖNDER</a>
+                </div>
+            </div>
+        </li>*@
 
 
             <li class="nav-item">
                 <a class="nav-link" href="/Admin/MesajGonder/">
-                    <i class="fas fa-toolbox"></i>
-                    <span>SORUN BİLDİR!</span>
+                    <i class="fas fa-fw fa-envelope"></i>
+                    <span>SORUN BİLDİR</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="/Home/Index/">
-                    <i class="fas fa-toolbox"></i>
+                    <i class="fas fa-fw fa-utensils"></i>
                     <span>MENU GÖRÜNTÜLE</span>
                 </a>
             </li>
 
-            @*<li class="nav-item">
-                    <a class="nav-link" href="/Kampanya/Index/">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>KAMPANYALAR</span>
-                    </a>
-                </li>*@
+
+            <li class="nav-item">
+                <a class="nav-link" href="/Kampanya/Index/">
+                    <i class="fas fa-fw fa-gift"></i>
+                    <span>KAMPANYALAR</span>
+                </a>
+            </li>
+
 
             <li class="nav-item">
                 <a class="nav-link" href="/Profil/Index/">
@@ -164,7 +164,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        
+
 
 
 
@@ -183,20 +183,20 @@
                                     Bildirimler
                                 </h6>
                                 @*@foreach (var mesaj in Model)
-                                {
-                                    <a class="dropdown-item d-flex align-items-center" href="#">
-                                        <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="@ViewBag.superadminresim" alt="Admin Resmi">
-                                            <div class="status-indicator bg-success"></div>
-                                        </div>
-                                        <div class="font-weight-bold">
-                                            <div class="text-truncate">
-                                                @mesaj.Mesaj
+                                    {
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="dropdown-list-image mr-3">
+                                                <img class="rounded-circle" src="@ViewBag.superadminresim" alt="Admin Resmi">
+                                                <div class="status-indicator bg-success"></div>
                                             </div>
-                                            <div class="small text-gray-500">Yönetici Admin · @Convert.ToDateTime(mesaj.Tarih).ToString("dd/MM/yyyy")</div>
-                                        </div>
-                                    </a>
-                                 }*@
+                                            <div class="font-weight-bold">
+                                                <div class="text-truncate">
+                                                    @mesaj.Mesaj
+                                                </div>
+                                                <div class="small text-gray-500">Yönetici Admin · @Convert.ToDateTime(mesaj.Tarih).ToString("dd/MM/yyyy")</div>
+                                            </div>
+                                        </a>
+                                     }*@
 
                             </div>
                         </li>

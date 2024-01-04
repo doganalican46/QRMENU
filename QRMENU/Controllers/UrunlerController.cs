@@ -72,14 +72,18 @@ namespace QRMENU.Controllers
 
         public ActionResult UrunGetir(int id)
         {
+            var mail = (string)Session["Mail"];
             var urun = db.Urunler.Find(id);
-            List<SelectListItem> degerler = (from i in db.Kategoriler.ToList()
+            List<SelectListItem> degerler = (from c in db.Cafeler
+                                             join m in db.Menuler on c.ID equals m.CafeID
+                                             join k in db.Kategoriler on m.ID equals k.MenuID
+                                             where c.Kullanicilar.Mail == mail && k.Durum == true
                                              select new SelectListItem
                                              {
-                                                 Text = i.Ad,
-                                                 Value = i.ID.ToString()
-
+                                                 Text = k.Ad,
+                                                 Value = k.ID.ToString()
                                              }).ToList();
+
             ViewBag.kategoriler = degerler;
 
             return View("UrunGetir", urun);
