@@ -1,5 +1,4 @@
-﻿
-@using QRMENU.Models.Entity
+﻿@using QRMENU.Models.Entity
 @model List<Mesajlar>
 @{
     ViewBag.Title = "MesajGonder";
@@ -24,51 +23,75 @@
     }
 
     .darker {
-        background-color: #f8f9fc;
+        background-color: #e6e3e3;
     }
 
     textarea {
-        width: 80%;
+        width: 70%; /* Mesaj alanını biraz daralt */
         height: 90px;
         resize: none;
         margin-top: 10px;
     }
+
+    #tarih{
+        font-size:10px;
+    }
+    /* Yeni eklenen stil */
+    .message-container {
+        max-height: 300px; /* Mesajları bu yüksekliğe sınırla */
+        overflow-y: auto; /* Taşan içeriği kaydırma */
+    }
+
+    .message-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+        .message-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
 </style>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
-    <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><b>MESAJLAR</b> / MESAJ GÖNDER</h1>
+        <h1 class="h3 mb-0 text-gray-800"><b>MESAJLAR</b> / ADMİNE MESAJ GÖNDER</h1>
     </div>
 
     <div class="card shadow mb-4">
-        <form action="/" method="post">
+        <form action="/Admin/MesajGonder/" method="post">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">ADMİN İLE MESAJLAŞ</h6>
             </div>
 
-            <div class="card-body">
-
-                <div class="container">
-                    <img src="~/QR_MENU/assets/img/admin img.png" alt="Avatar" style="width:70px; height:70px;">
-                    <p>Hello. How are you today?</p>
-                    <span class="time-right">11:00</span>
-                </div>
-
-                <div class="container darker">
-                    <img src="@((Session["Resim"] ?? "").ToString())" alt="Avatar" class="right" style="width:70px; height:70px;">
-                    <p>Hey! I'm fine. Thanks for asking!</p>
-                    <span class="time-left">11:01</span>
-                </div>
-
+            <!-- Mesajları kaydırılabilir hale getir -->
+            <div class="card-body message-container">
+                @foreach (var mesaj in Model)
+                {
+                    <div class="message-item @(mesaj.GonderenID == 1 ? "" : "darker")">
+                        <img src="@((mesaj.GonderenID == 1 ? @ViewBag.superadminresim : Session["Resim"].ToString()))" alt="Avatar">
+                        <div class="message-content">
+                            <p>@mesaj.Mesaj</p>
+                            <span id="tarih" class="time-right">@Convert.ToDateTime(mesaj.Tarih).ToString("dd/MM/yyyy")</span>
+                        </div>
+                    </div>
+                }
             </div>
+
 
             <textarea class="form-control" name="Mesaj" placeholder="Mesajınızı Yazın..."></textarea>
 
-            <a href="/Admin/MesajGonder/" class="btn btn-primary float-right">Gönder</a>
+            <button type="submit" class="btn btn-primary float-right">Gönder</button>
         </form>
     </div>
-
 </div>
+<!-- Sayfa İçeriği Bitişi -->
 <!-- /.container-fluid -->
+
+<script>
+    // Sayfa yüklendiğinde en altta göster
+    document.querySelector('.message-container').scrollTop = document.querySelector('.message-container').scrollHeight;
+</script>

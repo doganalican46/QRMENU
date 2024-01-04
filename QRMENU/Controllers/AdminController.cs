@@ -44,10 +44,47 @@ namespace QRMENU.Controllers
         }
 
 
+        [Authorize]
+        [HttpGet]
         public ActionResult MesajGonder()
         {
+            var mail = (string)Session["Mail"];
 
-            return View();
+            var kullanici = db.Kullanicilar.FirstOrDefault(x => x.Mail == mail);
+            var kullaniciId = kullanici.ID;
+            ViewBag.superadminresim = db.Kullanicilar.FirstOrDefault(x => x.ID == 1)?.Resim;
+
+            var adminId = 1; // Admin kullanıcısının ID'si
+
+            var mesajlar = db.Mesajlar
+                .Where(x => (x.GonderenID == kullaniciId && x.AliciID == adminId) || (x.GonderenID == adminId && x.AliciID == kullaniciId))
+                .OrderBy(x => x.Tarih)
+                .ToList();
+
+            return View(mesajlar);
+        }
+
+        [HttpPost]
+        public ActionResult MesajGonder(string Mesaj)
+        {
+            var adminId = 1; // Admin kullanıcısının ID'si
+            var mail = (string)Session["Mail"];
+
+            var kullanici = db.Kullanicilar.FirstOrDefault(x => x.Mail == mail);
+            var kullaniciId = kullanici.ID;
+
+            var yeniMesaj = new Mesajlar
+            {
+                AliciID = adminId,
+                GonderenID = kullaniciId,
+                Mesaj = Mesaj,
+                Tarih = DateTime.Now
+            };
+
+            db.Mesajlar.Add(yeniMesaj);
+            db.SaveChanges();
+
+            return RedirectToAction("MesajGonder");
         }
 
         public ActionResult MesajSil(int id)
