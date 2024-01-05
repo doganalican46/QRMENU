@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using QRMENU.Models.Entity;
+using System.Data.Entity;
+
 namespace QRMENU.Controllers
 {
     public class SuperAdminController : Controller
     {
 
         QRMenuEntities2 db = new QRMenuEntities2();
+
         // GET: SuperAdmin
         [Authorize]
         public ActionResult Index()
@@ -19,6 +22,8 @@ namespace QRMENU.Controllers
             var kullanicilar = db.Kullanicilar.ToList();
             return View(kullanicilar);
         }
+
+
         [Authorize]
         [HttpGet]
         public ActionResult YeniKullanici()

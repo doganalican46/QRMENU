@@ -1,0 +1,49 @@
+﻿@model QRMENU.Models.Entity.Bildirimler
+
+@{
+    ViewBag.Title = "BildirimGetir";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Bildirimler / </b>Bildirim Güncelle</h2>
+        <br />
+    </div>
+    <div class="form-group">
+        @using (Html.BeginForm("BildirimGuncelle", "Bildirim", FormMethod.Post))
+        {
+            <div class="card-body">
+                @Html.HiddenFor(k => k.ID)
+                <BR />
+                <label>Başlık:</label>
+                @Html.TextBoxFor(k => k.Baslik, new { @class = "form-control" })
+                <br />
+                <label> İçerik:</label>
+                @Html.TextAreaFor(k => k.Icerik, new { @class = "form-control" })
+                <br />
+                <label>Fotoğraf:</label>
+                @Html.TextBoxFor(k => k.Fotograf, new { @class = "form-control" })
+                <br />
+                <label>Durum:</label>
+                @Html.DropDownListFor(k => k.Durum, new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "AKTİF", Value = "true" },
+                    new SelectListItem { Text = "PASİF", Value = "false" }
+                }, new { @class = "form-control" })
+
+
+            </div>
+
+            <div class="card-footer">
+                <br />
+                <a href="/Bildirim/Index/" class="btn btn-danger">Vazgeç</a>
+                <button class="btn btn-warning">Güncelle</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+

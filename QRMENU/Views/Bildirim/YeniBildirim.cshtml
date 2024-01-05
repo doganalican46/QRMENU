@@ -1,0 +1,40 @@
+﻿@model QRMENU.Models.Entity.Bildirimler
+@{
+    ViewBag.Title = "YeniBildirim";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Bildirimler / </b> Yeni Bildirim Ekle</h2>
+        <br />
+    </div>
+    <form method="post" class="form-group">
+        <div class="card-body">
+            <label>Başlık:</label>
+            <input type="text" name="Baslik" class="form-control" required="" />
+            <br />
+            <label>İçerik:</label>
+            <input type="text" name="Icerik" class="form-control" required="" />
+            <br />
+            <label>Fotoğraf:</label>
+            <input type="text" name="Fotograf" class="form-control" required="" />
+            <br />
+
+
+            <input type="hidden" name="Durum" value="true" />
+
+        </div>
+
+        <div class="card-footer">
+            <br />
+            <a href="/Bildirim/Index/" class="btn btn-danger">Vazgeç</a>
+            <button class="btn btn-primary">Ekle</button>
+        </div>
+    </form>
+
+</div>
+
+
+

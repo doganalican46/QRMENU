@@ -18,30 +18,20 @@ namespace QRMENU.Controllers
             var mail = (string)Session["Mail"];
             var degerler = db.Kullanicilar.FirstOrDefault(x => x.Mail == mail);
             ViewBag.mail = mail;
+            if (TempData["Bildirimler"] != null)
+            {
+                ViewBag.Bildirimler = (List<Bildirimler>)TempData["Bildirimler"];
+            }
+            else
+            {
+                ViewBag.Bildirimler = new List<Bildirimler>();
+            }
+
 
             return View(degerler);
         }
 
-        public ActionResult GelenKutusu()
-        {
-            var mail = (string)Session["Mail"];
-
-            var kullanici = db.Kullanicilar.FirstOrDefault(x => x.Mail == mail);
-
-            if (kullanici != null)
-            {
-                var kullaniciid = kullanici.ID;
-
-                var mesajlar = db.Mesajlar.Where(x => x.AliciID == kullaniciid).ToList();
-
-                return View(mesajlar);
-            }
-            else
-            {
-
-                return RedirectToAction("UserNotFound");
-            }
-        }
+        
 
 
         [Authorize]
@@ -98,16 +88,23 @@ namespace QRMENU.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("GelenKutusu");
+            return RedirectToAction("MesajGonder");
         }
         
+        [Authorize]
+        public ActionResult Duyurular()
+        {
+            var duyurular = db.Bildirimler.Where(x=>x.Durum==true).ToList();
+            return View(duyurular);
+        }
 
 
-    public ActionResult LogOut()
+        public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index","Login");
         }
+
 
 
     }

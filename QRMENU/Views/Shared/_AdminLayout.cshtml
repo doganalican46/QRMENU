@@ -1,4 +1,4 @@
-﻿
+﻿@using QRMENU.Models.Entity
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,6 +59,8 @@
                 </a>
             </li>
 
+
+
             <li class="nav-item">
                 <a class="nav-link" href="/Kategori/Index/">
                     <i class="fas fa-fw fa-tags"></i>
@@ -96,12 +98,7 @@
         </li>*@
 
 
-            <li class="nav-item">
-                <a class="nav-link" href="/Admin/MesajGonder/">
-                    <i class="fas fa-fw fa-envelope"></i>
-                    <span>SORUN BİLDİR</span>
-                </a>
-            </li>
+
 
             <li class="nav-item">
                 <a class="nav-link" href="/Home/Index/">
@@ -123,6 +120,19 @@
                 <a class="nav-link" href="/Profil/Index/">
                     <i class="fas fa-user"></i>
                     <span>PROFİL</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/MesajGonder/">
+                    <i class="fas fa-fw fa-envelope"></i>
+                    <span>SORUN BİLDİR</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Admin/Duyurular/">
+                    <i class="fas fa-fw fa-newspaper"></i>
+                    <span>DUYURULAR</span>
                 </a>
             </li>
 
@@ -169,12 +179,16 @@
 
 
                         <!-- Nav Item - Messages -->
+                        <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                @if (ViewBag.Bildirimler != null)
+                                {
+                                    <span class="badge badge-danger badge-counter">@((ViewBag.Bildirimler as List<Bildirimler>).Count)</span>
+                                }
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -182,24 +196,32 @@
                                 <h6 class="dropdown-header">
                                     Bildirimler
                                 </h6>
-                                @*@foreach (var mesaj in Model)
+                                @if (ViewBag.Bildirimler != null)
+                                {
+                                    foreach (var bildirim in ViewBag.Bildirimler)
                                     {
                                         <a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="dropdown-list-image mr-3">
-                                                <img class="rounded-circle" src="@ViewBag.superadminresim" alt="Admin Resmi">
+                                                <img class="rounded-circle" src="@bildirim.Fotograf" alt="Admin Resmi">
                                                 <div class="status-indicator bg-success"></div>
                                             </div>
                                             <div class="font-weight-bold">
                                                 <div class="text-truncate">
-                                                    @mesaj.Mesaj
+                                                    @bildirim.Baslik
                                                 </div>
-                                                <div class="small text-gray-500">Yönetici Admin · @Convert.ToDateTime(mesaj.Tarih).ToString("dd/MM/yyyy")</div>
+                                                <div class="small text-gray-500">Yönetici Admin · @Convert.ToDateTime(bildirim.Tarih).ToString("dd/MM/yyyy")</div>
                                             </div>
                                         </a>
-                                     }*@
-
+                                    }
+                                }
+                                else
+                                {
+                                    <p class="dropdown-item text-center small text-gray-500">Yeni bildirim yok.</p>
+                                }
                             </div>
                         </li>
+
+
 
 
                         <div class="topbar-divider d-none d-sm-block"></div>

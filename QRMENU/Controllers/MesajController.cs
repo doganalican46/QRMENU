@@ -20,9 +20,10 @@ namespace QRMENU.Controllers
             if (kullanici != null)
             {
                 var kullaniciid = kullanici.ID;
+                ViewBag.aliciAd = kullanici.Ad+" "+kullanici.Soyad;
 
                 var mesajlar = db.Mesajlar.Where(x => x.AliciID == kullaniciid).ToList();
-
+                
                 return View(mesajlar);
             }
             else
@@ -106,9 +107,9 @@ namespace QRMENU.Controllers
                 AliciID = Alici.ID,
                 GonderenID = kullaniciid,
                 Mesaj = Mesaj,
-                Tarih= DateTime.Now
+                Tarih = DateTime.Now
             };
-           
+
 
             db.Mesajlar.Add(yeniMesaj);
             db.SaveChanges();

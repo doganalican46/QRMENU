@@ -53,6 +53,9 @@ namespace QRMENU.Controllers
 
                 if (login.Rol == 0)
                 {
+                    var bildirimler = db.Bildirimler.ToList();
+                    TempData["Bildirimler"] = bildirimler;
+
                     return RedirectToAction("Index", "Admin");
                 }
                 else if (login.Rol == 1)

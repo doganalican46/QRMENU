@@ -28,8 +28,13 @@
                     <tr>
                         <td>@cafe.Ad</td>
                         <td>
-                            @cafe.KullaniciID
+                            @if (cafe.Kullanicilar != null)
+                            {
+                                @cafe.Kullanicilar.Ad @(" ") @cafe.Kullanicilar.Soyad
+                            }
+
                         </td>
+
 
                         <td style="color: @(cafe.Durum.HasValue && cafe.Durum.Value ? "green" : "red")">
                             @(cafe.Durum.HasValue ? (cafe.Durum.Value ? "AKTİF" : "PASİF") : "N/A")
@@ -41,9 +46,9 @@
                             <a href="/SuperAdmin/CafeDetay/@cafe.ID" class="btn btn-success">DETAY</a>
                         </td>
                         <td> <a href="/Mesaj/YeniMesaj/@cafe.KullaniciID" class="btn btn-info">MESAJ GÖNDER</a> </td>
-
                     </tr>
                 }
+
             </tbody>
         </table>
     </div>

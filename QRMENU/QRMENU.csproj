@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AyarlarController.cs" />
+    <Compile Include="Controllers\BildirimController.cs" />
     <Compile Include="Controllers\CafeController.cs" />
     <Compile Include="Controllers\GuvenlikController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -155,6 +156,9 @@
     <Compile Include="Controllers\UrunlerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entity\Bildirimler.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity\Cafeler.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -4236,7 +4240,6 @@
     <Content Include="Views\SuperAdmin\YeniKullanici.cshtml" />
     <Content Include="Views\SuperAdmin\KullaniciGetir.cshtml" />
     <Content Include="Views\SuperAdmin\KullaniciDetay.cshtml" />
-    <Content Include="Views\Admin\GelenKutusu.cshtml" />
     <Content Include="Views\SuperAdmin\AnaSayfa.cshtml" />
     <Content Include="Views\SuperAdmin\CafeRest.cshtml" />
     <Content Include="Views\Mesaj\Index.cshtml" />
@@ -4248,6 +4251,10 @@
     <Content Include="Views\SuperAdmin\CafeGetir.cshtml" />
     <Content Include="Views\SuperAdmin\CafeDetay.cshtml" />
     <Content Include="Views\Admin\MesajGonder.cshtml" />
+    <Content Include="Views\Bildirim\Index.cshtml" />
+    <Content Include="Views\Bildirim\YeniBildirim.cshtml" />
+    <Content Include="Views\Bildirim\BildirimGetir.cshtml" />
+    <Content Include="Views\Admin\Duyurular.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

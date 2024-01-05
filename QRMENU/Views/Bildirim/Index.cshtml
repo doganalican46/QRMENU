@@ -1,0 +1,53 @@
+﻿@using QRMENU.Models.Entity
+@model List<Bildirimler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="mb-5"><b>Bildirimler / </b>Bildirim Listesi</h2>
+        <br />
+    </div>
+
+    <div class="card-body">
+        <table id="DataTable" class="table table-hover" style="width:100%">
+            <thead>
+                <tr>
+                    <th>BAŞLIK</th>
+                    <th>İÇERİK</th>
+                    <th>DURUM</th>
+                    <th>İŞLEMLER</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bildirim in Model)
+                {
+                    <tr>
+                        <td>@bildirim.Baslik</td>
+                        <td>@bildirim.Icerik</td>
+                        <td style="color: @(bildirim.Durum.HasValue && bildirim.Durum.Value ? "green" : "red")">
+                            @(bildirim.Durum.HasValue ? (bildirim.Durum.Value ? "AKTİF" : "PASİF") : "N/A")
+                        </td>
+
+                        <td>
+                            <a href="/Bildirim/BildirimSil/@bildirim.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
+                            <a href="/Bildirim/BildirimGetir/@bildirim.ID" class="btn btn-primary">GÜNCELLE</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-footer">
+        <br />
+        <a href="/Bildirim/YeniBildirim/" class="btn btn-warning">Yeni Bildirim Ekle</a>
+    </div>
+</div>
+
+

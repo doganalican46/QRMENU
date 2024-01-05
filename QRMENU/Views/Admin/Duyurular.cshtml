@@ -1,0 +1,47 @@
+﻿@using QRMENU.Models.Entity
+@model List<Bildirimler>
+@{
+    ViewBag.Title = "Bildirimler";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<div class="container-fluid">
+
+
+
+        <div class="row">
+
+
+
+        </div>
+
+    </div>*@
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="content-grids">
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800"><B>DUYURULAR</B> / DUYURU LİSTESİ</h1>
+            </div>
+            @foreach (var bildirim in Model)
+            {
+
+                <div class="col-md-8 content-main">
+                    <div class="content-grid">
+                        <div class="content-grid-info">
+                            <img src="@bildirim.Fotograf" alt="" style="height:300px;" width:550px; />
+                            <div class="post-info">
+                                <h4>@bildirim.Baslik  <small>@bildirim.Tarih</small> </h4>
+                                <p>@bildirim.Icerik</p>
+                                <a href="/Admin/MesajGonder/" class="btn btn-primary"><span></span>DETAY ÖĞREN</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+            }
+        </div>
+    </div>
+</div>

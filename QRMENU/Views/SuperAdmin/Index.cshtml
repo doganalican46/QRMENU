@@ -27,8 +27,12 @@
                     <tr>
                         <td>@kullanici.Ad @kullanici.Soyad</td>
                         <td>
-                            Cafe Adı
+                            @foreach (var cafe in kullanici.Cafeler)
+                            {
+                                @cafe.Ad @(" | ")
+                            }
                         </td>
+
 
                         <td style="color: @(kullanici.Durum.HasValue && kullanici.Durum.Value ? "green" : "red")">
                             @(kullanici.Durum.HasValue ? (kullanici.Durum.Value ? "AKTİF" : "PASİF") : "N/A")

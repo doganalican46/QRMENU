@@ -24,7 +24,12 @@
                 @foreach (var mesaj in Model)
                 {
                     <tr>
-                        <td>@mesaj.GonderenID</td>
+
+                        <td>
+                            @mesaj.GonderenID
+                        </td>
+
+
                         <td>@mesaj.Mesaj</td>
                         <td>
                             <a href="/Mesaj/MesajSil/@mesaj.ID" class="btn btn-danger" onclick="return confirm('Gerçekten silmek istiyor musunuz?')">SİL</a>
