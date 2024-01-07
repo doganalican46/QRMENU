@@ -9,6 +9,8 @@ namespace QRMENU.Controllers
 {
     public class LoginController : Controller
     {
+
+
         QRMenuEntities2 db = new QRMenuEntities2();
         // GET: Login
         public ActionResult Index()
