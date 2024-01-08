@@ -14,10 +14,8 @@ namespace QRMENU.Controllers
 
         public ActionResult Index()
         {
-            // Session üzerinden kullanıcının mail bilgisini alalım
             var mail = (string)Session["Mail"];
 
-            // Kullanıcının cafesine ait menülerdeki ürünleri çekelim
             var urun = (from u in db.Urunler
                         join k in db.Kategoriler on u.KategoriID equals k.ID
                         join m in db.Menuler on k.MenuID equals m.ID
@@ -31,10 +29,8 @@ namespace QRMENU.Controllers
         [HttpGet]
         public ActionResult YeniUrun()
         {
-            // Session üzerinden kullanıcının mail bilgisini alalım
             var mail = (string)Session["Mail"];
 
-            // Kullanıcının cafesine ait aktif menülerdeki kategorileri çekelim
             List<SelectListItem> degerler = (from c in db.Cafeler
                                              join m in db.Menuler on c.ID equals m.CafeID
                                              join k in db.Kategoriler on m.ID equals k.MenuID
