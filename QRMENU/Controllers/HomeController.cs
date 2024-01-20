@@ -20,13 +20,20 @@ namespace QRMENU.Controllers
 
         public ActionResult About()
         {
-            return View();
+            var saat = db.Saatler.ToList();
+            return View(saat);
         }
 
         public ActionResult Product()
         {
             var urunler = db.Urunler.ToList();
             return View(urunler);
+        }
+
+
+        public ActionResult Alternatif()
+        {
+            return View();
         }
 
     }
